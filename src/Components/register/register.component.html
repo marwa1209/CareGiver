@@ -1,0 +1,163 @@
+<section class="register">
+    <div class="container-fluied">
+        <div class="row g-0">
+            <div class="col-md-6 col-sm-12 position-relative">
+                <picture class="h-100">
+                    <img class="w-100 h-100 d-block" src="./assets/images/register-customer-image.jpg" />
+                </picture>
+                <div class="overlay"></div>
+                <div class="overlay-text w-75">
+                    <h2 class="fs-1 mb-4">Welcome to</h2>
+                    <h2 class="fs-1 mb-4">Caregiver</h2>
+                    <p class="mb-4 fs-5 lh-base fw-light text-break">We are thrilled to have you here and hope that you
+                        find
+                        everything
+                        you
+                        are
+                        <br /> looking
+                        for. Enjoy
+                        your stay!
+                    </p>
+                </div>
+                <div class="overlay-text-bottom  w-75">
+                    <p class="fs-3 fw-light mb-4">Already have an account ?</p>
+                    <a class="cursor-pointer text-light fs-3 font-i" routerLink="/signin">Sign in</a>
+                </div>
+            </div>
+            <div class="col-md-6 py-5 col-sm-12">
+                <div class="w-100 h-100 d-flex justify-content-center container px-5 flex-column">
+                    <a class="mb-5 text-main text-center fs-3 fw-semibold" routerLink="/home">Logo</a>
+                    <form class="fw-medium main-text-color" (ngSubmit)="handleRegister()" action=""
+                        [formGroup]="RegisterForm">
+                        <h1 class="fs-3 mb-5 text-main position-relative">Sign Up</h1>
+                        <div class="mb-4 ">
+                            <label for="name" class="form-label">Full Name</label>
+                            <input #inputName formControlName="name" type="text" class="form-control" id="name">
+                            <ng-container *ngIf="RegisterForm.get('name')?.touched ||inputName.value.length>0">
+                                <p *ngIf="RegisterForm.get('name')?.getError('required')"
+                                    class="alert alert-danger p-2 my-2">Name
+                                    is
+                                    required!</p>
+                                <p *ngIf="RegisterForm.get('name')?.getError('minlength')"
+                                    class="alert alert-danger p-2 my-2">Name
+                                    must
+                                    be at least
+                                    3 characters long!</p>
+                                <p *ngIf="RegisterForm.get('name')?.getError('maxlength')"
+                                    class="alert alert-danger p-2 my-2">Name
+                                    cannot exceed 40
+                                    characters!</p>
+                            </ng-container>
+                        </div>
+                        <div class="mb-4">
+                            <p class="form-label">Gender</p>
+                            <input type="radio" class="btn-check" formControlName="gender" id="male" value="male">
+                            <label class="btn border px-4 py-2 text-muted me-4" for="male">Male</label>
+                            <input type="radio" class="btn-check" formControlName="gender" id="female" value="female">
+                            <label class="btn border px-4 py-2 text-muted " for="female">Female</label>
+                        </div>
+                        <div class="mb-4">
+                            <label for="bdate" class="form-label">Birthdate</label>
+                            <input type="date" class="form-control text-muted" id="bdate">
+                        </div>
+                        <div class="mb-4">
+                            <label for="Nationality" class="form-label">Nationality</label>
+                            <div class="input-group">
+                                <a class="btn btn-outline-success dropdown-toggle" type="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">Select Country</a>
+                                <ul class="dropdown-menu">
+                                    <li *ngFor="let country of countries">
+                                        <a class="dropdown-item cursor-pointer" (click)="selectCountry(country)">{{
+                                            country }}</a>
+                                    </li>
+                                </ul>
+                                <input #countryInput type="text" class="form-control"
+                                    aria-label="Text input with dropdown button" [value]="selectedCountry"
+                                    id="Nationality">
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label for="email" class="form-label">Email address</label>
+                            <input #inputEmail formControlName="email" type="email" class="form-control" id="email">
+                            <ng-container *ngIf="RegisterForm.get('email')?.touched ||inputEmail.value.length>0">
+                                <p *ngIf="RegisterForm.get('email')?.getError('required')"
+                                    class="alert alert-danger p-2 my-2">Email
+                                    is
+                                    required!</p>
+                                <p *ngIf="RegisterForm.get('email')?.getError('email')"
+                                    class="alert alert-danger p-2 my-2">Invalid
+                                    email format!</p>
+                            </ng-container>
+                        </div>
+                        <div class="mb-4">
+                            <label for="password" class="form-label">Password</label>
+                            <div class="input-group">
+                                <input #InputPassword formControlName="password" type="password" class="form-control"
+                                    id="password">
+                                <button class="btn btn-outline-success" type="button"
+                                    (click)="togglePasswordVisibility(InputPassword)">
+                                    <i class="fa-regular fa-eye"></i>
+                                </button>
+                            </div>
+                            <ng-container *ngIf="RegisterForm.get('password')?.touched ||InputPassword.value.length>0">
+                                <p *ngIf="RegisterForm.get('password')?.getError('required')"
+                                    class="alert alert-danger p-2 my-2">
+                                    password is
+                                    required!</p>
+                                <p *ngIf="RegisterForm.get('password')?.getError('pattern')"
+                                    class="alert alert-danger p-2 my-2">
+                                    Password must start with an uppercase letter, followed by 6 to 20 lowercase letters
+                                    or digits!</p>
+                            </ng-container>
+                        </div>
+                        <div class="mb-4">
+                            <label for="rePassword" class="form-label">Confirm Password:</label>
+                            <div class="input-group">
+                                <input #Inputrepassword formControlName="rePassword" type="password"
+                                    class="form-control" id="rePassword">
+                                <button class="btn btn-outline-success" type="button"
+                                    (click)="togglePasswordVisibility(Inputrepassword)">
+                                    <i class="fa-regular fa-eye"></i>
+                                </button>
+                            </div>
+                            <ng-container
+                                *ngIf="RegisterForm.get('rePassword')?.touched ||Inputrepassword.value.length>0">
+                                <p *ngIf="RegisterForm.get('rePassword')?.getError('required')"
+                                    class="alert alert-danger p-2 my-2">
+                                    Confirm Password is required!</p>
+                                <p *ngIf="RegisterForm.get('rePassword')?.getError('missmatch')"
+                                    class="alert alert-danger p-2 my-2">
+                                    Confirm Password dose not match Password</p>
+                            </ng-container>
+                        </div>
+                        <div class="mb-4">
+                            <label for="phone" class="form-label">phone:</label>
+                            <input #InputPhone formControlName="phone" type="tel" class="form-control" id="phone">
+                            <ng-container *ngIf="RegisterForm.get('phone')?.touched ||InputPhone.value.length>0">
+                                <p *ngIf="RegisterForm.get('phone')?.getError('required')"
+                                    class="alert alert-danger p-2 my-2">
+                                    phone is
+                                    required!</p>
+                                <p *ngIf="RegisterForm.get('phone')?.getError('pattern')"
+                                    class="alert alert-danger p-2 my-2">
+                                    Invalid phone number format!</p>
+                            </ng-container>
+                        </div>
+                        <div class="form-check mb-4">
+                            <input #Inputterms formControlName="terms" class="form-check-input" type="checkbox" value=""
+                                id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                I agree to Terms And Conditions & Privacy Policy
+                            </label>
+                        </div>
+                        <button [disabled]="RegisterForm.invalid" type="submit"
+                            class="btn-main mb-3 d-block m-auto w-30">
+                            <i *ngIf="isLoading" class="fas fa-spinner fa-spin"></i>
+                            Register</button>
+                    </form>
+                    <p *ngIf="message" class="alert alert-danger p-2 my-2 ">{{message}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
