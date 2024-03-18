@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LoogedUserNavComponent } from '../looged-user-nav/looged-user-nav.component';
 import { MainNavComponent } from '../main-nav/main-nav.component';
 
 @Component({
   selector: 'app-not-found',
   standalone: true,
-  imports: [CommonModule, LoogedUserNavComponent, MainNavComponent],
   templateUrl: './not-found.component.html',
   styleUrls: ['./not-found.component.scss'],
+  imports: [CommonModule, MainNavComponent]
 })
 export class NotFoundComponent implements OnInit {
   isloggedUser: boolean = false;
