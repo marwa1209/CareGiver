@@ -1,0 +1,189 @@
+/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@100;200;300;400;500;600;700;800;900&display=swap");
+input:focus,
+select:focus,
+textarea:focus {
+  box-shadow: none !important;
+}
+
+input,
+select,
+textarea {
+  border: 1px solid #004225 !important;
+}
+
+body {
+  font-family: "Encode Sans Expanded", sans-serif !important;
+}
+
+a {
+  color: inherit;
+  text-decoration: none !important;
+  font-size: inherit !important;
+}
+
+.nav-link {
+  transition: unset !important;
+}
+
+ul {
+  list-style: none;
+}
+
+.active-link {
+  background-color: #004225 !important;
+  color: #F5F5DC !important;
+  border-radius: 5px;
+}
+
+.w-30 {
+  width: 30%;
+}
+
+.rating-color {
+  color: #FFB000;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+a,
+a:hover {
+  color: #004225;
+  text-decoration: none;
+}
+
+.main-text-color {
+  color: #061826;
+}
+
+.font-sm {
+  font-size: 18px;
+}
+
+.text-main {
+  color: #004225;
+}
+
+.bg-main {
+  background-color: #004225 !important;
+}
+
+.bg-main-light {
+  background-color: #F5F5DC !important;
+}
+
+.btn-main {
+  background-color: #004225 !important;
+  color: #fff;
+  padding-inline: 30px;
+  padding-block: 5px;
+  border: 1px solid #004225;
+  border-radius: 30px;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
+.btn-main-light {
+  background-color: #fff;
+  color: #004225 !important;
+  padding-inline: 30px;
+  padding-block: 5px;
+  border: 1px solid #004225;
+  border-radius: 30px;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
+.grey-text-color {
+  color: #6B7280;
+}
+
+.btn-main:disabled,
+.btn-main-light:disabled {
+  cursor: not-allowed;
+  background-color: rgba(0, 66, 37, 0.6862745098) !important;
+  border: transparent !important;
+}
+
+.btn-main:disabled:hover,
+.btn-main-light:disabled:hover {
+  background-color: rgba(0, 66, 37, 0.6862745098) !important;
+  border: transparent !important;
+  color: #fff !important;
+}
+
+.btn-main:hover {
+  background-color: #fff !important;
+  color: #004225 !important;
+}
+
+.btn-main-light:hover {
+  background-color: #004225 !important;
+  color: #fff !important;
+}
+
+.btn-check:checked + .btn,
+.btn.active,
+.btn.show,
+.btn:first-child:active,
+:not(.btn-check) + .btn:active {
+  background-color: #004225 !important;
+  color: #fff !important;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.form-check-input:checked {
+  background-color: #004225 !important;
+  border-color: #004225 !important;
+}
+
+form h1:after {
+  content: "";
+  background-color: #004225;
+  width: 10%;
+  height: 3px;
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Adjust opacity as needed */
+  z-index: 1; /* Ensure it's below the text */
+}
+
+.overlay-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  color: white;
+}
+
+.overlay-text-bottom {
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  color: white;
+}/*# sourceMappingURL=styles.css.map */

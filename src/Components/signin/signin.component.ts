@@ -42,10 +42,9 @@ export class SigninComponent {
       error: (error) => {
         this.isLoading = false;
         if (error.error.statusMsg === 'fail') {
-          this.message = error.error.message
+          this.message = error.error.message;
         } else {
           this.message = error.error.message;
-          
         }
       },
     });
