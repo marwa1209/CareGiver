@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from 'src/app/Core/Services/auth.service';
 
 @Component({
@@ -10,6 +10,20 @@ import { AuthService } from 'src/app/Core/Services/auth.service';
   templateUrl: './main-nav.component.html',
   styleUrls: ['./main-nav.component.scss'],
 })
-export class MainNavComponent{
- 
+export class MainNavComponent implements OnInit {
+  userToken: boolean = false;
+  constructor(private _Router: Router) {}
+  ngOnInit() {
+    const encodeToken: any = localStorage.getItem('etoken');
+    if (encodeToken !== null) {
+      this.userToken = true;
+    } else {
+      this.userToken = false;
+    }
+  }
+  SignOut() {
+    this.userToken = false;
+    localStorage.removeItem('etoken');
+    this._Router.navigate(['/signin']);
+  }
 }

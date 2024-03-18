@@ -1,6 +1,9 @@
-<app-main-nav *ngIf="!isloggedUser"></app-main-nav>
-<app-looged-user-nav *ngIf="isloggedUser"></app-looged-user-nav>
+<app-main-nav></app-main-nav>
+<!-- ! i was removeed
+  - app-looged-user-nav components
+  - app-loogedin-user-nav components
+!-->
 <div class="container-fluid">
-    <router-outlet />
+  <router-outlet />
 </div>
 <app-footer />

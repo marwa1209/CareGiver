@@ -3,8 +3,6 @@ import { Component, Directive, OnInit } from '@angular/core';
 import { CommonModule, NgIf } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { FooterComponent } from 'src/Components/footer/footer.component';
-import { LoogedUserNavComponent } from 'src/Components/looged-user-nav/looged-user-nav.component';
-
 @Component({
   selector: 'app-blank-layout',
   standalone: true,
@@ -13,7 +11,6 @@ import { LoogedUserNavComponent } from 'src/Components/looged-user-nav/looged-us
     RouterOutlet,
     MainNavComponent,
     FooterComponent,
-    LoogedUserNavComponent,
     NgIf,
   ],
   templateUrl: './blank-layout.component.html',
@@ -28,8 +25,5 @@ export class BlankLayoutComponent implements OnInit {
     } else {
       this.isloggedUser = false;
     }
-  ;
   }
-
 }
-
