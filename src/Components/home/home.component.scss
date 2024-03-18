@@ -1,0 +1,58 @@
+.after::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translate(-50%, -50%);
+  width: 0.5px;
+  height: 50px;
+  background-color: #6b7280;
+}
+.rounded-custom {
+  border-radius: 200px;
+}
+.overlay-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  color: white;
+}
+@media (max-width: 992px) {
+  .services {
+    border-radius: 0px;
+    padding-block: 50px !important;
+    .after {
+      margin-bottom: 40px;
+    }
+    .search {
+      justify-content: start !important;
+    }
+  }
+  .categories {
+    .row {
+      .col-lg-4 {
+        img {
+          width: 70% !important;
+        }
+      }
+    }
+  }
+  .experts {
+    .row {
+      .col-lg-4 {
+        width: 80% !important;
+      }
+    }
+  }
+  .after::after {
+    width: 0px;
+    height: 0px;
+  }
+  .join-nurses{
+    .images{
+        display: none !important;
+    }
+  }
+}

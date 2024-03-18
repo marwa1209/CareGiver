@@ -43,10 +43,15 @@ export class RegisterComponent {
   constructor(private _AuthService: AuthService, private _Router: Router) {}
   RegisterForm: FormGroup = new FormGroup(
     {
-      name: new FormControl('', [
+      fname: new FormControl('', [
         Validators.required,
         Validators.minLength(3),
-        Validators.maxLength(40),
+        Validators.maxLength(20),
+      ]),
+      lname: new FormControl('', [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(20),
       ]),
       gender: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),

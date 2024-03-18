@@ -33,6 +33,9 @@ ul {
 .w-30 {
   width: 30%;
 }
+.w-80 {
+  width: 90% !important;
+}
 .rating-color {
   color: $rating-color;
 }
@@ -103,6 +106,7 @@ a:hover {
 .btn-main-light:hover {
   background-color: $main-color !important;
   color: #fff !important;
+  border: 1px solid #fff;
 }
 .btn-check:checked + .btn,
 .btn.active,

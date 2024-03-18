@@ -31,20 +31,39 @@
                         [formGroup]="RegisterForm">
                         <h1 class="fs-3 mb-5 text-main position-relative">Sign Up</h1>
                         <div class="mb-4 ">
-                            <label for="name" class="form-label">Full Name</label>
-                            <input #inputName formControlName="name" type="text" class="form-control" id="name">
-                            <ng-container *ngIf="RegisterForm.get('name')?.touched ||inputName.value.length>0">
-                                <p *ngIf="RegisterForm.get('name')?.getError('required')"
-                                    class="alert alert-danger p-2 my-2">Name
+                            <label for="fname" class="form-label">First Name</label>
+                            <input #inputfName formControlName="fname" type="text" class="form-control" id="fname">
+                            <ng-container *ngIf="RegisterForm.get('fname')?.touched ||inputfName.value.length>0">
+                                <p *ngIf="RegisterForm.get('fname')?.getError('required')"
+                                    class="alert alert-danger p-2 my-2">First Name
                                     is
                                     required!</p>
-                                <p *ngIf="RegisterForm.get('name')?.getError('minlength')"
-                                    class="alert alert-danger p-2 my-2">Name
+                                <p *ngIf="RegisterForm.get('fname')?.getError('minlength')"
+                                    class="alert alert-danger p-2 my-2">First Name
                                     must
                                     be at least
                                     3 characters long!</p>
-                                <p *ngIf="RegisterForm.get('name')?.getError('maxlength')"
-                                    class="alert alert-danger p-2 my-2">Name
+                                <p *ngIf="RegisterForm.get('fname')?.getError('maxlength')"
+                                    class="alert alert-danger p-2 my-2">First Name
+                                    cannot exceed 40
+                                    characters!</p>
+                            </ng-container>
+                        </div>
+                        <div class="mb-4 ">
+                            <label for="lname" class="form-label">Last Name</label>
+                            <input #inputlname formControlName="lname" type="text" class="form-control" id="lname">
+                            <ng-container *ngIf="RegisterForm.get('lname')?.touched ||inputlname.value.length>0">
+                                <p *ngIf="RegisterForm.get('lname')?.getError('required')"
+                                    class="alert alert-danger p-2 my-2">Last Name
+                                    is
+                                    required!</p>
+                                <p *ngIf="RegisterForm.get('lname')?.getError('minlength')"
+                                    class="alert alert-danger p-2 my-2">Last Name
+                                    must
+                                    be at least
+                                    3 characters long!</p>
+                                <p *ngIf="RegisterForm.get('lname')?.getError('maxlength')"
+                                    class="alert alert-danger p-2 my-2">Last Name
                                     cannot exceed 40
                                     characters!</p>
                             </ng-container>
@@ -58,8 +77,10 @@
                         </div>
                         <div class="mb-4">
                             <label for="bdate" class="form-label">Birthdate</label>
-                            <input type="date" class="form-control text-muted" id="bdate">
+                            <input type="date" class="form-control text-muted" id="bdate" name="bdate" min="1924-01-01"
+                                max="2004-12-31">
                         </div>
+
                         <div class="mb-4">
                             <label for="Nationality" class="form-label">Nationality</label>
                             <div class="input-group">

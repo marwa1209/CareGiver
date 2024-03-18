@@ -1,1 +1,105 @@
-<p>hohhhhhhhhhhhhhhhhhhhme works!</p>
+<section class=" ">
+    <div class="container-sm">
+        <div class="row py-5">
+            <div class="col-lg-6 col-md-12 mb-5">
+                <h1 class="text-main fs-1 fw-bolder lh-base">
+                    Find your next <br />
+                    Caregiver
+                </h1>
+                <p class="text-muted fs-5 lh-sm">Lorem Ipsum is simply dummy text of the printing and typesetting
+                    industry.
+                    Lorem Ipsum has been the
+                    industry’s standard
+                    dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it.</p>
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <img src="./assets/images/bg-home.png" class="w-100" alt="Background Image">
+            </div>
+        </div>
+        <div
+            class="services my-5 row m-auto w-75 align-items-center justify-content-center shadow-lg px-5 py-3 rounded-custom">
+            <div class="after position-relative col-lg-3  col-md-12 ">
+                <h3 class="fw-medium mb-0 fs-6">What are you looking for?</h3>
+                <a class="text-muted">Search.....</a>
+            </div>
+            <div class="after position-relative col-lg-3  col-md-12">
+                <h3 class="fw-medium mb-0 fs-6">Category</h3>
+                <a class="cursor-pointer d-flex justify-content-between "><span class="text-muted">Service
+                        type</span> <i class="fa-solid fa-caret-down"></i></a>
+            </div>
+            <div class="after position-relative col-lg-4  col-md-12">
+                <h3 class="fw-medium mb-0 fs-6">Location</h3>
+                <a class="text-muted">Where do you want your caregiver?</a>
+            </div>
+            <div class="col-lg-2 col-md-12 d-flex justify-content-center align-items-center search">
+                <a class="text-white bg-main p-3 rounded-circle"><i
+                        class="fa-solid fa-magnifying-glass fs-5 d-block m-auto"></i></a>
+            </div>
+
+
+
+
+        </div>
+        <div class="categories py-5">
+            <h2 class="fs-1 text-center py-4">Rent by category</h2>
+            <div class="row">
+                <div class="col-lg-4 col-md-12 mb-4 position-relative cursor-pointer" onclick="console.log('hiii')">
+                    <img class="w-100 m-auto d-block" src="./assets/images/nurse-bg.png">
+                    <h2 class=" overlay-text fs-2 ">Nurse</h2>
+                </div>
+                <div class="col-lg-4 col-md-12 mb-4 position-relative  cursor-pointer">
+                    <img class="w-100 m-auto d-block" src="./assets/images/Babysitter-bg.png">
+                    <h2 class=" overlay-text fs-2 ">Babysitter</h2>
+                </div>
+                <div class="col-lg-4 col-md-12 mb-4 position-relative  cursor-pointer">
+                    <img class="w-100 m-auto d-block" src="./assets/images/Caregiver-bg.png">
+                    <h2 class=" overlay-text fs-2 ">Caregiver</h2>
+                </div>
+            </div>
+        </div>
+        <div class="experts py-5">
+            <h2 class="fs-1 text-center py-4">Meet our Experts</h2>
+            <div class="row my-3">
+                <div class="col-lg-4 col-md-12 mb-4 position-relative cursor-pointer m-auto" *ngFor="let item of caregivers">
+                    <div class="card rounded-4 ">
+                        <picture class="w-80 m-auto my-4">
+                            <img src="./assets/images/nurse--.png" class="card-img-top w-100 rounded-4 m-auto d-block"
+                                alt="...">
+                        </picture>
+                        <div class="card-body w-80 m-auto">
+                            <div class="d-flex justify-content-between">
+                                <h5 class="card-title fs-4">{{item.firstName}}</h5>
+                                <span class="d-flex gap-2">
+                                    <i class="fa-solid fa-star fs-5 rating-color">
+                                    </i>
+                                    <p class="text-muted">5.0</p>
+                                </span>
+
+                            </div>
+
+                            <h6 class="card-subtitle mb-2 text-main fs-6">{{item.jobTitle}}</h6>
+                            <p class="card-text text-muted mb-3">{{item.country}},{{item.city}}</p>
+                            <div class="d-flex justify-content-between">
+                                <h6 class="text-main fs-5">{{item.pricePerDay}} <span class="text-muted">/hr</span></h6>
+                                <a class="btn-main px-4">Reserve now</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="btn-main d-block m-auto rounded-2 mt-2">Show more</button>
+        </div>
+        <div class="join-nurses bg-main my-5 position-relative rounded-4">
+            <div class="text-center text-white position-relative z-3 py-5">
+                <h2 class="fs-1 py-4">Wanna join our team and be a caregiver?</h2>
+                <h3 class="fs-4">Join our team Now</h3>
+                <button class="btn-main-light rounded-2">Apply now</button>
+            </div>
+            <div class="images d-flex justify-content-between position-absolute top-0 start-0 end-0 bottom-0 z-0">
+                <img src="./assets/images/Vector-right.png" alt="vector-right">
+                <img src="./assets/images/Vector-left.png" alt="vector-left" height="150px">
+            </div>
+        </div>
+    </div>
+</section>
