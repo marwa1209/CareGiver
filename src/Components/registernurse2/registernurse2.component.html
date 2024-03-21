@@ -1,0 +1,67 @@
+<section class="register">
+    <div class="container-fluied">
+        <div class="row g-0">
+            <div class="col-md-6 col-sm-12 position-relative">
+                <picture class="h-100">
+                    <img class="w-100  d-block" src="./assets/images/register-customer-image.jpg" height="750px"/>
+                </picture>
+                <div class="overlay"></div>
+                <div class="overlay-text w-75">
+                    <h2 class="fs-1 mb-4">Welcome to</h2>
+                    <h2 class="fs-1 mb-4">Caregiver</h2>
+                    <p class="mb-4 fs-5 lh-base fw-light text-break">We are thrilled to have you here and hope that you
+                        find
+                        everything
+                        you
+                        are
+                        <br /> looking
+                        for. Enjoy
+                        your stay!
+                    </p>
+                </div>
+                <div class="overlay-text-bottom  w-75">
+                    <p class="fs-3 fw-light mb-4">Already have an account ?</p>
+                    <a class="cursor-pointer text-light fs-3 font-i" routerLink="/signin">Sign in</a>
+                </div>
+            </div>
+            <div class="col-md-6 py-5 col-sm-12">
+                <div class="w-100 h-100 d-flex justify-content-start container px-5 flex-column ">
+                    <a class="mb-5 text-main text-center fs-3 fw-semibold" routerLink="/home">Logo</a>
+                    <form class="fw-medium main-text-color" [formGroup]="RegisterForm" (submit)="handleRegister()">
+                        <div class="d-flex justify-content-between">
+                            <h1 class="fs-3 fw-medium text-main">Contacts Details</h1>
+                            <h2 class="fs-4 fw-medium text-main">2/5</h2>
+                        </div>
+
+                        <div class="progress mb-4">
+                            <div class="progress-bar w-20 rounded-3 bg-main " role="progressbar" aria-valuenow="0"
+                                aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <div class="mb-4">
+                            <label for="phone" class="form-label">phone:</label>
+                            <input #InputPhone formControlName="phoneNumber" type="tel" class="form-control" id="phone">
+                            <ng-container *ngIf="RegisterForm.get('phoneNumber')?.touched ||InputPhone.value.length>0">
+                                <p *ngIf="RegisterForm.get('phoneNumber')?.getError('required')"
+                                    class="alert alert-danger p-2 my-2">
+                                    phone is
+                                    required!</p>
+                                <p *ngIf="RegisterForm.get('phoneNumber')?.getError('pattern')"
+                                    class="alert alert-danger p-2 my-2">
+                                    Invalid phone number format!</p>
+                            </ng-container>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <button [disabled]="RegisterForm.invalid" type="submit"
+                                class="btn-main mb-3 d-block m-auto w-30">
+                                Back</button>
+                            <button [disabled]="RegisterForm.invalid" type="submit"
+                                class="btn-main mb-3 d-block m-auto w-30">
+                                Continue</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

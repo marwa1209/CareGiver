@@ -24,6 +24,6 @@ export class MainNavComponent implements OnInit {
   SignOut() {
     this.userToken = false;
     localStorage.removeItem('etoken');
-    this._Router.navigate(['/signin']);
+    this._Router.navigate(['/home']);
   }
 }

@@ -23,13 +23,13 @@ export class AuthService {
 
   setRegister(userData: object): Observable<any> {
     return this._HttpClient.post(
-      `https://ecommerce.routemisr.com/api/v1/auth/signup`,
+      `http://localhost:5248/api/Auth/PatientRegister`,
       userData
     );
   }
   setLogin(userData: object): Observable<any> {
     return this._HttpClient.post(
-      `https://ecommerce.routemisr.com/api/v1/auth/signin`,
+      `http://localhost:5248/api/Auth/login`,
       userData
     );
   }
@@ -62,5 +62,12 @@ export class AuthService {
       this.loogedIn == false;
       return false;
     }
+  }
+  //register nurse
+  setRegisterNurse(userData: object): Observable<any> {
+    return this._HttpClient.post(
+      `http://localhost:5248/api/Auth/CaregiverRegister`,
+      userData
+    );
   }
 }

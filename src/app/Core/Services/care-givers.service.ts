@@ -9,6 +9,13 @@ import { Observable } from 'rxjs';
 export class CareGiversService {
   constructor(private _HttpClient: HttpClient, private _Router: Router) {}
   getCareGivers(): Observable<any> {
-    return this._HttpClient.get(`http://localhost:5248/api/Caregiver`);
+    return this._HttpClient.get(
+      `http://localhost:5248/api/Caregiver/AllCurrentCaregivers`
+    );
+  }
+  getCareGiverById(): Observable<any> {
+    return this._HttpClient.get(
+      `http://localhost:5248/api/Caregiver/AllCurrentCaregivers`
+    );
   }
 }

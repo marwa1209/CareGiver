@@ -3,17 +3,15 @@ import { RouterModule, Routes } from '@angular/router';
 import { authGuard } from './Core/guard/auth-guard';
 
 const routes: Routes = [
-  
   {
     path: '',
-     canActivate:[authGuard],
+    canActivate: [authGuard],
     loadComponent: () =>
       import('./Layouts/auth-layout/auth-layout.component').then(
         (m) => m.AuthLayoutComponent
       ),
     children: [
       {
-        
         path: '',
         redirectTo: '/signin',
         pathMatch: 'full',
@@ -58,6 +56,22 @@ const routes: Routes = [
           ).then((m) => m.UpdatePasswordComponent),
         title: 'reset Password',
       },
+      {
+        path: 'registerFormCaregiver',
+        loadComponent: () =>
+          import(
+            '../Components/register-form-caregiver/register-form-caregiver.component'
+          ).then((m) => m.RegisterFormCaregiverComponent),
+        title: 'CareGiver Register',
+      },
+      {
+        path: 'registernurse2',
+        loadComponent: () =>
+          import('../Components/registernurse2/registernurse2.component').then(
+            (m) => m.Registernurse2Component
+          ),
+        title: 'ContactsDetails',
+      },
     ],
   },
   {
@@ -95,6 +109,14 @@ const routes: Routes = [
             (m) => m.ContactUsComponent
           ),
         title: 'Contact Us',
+      },
+      {
+        path: 'customerNurseDetails',
+        loadComponent: () =>
+          import('../Components/customer-nurse-details/customer-nurse-details.component').then(
+            (m) => m.CustomerNurseDetailsComponent
+          ),
+        title: 'Nurse details',
       },
     ],
   },

@@ -26,4 +26,8 @@ export class BlankLayoutComponent implements OnInit {
       this.isloggedUser = false;
     }
   }
+  goToUp(){
+    scroll(0,0)
+  
+}
 }

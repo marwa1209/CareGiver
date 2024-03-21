@@ -1,5 +1,6 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { AuthService } from 'src/app/Core/Services/auth.service';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import {
   AbstractControl,
@@ -12,10 +13,9 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
-import { AuthService } from 'src/app/Core/Services/auth.service';
 
 @Component({
-  selector: 'app-register',
+  selector: 'app-register-form-caregiver',
   standalone: true,
   imports: [
     CommonModule,
@@ -24,10 +24,10 @@ import { AuthService } from 'src/app/Core/Services/auth.service';
     ReactiveFormsModule,
     FormsModule,
   ],
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss'],
+  templateUrl: './register-form-caregiver.component.html',
+  styleUrls: ['./register-form-caregiver.component.scss'],
 })
-export class RegisterComponent {
+export class RegisterFormCaregiverComponent {
   countries: string[] = [
     'Egypt',
     'Canada',
@@ -38,50 +38,47 @@ export class RegisterComponent {
   ];
   Nationality: string = '';
   selectNationality(Nationality: string) {
-    this.RegisterForm.get('nationality')?.setValue(Nationality);
+    this.RegisterForm.get('Nationality')?.setValue(Nationality);
   }
+
   message: string = '';
   isLoading: boolean = false;
   constructor(private _AuthService: AuthService, private _Router: Router) {}
   RegisterForm: FormGroup = new FormGroup(
     {
-      userName: new FormControl(),
-      firstName: new FormControl('', [
+      FirstName: new FormControl('', [
         Validators.required,
         Validators.minLength(3),
         Validators.maxLength(20),
       ]),
-      lastName: new FormControl('', [
+      LastName: new FormControl('', [
         Validators.required,
         Validators.minLength(3),
         Validators.maxLength(20),
       ]),
-      gender: new FormControl(null, [Validators.required]),
+      Bio: new FormControl(''),
       Birthdate: new FormControl('', [
         Validators.required,
         this.birthdateRangeValidator(10, 100),
       ]),
-      nationality: new FormControl('', [
+      Gender: new FormControl('', [Validators.required]),
+      Nationality: new FormControl('', [
         Validators.minLength(2),
         Validators.maxLength(20),
       ]),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [
+      Email: new FormControl('', [Validators.required, Validators.email]),
+      Password: new FormControl('', [
         Validators.required,
         Validators.pattern(/^[A-Z][a-z0-9]{6,20}$/),
       ]),
-      confirmPassword: new FormControl(''),
-      phoneNumber: new FormControl('', [
-        Validators.required,
-        Validators.pattern(/^1[0125][0-9]{8}$/),
-      ]),
+      ConfirmPassword: new FormControl(''),
       terms: new FormControl('', [Validators.required]),
     },
     { validators: [this.confirmPassword] } as FormControlOptions
   );
   confirmPassword(group: FormGroup): void {
-    let password = group.get('password');
-    let confirmPassword = group.get('confirmPassword');
+    let password = group.get('Password');
+    let confirmPassword = group.get('ConfirmPassword');
 
     if (!confirmPassword?.value) {
       confirmPassword?.setErrors({ required: true });
@@ -91,36 +88,7 @@ export class RegisterComponent {
       confirmPassword?.setErrors(null);
     }
   }
-  handleRegister(): void {
-    this.RegisterForm.controls['userName'].setValue(
-      this.RegisterForm.controls['firstName'].value +
-        this.RegisterForm.controls['email'].value
-    );
-    this.isLoading = true;
-    const userData = this.RegisterForm.value;
-    console.log(userData);
-    if (this.RegisterForm.valid) {
-      this._AuthService.setRegister(userData).subscribe({
-        next: (response) => {
-          if (response.isSuccess == true) {
-            this.isLoading = false;
-            this._Router.navigate(['/signin']);
-          }
-        },
-        error: (error) => {
-          console.log(userData);
-          this.message = error.error.message;
-          console.log(error.error);
-          this.isLoading = false;
-        },
-      });
-    } else {
-      this.RegisterForm.markAllAsTouched;
-    }
-  }
-  togglePasswordVisibility(inputField: HTMLInputElement) {
-    inputField.type = inputField.type === 'password' ? 'text' : 'password';
-  }
+
   birthdateRangeValidator(minAge: number, maxAge: number): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
       const Birthdate = control.value;
@@ -140,5 +108,30 @@ export class RegisterComponent {
 
       return null;
     };
+  }
+  handleRegister(): void {
+    this.isLoading = true;
+    const userData = this.RegisterForm.value;
+    if (this.RegisterForm.valid) {
+      this._AuthService.setRegisterNurse(userData).subscribe({
+        next: (response) => {
+          if (response.message == 'success') {
+            this.isLoading = false;
+            this._Router.navigate(['/registernurse2']);
+          }
+        },
+        error: (error) => {
+          console.log(userData)
+          this.message = error.error.message;
+          console.log(error.error);
+          this.isLoading = false;
+        },
+      });
+    } else {
+      this.RegisterForm.markAllAsTouched;
+    }
+  }
+  togglePasswordVisibility(inputField: HTMLInputElement) {
+    inputField.type = inputField.type === 'password' ? 'text' : 'password';
   }
 }

@@ -28,24 +28,17 @@ export class SigninComponent {
   handleRegister(): void {
     this.isLoading = true;
     const userData = this.LoginForm.value;
-    console.log(userData);
 
     this._AuthService.setLogin(userData).subscribe({
       next: (response) => {
-        if (response.message == 'success') {
-          this.isLoading = false;
-          localStorage.setItem('etoken', response.token);
-          this._AuthService.decodeUserData();
-          this._Router.navigate(['/home']);
-        }
+        this.isLoading = false;
+        localStorage.setItem('etoken', response.token);
+        this._AuthService.decodeUserData();
+        this._Router.navigate(['/home']);
       },
       error: (error) => {
         this.isLoading = false;
-        if (error.error.statusMsg === 'fail') {
-          this.message = error.error.message;
-        } else {
-          this.message = error.error.message;
-        }
+        this.message = error.error.message;
       },
     });
   }

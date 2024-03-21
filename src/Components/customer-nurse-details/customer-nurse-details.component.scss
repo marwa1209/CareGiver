@@ -1,0 +1,17 @@
+@media (max-width: 767px) {
+  .col-sm-12 {
+    img {
+      display: block;
+      margin: auto;
+    }
+  }
+  .col-sm-12 {
+    .content {
+      text-align: center;
+    }
+    .btns {
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
