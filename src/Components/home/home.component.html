@@ -1,4 +1,4 @@
-<section class=" ">
+<section>
     <div class="container-sm">
         <div class="row py-5">
             <div class="col-lg-6 col-md-12 mb-5">
@@ -24,8 +24,17 @@
             </div>
             <div class="after position-relative col-lg-3  col-md-12">
                 <h3 class="fw-medium mb-0 fs-6">Category</h3>
-                <a class="cursor-pointer d-flex justify-content-between "><span class="text-muted">Service
-                        type</span> <i class="fa-solid fa-caret-down"></i></a>
+                <div class="d-flex justify-content-between align-items-center dropdown  cursor-pointer"
+                    id="dropdownMenuButton1" data-bs-toggle="dropdown">
+                    <p class="text-muted">Service type</p>
+                    <i role="button" class="fa-solid fa-caret-down">
+                    </i>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" [routerLink]="['/caregivers','Caregiver']">CareGiver</a></li>
+                        <li><a class="dropdown-item" [routerLink]="['/nurses','Nurse']">Nurse</a></li>
+                        <li><a class="dropdown-item" [routerLink]="['/babysitters','Babysitter']">Baby Sitter</a></li>
+                    </ul>
+                </div>
             </div>
             <div class="after position-relative col-lg-4  col-md-12">
                 <h3 class="fw-medium mb-0 fs-6">Location</h3>
@@ -35,23 +44,22 @@
                 <a class="text-white bg-main p-3 rounded-circle"><i
                         class="fa-solid fa-magnifying-glass fs-5 d-block m-auto"></i></a>
             </div>
-
-
-
-
         </div>
         <div class="categories py-5">
             <h2 class="fs-1 text-center py-4">Rent by category</h2>
             <div class="row">
-                <div class="col-lg-4 col-md-12 mb-4 position-relative cursor-pointer" onclick="console.log('hiii')">
+                <div class="col-lg-4 col-md-12 mb-4 position-relative cursor-pointer"
+                    [routerLink]="['/nurses','Nurse']">
                     <img class="w-100 m-auto d-block" src="./assets/images/nurse-bg.png">
                     <h2 class=" overlay-text fs-2 ">Nurse</h2>
                 </div>
-                <div class="col-lg-4 col-md-12 mb-4 position-relative  cursor-pointer">
+                <div class="col-lg-4 col-md-12 mb-4 position-relative  cursor-pointer"
+                    [routerLink]="['/babysitters','Babysitter']">
                     <img class="w-100 m-auto d-block" src="./assets/images/Babysitter-bg.png">
                     <h2 class=" overlay-text fs-2 ">Babysitter</h2>
                 </div>
-                <div class="col-lg-4 col-md-12 mb-4 position-relative  cursor-pointer">
+                <div class="col-lg-4 col-md-12 mb-4 position-relative  cursor-pointer"
+                    [routerLink]="['/caregivers','Caregiver']">
                     <img class="w-100 m-auto d-block" src="./assets/images/Caregiver-bg.png">
                     <h2 class=" overlay-text fs-2 ">Caregiver</h2>
                 </div>
@@ -60,30 +68,30 @@
         <div class="experts py-5">
             <h2 class="fs-1 text-center py-4">Meet our Experts</h2>
             <div class="row my-3">
-                <div class="col-lg-4 col-md-12 mb-4 position-relative cursor-pointer " *ngFor="let item of caregivers">
-                    <div class="card rounded-4 ">
-                        <picture class="w-80 m-auto my-4">
+                <div class="col-lg-4 col-md-12 mb-4 position-relative cursor-pointer" *ngFor="let item of caregivers">
+                    <div class="card rounded-4">
+                        <picture class="w-80 m-auto my-4" [routerLink]="['/customerNurseDetails',item.id]">
                             <img src="./assets/images/nurse--.png" class="card-img-top w-100 rounded-4 m-auto d-block"
                                 alt="...">
                         </picture>
                         <div class="card-body w-80 m-auto">
-                            <div class="d-flex justify-content-between">
-                                <h5 class="card-title fs-4">{{item.firstName}}</h5>
-                                <span class="d-flex gap-2">
-                                    <i class="fa-solid fa-star fs-5 rating-color">
-                                    </i>
-                                    <p class="text-muted">5.0</p>
-                                </span>
-
+                            <div [routerLink]="['/customerNurseDetails',item.id]">
+                                <div class="d-flex justify-content-between">
+                                    <h5 class="card-title fs-4">{{item.firstName}}</h5>
+                                    <span class="d-flex gap-2">
+                                        <i class="fa-solid fa-star fs-5 rating-color">
+                                        </i>
+                                        <p class="text-muted">5.0</p>
+                                    </span>
+                                </div>
+                                <h6 class="card-subtitle mb-2 text-main fs-6">{{item.jobTitle}}</h6>
+                                <p class="card-text text-muted mb-3">{{item.country}},{{item.city}}</p>
                             </div>
-
-                            <h6 class="card-subtitle mb-2 text-main fs-6">{{item.jobTitle}}</h6>
-                            <p class="card-text text-muted mb-3">{{item.country}},{{item.city}}</p>
                             <div class="d-flex justify-content-between">
-                                <h6 class="text-main fs-5">{{item.pricePerDay}} <span class="text-muted">/hr</span></h6>
+                                <h6 class="text-main fs-5" [routerLink]="['/customerNurseDetails',item.id]">
+                                    {{item.pricePerDay}} <span class="text-muted">/hr</span></h6>
                                 <a class="btn-main px-4">Reserve now</a>
                             </div>
-
                         </div>
                     </div>
                 </div>

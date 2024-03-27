@@ -4,7 +4,6 @@ import {
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
-  HttpHeaders,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -13,16 +12,13 @@ export class MyHttpInterceptor implements HttpInterceptor {
   constructor() {}
 
   intercept(
-    request: HttpRequest<any>,
+    request: HttpRequest<unknown>,
     next: HttpHandler
-  ): Observable<HttpEvent<any>> {
-    const token = localStorage.getItem('etcdToken');
-    if (token) {
-      // Clone the request and set headers
+  ): Observable<HttpEvent<unknown>> {
+    let myheaders: any = { token: localStorage.getItem('etoken') };
+    if (localStorage.getItem('etoken') != null) {
       request = request.clone({
-        setHeaders: {
-          token: token,
-        },
+        setHeaders: myheaders,
       });
     }
     return next.handle(request);

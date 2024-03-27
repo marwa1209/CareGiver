@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { NavigationExtras, Router, RouterLink } from '@angular/router';
 import { AuthService } from 'src/app/Core/Services/auth.service';
 
@@ -19,28 +24,19 @@ export class ForgetpasswordComponent {
   isLoading: boolean = false;
   constructor(private _AuthService: AuthService, private _Router: Router) {}
   emailvalue: string = '';
-  handleForgetpassword(emailvalue:string): void {
+  handleForgetpassword(emailvalue: string): void {
     this.emailvalue = emailvalue;
     this.isLoading = true;
-    const email = this.forgetpasswordForm.value;
+    const email: any = this.forgetpasswordForm.value;
     this._AuthService.forgetPassword(email).subscribe({
       next: (response) => {
-        if (response.statusMsg == 'success') {
-          this.isLoading = false;
-          this.message = response.message;
-
-          this._Router.navigate(['/forgetpassword2'], {
-            queryParams: { email: this.emailvalue },
-          });
-        }
+        this.isLoading = false;
+        this.message = response.message;
+        this._Router.navigate(['/updatePassword']);
+        console.log(response);
       },
       error: (error) => {
-        if (error.error.statusMsg == 'fail') {
-          this.message = error.error.message;
-        } else {
-          this.message = error.error.errors.msg;
-        }
-
+        console.log(error.error);
         this.isLoading = false;
       },
     });

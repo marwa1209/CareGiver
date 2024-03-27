@@ -1,0 +1,350 @@
+<section>
+    <div class="container py-5 ">
+        <div class="row gap-5 align-items-center border border-2 border-main rounded-3 p-3 mb-4">
+            <div class="col-xl-2 col-md-3 col-sm-12  ">
+                <img src="./assets/images/nurse-pic.png">
+            </div>
+            <div class="col-xl-4 col-md-6 col-sm-12">
+                <div class="d-flex flex-column content">
+                    <h2 class="text-main">{{fname}} {{lname}}</h2>
+                    <h3 class="fs-5">{{joptitle}}</h3>
+                    <h3 class="fs-5"><i class="fa-solid fa-location-dot text-main d-inline me-2"></i><span
+                            class="text-muted">{{caregiver?.country}} , {{city}}</span></h3>
+                    <div class="d-flex gap-4  btns">
+                        <a class="btn-main">Reserve</a>
+                        <a class="btn-main-light">Show resume</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-between All-nurse-info">
+            <div class="col-xl-3 border border-1 border-main rounded-3 p-5 mb-4 align-self-start d-block">
+                <nav class="nav flex-column">
+                    <a class="nav-link active" aria-current="page" 
+                      [routerLink]="['#bio']">Active</a>
+                    <a class="nav-link" href="#bio">Link</a>
+                    <a class="nav-link" href="#">Link</a>
+                </nav>
+            </div>
+            <div class="row">
+                <section #bio class="col-xl-11 border border-1 border-main rounded-3 p-5 ms-auto mb-4">
+                    <div class="d-flex justify-content-between">
+                        <h2 class="text-main">Bio</h2>
+                        <a #bio class="cursor-pointer" (click)="show()"><i class="fa-solid fa-pen"></i></a>
+                        <div class="position-fixed shadow z-3 bg-white w-40 p-5 top-50 start-50 translate-middle"
+                            *ngIf="isHidden==true">
+                            <ul class="text-main fw-bold  p-0 m-0 mb-3">Profile Overview</ul>
+                            <li class="ms-2">Describe your strengths and skills</li>
+                            <li class="ms-2">Highlight projects, accomplishments and education</li>
+                            <li class="ms-2 mb-4">Keep it short and make sure it's error-free</li>
+                            <form (ngSubmit)="submit($event)" [formGroup]="EditCareGiverForm">
+                                <textarea class="rounded-3 p-4" cols="30" rows="10"
+                                    formControlName="bio">{{caregiver?.bio}}</textarea>
+                                <div class="d-flex gap-3 justify-content-end my-3">
+                                    <a class="btn-main-light rounded-0" (click)="cancel()">Cancel</a>
+                                    <a class="btn-main rounded-0" (click)="submit($event)">Save</a>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+
+                    <p class="lh-lg grey-text-color text-break">{{caregiver?.bio}}</p>
+                </section>
+                <section class="col-xl-11 border border-1 border-main rounded-3 p-5 ms-auto mb-4">
+                    <div class="d-flex justify-content-between">
+                        <h2 class="text-main">Personal information</h2>
+                        <a class="cursor-pointer" (click)="showpersonal()"><i class="fa-solid fa-pen"></i></a>
+                        <div class="position-fixed shadow z-3 bg-white w-40 p-5 top-50 start-50 translate-middle"
+                            *ngIf="isHiddenPersonalDat==true">
+                            <h3 class="text-main fw-bold  p-0 m-0 mb-3">Personal information</h3>
+                            <form (ngSubmit)="submit($event)" [formGroup]="EditCareGiverForm">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="mb-4 ">
+                                            <label for="country" class="form-label fw-bold mb-3">Country</label>
+                                            <input #inputcountry formControlName="country" type="text"
+                                                class="form-control text-muted" id="country">
+                                            <ng-container
+                                                *ngIf="EditCareGiverForm.get('country')?.touched ||inputcountry.value.length>0">
+                                                <p *ngIf="EditCareGiverForm.get('country')?.getError('minlength')"
+                                                    class="alert alert-danger p-2 my-2">Country must
+                                                    be at least 2 characters long!</p>
+                                                <p *ngIf="EditCareGiverForm.get('country')?.getError('maxlength')"
+                                                    class="alert alert-danger p-2 my-2">Country cannot
+                                                    exceed 20 characters!</p>
+                                            </ng-container>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="mb-4">
+                                            <label for="city" class="form-label">City</label>
+                                            <select class="form-select" formControlName="city">
+                                                <option value="Alexandria">Alexandria</option>
+                                                <option value="Cairo">Cairo</option>
+                                                <option value="AboTesht">AboTesht</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="mb-4">
+                                            <label for="Nationality" class="form-label">Nationality</label>
+                                            <div class="input-group">
+                                                <a class="btn btn-outline-success dropdown-toggle" type="button"
+                                                    data-bs-toggle="dropdown" aria-expanded="false"></a>
+                                                <ul class="dropdown-menu dropdown-menu-bottom">
+                                                    <li *ngFor="let Nationality of countries">
+                                                        <a class="dropdown-item cursor-pointer"
+                                                            (click)="selectNationality(Nationality)">{{
+                                                            Nationality }}</a>
+                                                    </li>
+                                                </ul>
+                                                <input #NationalityInput type="text" class="form-control"
+                                                    aria-label="Text input with dropdown button" [value]="nationality"
+                                                    id="Nationality" name="Nationality" formControlName="nationality" />
+                                            </div>
+                                            <ng-container
+                                                *ngIf="EditCareGiverForm.get('nationality')?.touched ||NationalityInput .value.length>0">
+                                                <p *ngIf="EditCareGiverForm.get('nationality')?.getError('minlength')"
+                                                    class="alert alert-danger p-2 my-2">
+                                                    Nationality must
+                                                    be at least 2 characters long!
+                                                </p>
+                                                <p *ngIf="EditCareGiverForm.get('nationality')?.getError('maxlength')"
+                                                    class="alert alert-danger p-2 my-2">
+                                                    Nationality
+                                                    cannot exceed 20
+                                                    characters!</p>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-4">
+                                            <label for="Birthdate" class="form-label">Birthdate</label>
+                                            <input #inputBirthdate formControlName="birthdate" type="date"
+                                                class="form-control text-muted" id="Birthdate" name="Birthdate"
+                                                min="1924-01-01" max="2004-12-31">
+                                            <ng-container
+                                                *ngIf="EditCareGiverForm.get('birthdate')?.touched && EditCareGiverForm.get('birthdate')?.hasError('ageRange')">
+                                                <p class="alert alert-danger p-2 my-2">this date is invalid !
+                                                </p>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-4">
+                                            <p class="form-label">Gender</p>
+                                            <input type="radio" class="btn-check" formControlName="gender" id="male"
+                                                value="Male">
+                                            <label class="btn border px-4 py-2 text-muted me-4" for="male">Male</label>
+                                            <input type="radio" class="btn-check" formControlName="gender" id="female"
+                                                value="Female">
+                                            <label class="btn border px-4 py-2 text-muted " for="female">Female</label>
+                                        </div>
+                                    </div>
+                                    <h3 class="text-main fw-bold">Cotacts</h3>
+                                    <div class="col-md-6">
+                                        <div class="mb-4">
+                                            <label for="phone" class="form-label">Phone number</label>
+                                            <input #InputPhone formControlName="phoneNumber" type="tel"
+                                                class="form-control" id="phone">
+                                            <ng-container
+                                                *ngIf="EditCareGiverForm.get('phoneNumber')?.touched ||InputPhone.value.length>0">
+                                                <p *ngIf="EditCareGiverForm.get('phoneNumber')?.getError('pattern')"
+                                                    class="alert alert-danger p-2 my-2">
+                                                    Invalid phone number format!</p>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-4">
+                                            <label for="Email" class="form-label">Email address</label>
+                                            <input #inputEmail formControlName="email" type="Email" class="form-control"
+                                                id="Email">
+                                            <ng-container
+                                                *ngIf="EditCareGiverForm.get('email')?.touched ||inputEmail.value.length>0">
+                                                <p *ngIf="EditCareGiverForm.get('email')?.getError('email')"
+                                                    class="alert alert-danger p-2 my-2">Invalid
+                                                    Email format!</p>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex gap-3 justify-content-end my-3">
+                                    <a class="btn-main-light rounded-0" (click)="cancelpersonal()">Cancel</a>
+                                    <a class="btn-main rounded-0" (click)="submit($event)">Save</a>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <div class="location mb-4">
+                                <h3 class="fw-medium mb-1">Location</h3>
+                                <h4 class="fs-5"><i class="fa-solid fa-location-dot text-main d-inline me-2"></i><span
+                                        class="text-muted">{{caregiver?.country}} , {{city}}</span></h4>
+                            </div>
+                            <div class="gender">
+                                <h3 class="fw-medium mb-1">Gender</h3>
+                                <h4 class="fs-5"><i class="fa-solid fa-venus-mars d-inline me-2 text-main"></i><span
+                                        class="text-muted">{{gender}}</span></h4>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="Birthdate mb-4">
+                                <h3 class="fw-medium mb-1">Birthdate</h3>
+                                <h4 class="fs-5"><i class="fa-regular fa-calendar d-inline me-2 text-main"></i><span
+                                        class="text-muted">{{caregiver?.birthdate}}</span></h4>
+                            </div>
+                            <div class="Nationality">
+                                <h3 class="fw-medium mb-1">Nationality</h3>
+                                <h4 class="fs-5"><i class="fa-solid fa-flag d-inline me-2 text-main"></i><span
+                                        class="text-muted">{{caregiver?.nationality}}</span></h4>
+                            </div>
+                        </div>
+                        <h2 class="text-main mb-3">Contacts</h2>
+                        <div class="col-md-6 mb-3">
+                            <div class="contact mb-4">
+                                <h3 class="fw-medium mb-1">Phone number</h3>
+                                <h4 class="fs-5"><i class="fa-solid fa-phone d-inline me-2 text-main"></i><span
+                                        class="text-muted">{{caregiver?.phoneNumber}}</span></h4>
+                            </div>
+                        </div>
+                        <div class="email col-md-6 mb-3">
+                            <h3 class="fw-medium mb-1">Email</h3>
+                            <h4 class="fs-5"><i class="fa-solid fa-envelope d-inline me-2 text-main"></i><span
+                                    class="text-muted">{{caregiver?.email}}</span></h4>
+                        </div>
+                    </div>
+                </section>
+                <section  class="col-xl-11 border border-1 border-main rounded-3 p-5 ms-auto mb-4">
+                    <div class="d-flex justify-content-between">
+                        <h2 class="text-main">Professional information</h2>
+                        <a class="cursor-pointer" (click)="showprof()"><i class="fa-solid fa-pen"></i></a>
+                        <div class="position-fixed shadow z-3 bg-white w-40 p-5 top-50 start-50 translate-middle"
+                            *ngIf="isHiddenprofessionalData==true">
+                            <h3 class="text-main fw-bold  p-0 m-0 mb-3">Professional information</h3>
+                            <form (ngSubmit)="submit($event)" [formGroup]="EditCareGiverForm">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="mb-4">
+                                            <label class="form-label">Job Title</label>
+                                            <select class="form-select" aria-label="Default select example"
+                                                formControlName="jobTitle">
+                                                <option value="Nurse">Nurse</option>
+                                                <option value="Caregiver">Caregiver</option>
+                                                <option value="Babysitter">Babysitter</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="mb-4">
+                                            <label class="form-label">Career level</label>
+                                            <select class="form-select" aria-label="Default select example"
+                                                formControlName="careerLevel">
+                                                <option value="Student">Student</option>
+                                                <option value="FreshGraduate">FreshGraduate</option>
+                                                <option value="Experienced">Experienced</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="mb-4 ">
+                                            <label for="YearsOfExperience" class="form-label">Years Of
+                                                Experience</label>
+                                            <input #inputYearsOfExperience formControlName="yearsOfExperience"
+                                                type="number" class="form-control" id="YearsOfExperience ">
+                                            <ng-container
+                                                *ngIf="EditCareGiverForm.get('yearsOfExperience')?.touched ||inputYearsOfExperience.value.length>0">
+                                                <p *ngIf="EditCareGiverForm.get('yearsOfExperience')?.getError('min')"
+                                                    class="alert alert-danger p-2 my-2">
+                                                    YearsOfExperience must
+                                                    be at least 1 year</p>
+                                                <p *ngIf="EditCareGiverForm.get('yearsOfExperience')?.getError('max')"
+                                                    class="alert alert-danger p-2 my-2">Invalid
+                                                    Number !</p>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-4 ">
+                                            <label for="PricePerHour" class="form-label">Price Per Hour</label>
+                                            <input #inputPricePerHour formControlName="pricePerHour" type="number"
+                                                class="form-control" id="PricePerHour">
+                                            <ng-container
+                                                *ngIf="EditCareGiverForm.get('pricePerHour')?.touched ||inputPricePerHour.value.length>0">
+                                                <p *ngIf="EditCareGiverForm.get('pricePerHour')?.getError('min')"
+                                                    class="alert alert-danger p-2 my-2">
+                                                    price per hour must
+                                                    be at least 50 egp </p>
+                                                <p *ngIf="EditCareGiverForm.get('pricePerHour')?.getError('max')"
+                                                    class="alert alert-danger p-2 my-2">price per hour
+                                                    can not exceed
+                                                    500 egp</p>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-4 ">
+                                            <label for="pricePerDay" class="form-label">Price Per Day</label>
+                                            <input #inputpricePerDay formControlName="pricePerDay" type="number"
+                                                class="form-control" id="pricePerDay">
+                                            <ng-container
+                                                *ngIf="EditCareGiverForm.get('pricePerDay')?.touched ||inputpricePerDay.value.length>0">
+                                                <p *ngIf="EditCareGiverForm.get('pricePerDay')?.getError('min')"
+                                                    class="alert alert-danger p-2 my-2">
+                                                    price per hour must
+                                                    be at least 50 egp </p>
+                                                <p *ngIf="EditCareGiverForm.get('pricePerDay')?.getError('max')"
+                                                    class="alert alert-danger p-2 my-2">price
+                                                    per hour
+                                                    can not exceed
+                                                    500 egp</p>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex gap-3 justify-content-end my-3">
+                                    <a class="btn-main-light rounded-0" (click)="cancelprof()">Cancel</a>
+                                    <a class="btn-main rounded-0" (click)="submit($event)">Save</a>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="Job-title mb-4">
+                                <h3 class="fw-medium mb-1">Job title</h3>
+                                <h4 class="fs-5"><i class="fa-solid fa-user-nurse text-main d-inline me-2"></i><span
+                                        class="text-muted">{{joptitle}}</span></h4>
+                            </div>
+                            <div class="Fees">
+                                <h3 class="fw-medium mb-1">Fees</h3>
+                                <h4 class="fs-5"><i class="fa-solid fa-money-bills d-inline me-2 text-main"></i><span
+                                        class="text-muted">{{caregiver?.pricePerHour | currency}}/hour</span></h4>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="Career-level mb-4">
+                                <h3 class="fw-medium mb-1">Career level</h3>
+                                <h4 class="fs-5"><i class="fa fa-chart-line d-inline me-2 text-main"></i><span
+                                        class="text-muted">{{careerlevel}}</span></h4>
+                            </div>
+                            <div class="experience">
+                                <h3 class="fw-medium mb-1">Years of experience</h3>
+                                <h4 class="fs-5"><i class="fa-solid fa-medal text-main me-2 d-inline"></i><span
+                                        class="text-muted">{{caregiver?.yearsOfExperience}} years
+                                    </span></h4>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+
+    </div>
+</section>

@@ -16,7 +16,6 @@ export class AuthService {
     if (encodeToken !== null) {
       const decodeToken = jwtDecode(encodeToken);
       this.userdata = decodeToken;
-      console.log(decodeToken);
       return this.userdata;
     }
   }
@@ -33,25 +32,22 @@ export class AuthService {
       userData
     );
   }
-  forgetPassword(useremail: object): Observable<any> {
-    return this._HttpClient.post(
-      `https://ecommerce.routemisr.com/api/v1/auth/forgotPasswords`,
-      useremail
-    );
-  }
-  verifyResetCode(resetCode: object): Observable<any> {
-    return this._HttpClient.post(
-      `https://ecommerce.routemisr.com/api/v1/auth/verifyResetCode`,
-      resetCode
-    );
-  }
   logOut(): void {
     localStorage.removeItem('etoken');
   }
-  updatePass(passwords: object): Observable<any> {
+
+  forgetPassword(useremail: object): Observable<any> {
+    return this._HttpClient.post(
+      `http://localhost:5248/api/Auth/ForgotPassword`,
+      useremail
+    );
+  }
+  updatePass(email:string ,token:string ,password:string): Observable<any> {
     return this._HttpClient.put(
-      `https://ecommerce.routemisr.com/api/v1/auth/resetPassword`,
-      passwords
+      `http://localhost:5248/api/Auth/UpdatePassword?email=${email}&token=${token}`,
+      {token:token , password:password , email:email}
+
+      
     );
   }
   handlenotFound(): boolean {
@@ -67,6 +63,14 @@ export class AuthService {
   setRegisterNurse(userData: object): Observable<any> {
     return this._HttpClient.post(
       `http://localhost:5248/api/Auth/CaregiverRegister`,
+      userData
+    );
+  }
+
+  //form nurse
+  setformNurse(userData: object): Observable<any> {
+    return this._HttpClient.post(
+      `http://localhost:5248/api/Auth/CaregiverForm`,
       userData
     );
   }

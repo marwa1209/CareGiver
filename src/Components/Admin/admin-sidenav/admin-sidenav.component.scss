@@ -1,0 +1,16 @@
+@media (max-width: 767px) {
+.side-responsive.d-none{
+display: block !important;
+width:20%
+}
+.sidenav.d-block{
+display: none !important;
+}
+}
+@media (max-width: 1200px) {
+  .nurse-info {
+    .d-block {
+      display: none !important;
+    }
+  }
+}

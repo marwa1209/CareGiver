@@ -63,21 +63,27 @@ export class UpdatePasswordComponent {
     };
     console.log(passwords);
     this.isLoading = true;
-    if (this.UpdatePasswordForm.valid) {
-      this._AuthService.updatePass(passwords).subscribe({
-        next: (response) => {
-          this.isLoading = false;
-          this._Router.navigate(['/signin']);
-        },
-        error: (error) => {
-          this.message = error.error.message;
-          console.log(error.error);
-          this.isLoading = false;
-        },
-      });
-    } else {
-      this.UpdatePasswordForm.markAllAsTouched(); // Method call corrected
-    }
+    // if (this.UpdatePasswordForm.valid) {
+    //   this._AuthService
+    //     .updatePass(
+    //       this.email,
+          
+    //       this.UpdatePasswordForm.get('rePassword')?.value
+    //     )
+    //     .subscribe({
+    //       next: (response) => {
+    //         this.isLoading = false;
+    //         this._Router.navigate(['/signin']);
+    //       },
+    //       error: (error) => {
+    //         this.message = error.error.message;
+    //         console.log(error.error);
+    //         this.isLoading = false;
+    //       },
+    //     });
+    // } else {
+    //   this.UpdatePasswordForm.markAllAsTouched(); // Method call corrected
+    // }
   }
   togglePasswordVisibility(inputField: HTMLInputElement): void {
     inputField.type = inputField.type === 'password' ? 'text' : 'password';

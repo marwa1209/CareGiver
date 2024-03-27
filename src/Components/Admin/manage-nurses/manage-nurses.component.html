@@ -1,0 +1,34 @@
+<section class="manage-nurses px-2">
+    <h1 class="fs-2 mb-4">Manage Nurses </h1>
+    <h3 class="position-relative fs-4 ps-4">All ({{nurses?.length}})</h3>
+    <input #searchinput class="form-control w-25 d-block ms-auto mb-4" type="search" placeholder="Search"
+        aria-label="Search" [(ngModel)]="term">
+    <table class="table table-responsive">
+        <thead>
+            <tr class="text-center">
+                <th></th>
+                <th>Name</th>
+                <th>Start Date</th>
+                <th>Total Customers</th>
+                <th>Revenu</th>
+                <th>Price</th>
+                <th>Profile</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let nurse of nurses |search:term" class="text-center">
+                <td>
+                    <picture><img src="../../../assets/images/nurse-pic.png" height="50px" width="50px" /></picture>
+                </td>
+                <td>{{nurse.firstName}} {{nurse.lastName}}</td>
+                <td>{{nurse.joinedDate}}</td>
+                <td>{{nurse.totalCustomers}}</td>
+                <td>{{nurse.totalRevenu}}</td>
+                <td>{{nurse.pricePerDay}}</td>
+                <td scope="row"><a class="btn-main my-auto ">View Profile</a></td>
+                <td><i class="fa-solid fa-trash-can" role="button" (click)="delete(nurse.id)"></i></td>
+            </tr>
+        </tbody>
+    </table>
+</section>

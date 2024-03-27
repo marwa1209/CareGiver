@@ -1,0 +1,47 @@
+<nav class="navbar grey-text-color py-4 fw-medium font-sm navbar-expand-lg">
+    <div class="container-fluid px-5">
+        <a class="navbar-brand me-5 text-main" routerLink="/home">Logo</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-4">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/schedule" routerLinkActive="text-main fw-bold">schedule</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/orders" routerLinkActive="text-main fw-bold">Orders</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/aboutnurse" routerLinkActive="text-main fw-bold">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/contactnurse" routerLinkActive="text-main fw-bold">Contact us</a>
+                </li>
+            </ul>
+            <div class=" ms-auto d-flex align-items-center gap-3 justify-content-between gap-3 ">
+                <img src="../../assets/images/nurse-pic.png" height="50px">
+                <div class="d-flex  flex-column justify-content-center g-0 gap-0 text-main">
+                    <h2 class="fs-6 fw-medium py-0 my-0 lh-sm">{{caregiver?.firstName}}</h2>
+                    <h3 class="fs-6 py-0 my-0 lh-sm">{{role}}</h3>
+                </div>
+                <div class="w-40 dropdown navbar-nav">
+                    <a class="fs-4 p-1 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                    </a>
+                    <ul class="dropdown-menu">
+                        <h5 class="fw-bold mb-1">Account Settings</h5>
+                        <li class="nav-item cursor-pointer fs-7" routerLink="/Nurseprofile">
+                            <a class="px-1">Profile Account</a>
+                        </li>
+                        <hr>
+                        <h5 class="fw-bold mb-1">Logout</h5>
+                        <li class="nav-item cursor-pointer fs-7" (click)="SignOut()">
+                            <a class="px-1">Sign Out</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>

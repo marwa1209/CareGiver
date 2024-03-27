@@ -13,6 +13,7 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
+import { MainNavComponent } from '../main-nav/main-nav.component';
 
 @Component({
   selector: 'app-register-form-caregiver',
@@ -23,6 +24,7 @@ import {
     RouterLinkActive,
     ReactiveFormsModule,
     FormsModule,
+    MainNavComponent
   ],
   templateUrl: './register-form-caregiver.component.html',
   styleUrls: ['./register-form-caregiver.component.scss'],
@@ -72,8 +74,13 @@ export class RegisterFormCaregiverComponent {
         Validators.pattern(/^[A-Z][a-z0-9]{6,20}$/),
       ]),
       ConfirmPassword: new FormControl(''),
+      phoneNumber: new FormControl('', [
+        Validators.required,
+        Validators.pattern(/^01[0125][0-9]{8}$/),
+      ]),
       terms: new FormControl('', [Validators.required]),
     },
+
     { validators: [this.confirmPassword] } as FormControlOptions
   );
   confirmPassword(group: FormGroup): void {
@@ -115,13 +122,13 @@ export class RegisterFormCaregiverComponent {
     if (this.RegisterForm.valid) {
       this._AuthService.setRegisterNurse(userData).subscribe({
         next: (response) => {
-          if (response.message == 'success') {
+          if (response.isSuccess == true) {
             this.isLoading = false;
-            this._Router.navigate(['/registernurse2']);
+            this._Router.navigate(['/signin']);
           }
         },
         error: (error) => {
-          console.log(userData)
+          console.log(userData);
           this.message = error.error.message;
           console.log(error.error);
           this.isLoading = false;

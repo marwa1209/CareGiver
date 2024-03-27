@@ -13,9 +13,18 @@ export class CareGiversService {
       `http://localhost:5248/api/Caregiver/AllCurrentCaregivers`
     );
   }
-  getCareGiverById(): Observable<any> {
+  getCareGiverById(id: string | null): Observable<any> {
+    return this._HttpClient.get(`http://localhost:5248/api/Caregiver/${id}`);
+  }
+  getCareGiverByRole(role: string | null): Observable<any> {
     return this._HttpClient.get(
-      `http://localhost:5248/api/Caregiver/AllCurrentCaregivers`
+      `http://localhost:5248/api/Caregiver/role/${role}`
+    );
+  }
+  editCareGiver(id: string | null, caregiverData:any|null): Observable<any> {
+    return this._HttpClient.put(
+      `http://localhost:5248/api/Caregiver/${id}`,
+      caregiverData
     );
   }
 }

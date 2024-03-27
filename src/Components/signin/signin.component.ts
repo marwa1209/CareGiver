@@ -34,7 +34,12 @@ export class SigninComponent {
         this.isLoading = false;
         localStorage.setItem('etoken', response.token);
         this._AuthService.decodeUserData();
-        this._Router.navigate(['/home']);
+        if (response.user.type == 'PatientUser') {
+          this._Router.navigate(['/home']);
+        }
+        else if (response.user.type == 'CaregiverUser') {
+          this._Router.navigate(['/caregiverForm']);
+        }
       },
       error: (error) => {
         this.isLoading = false;

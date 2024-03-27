@@ -7,7 +7,7 @@ import { FooterComponent } from 'src/Components/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { MyHttpInterceptor } from './my-http.interceptor';
+import { MyHttpInterceptor } from './Core/my-http.interceptor';
 
 @NgModule({
   declarations: [AppComponent],

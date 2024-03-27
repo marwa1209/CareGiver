@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-@import url("https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
 @import "./Variables";
 input:focus,
 select:focus,
@@ -16,6 +16,12 @@ textarea {
   max-height: 350px;
   width: 100%;
   height: 100%;
+}
+textarea:focus-visible {
+  border: 1px solid $main-color !important;
+}
+.dropdown-item:active {
+  background-color: $main-color !important;
 }
 body {
   font-family: $font-family !important;
@@ -35,6 +41,15 @@ ul {
   background-color: $main-color !important;
   color: $light-color !important;
   border-radius: 5px;
+}
+.w-5{
+  width: 5%;
+}
+.w-10 {
+  width: 10%;
+}
+.w-15 {
+  width: 15%;
 }
 .w-20 {
   width: 20%;
@@ -68,7 +83,7 @@ a:hover {
 .font-sm {
   font-size: 18px;
 }
-.small-fs{
+.small-fs {
   font-size: 10px;
 }
 .text-main {
@@ -91,7 +106,7 @@ a:hover {
   cursor: pointer;
   transition: all 0.5s;
 }
-.border-main{
+.border-main {
   border-color: $main-color !important;
 }
 .btn-main-light {
@@ -203,10 +218,28 @@ form h1:after {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px #fff solid ;
+  border: 1px #fff solid;
 }
 
 .btn-Up:hover {
   background-color: $main-color !important;
   color: #fff !important;
+}
+//admin-nurses
+.manage-nurses,
+.manage-customers {
+  h3::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    width: 20px;
+    height: 40px;
+    background-color: #ff8400;
+    border-radius: 15px;
+  }
+}
+td{
+    vertical-align: middle;
 }

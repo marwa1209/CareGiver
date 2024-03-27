@@ -6,10 +6,10 @@
             </div>
             <div class="col-xl-4 col-md-6 col-sm-12">
                 <div class="d-flex flex-column content">
-                    <h2 class="text-main">name</h2>
-                    <h3 class="fs-5">Role</h3>
+                    <h2 class="text-main">{{caregiver?.firstName}}</h2>
+                    <h3 class="fs-5">{{caregiver?.jobTitle}}</h3>
                     <h3 class="fs-5"><i class="fa-solid fa-location-dot text-main d-inline me-2"></i><span
-                            class="text-muted">Adressssssssssssssssss</span></h3>
+                    class="text-muted">{{caregiver?.country}} , {{caregiver?.city}}</span></h3>
                     <div class="d-flex gap-4  btns">
                         <a class="btn-main">Reserve</a>
                         <a class="btn-main-light">Show resume</a>
@@ -20,17 +20,7 @@
         <div class="row mb-4 gap-5">
             <div class="col-xl-8 border border-1 border-main rounded-3 p-5">
                 <h2 class="text-main">Bio</h2>
-                <p class="lh-lg grey-text-color">I am a person who is energetic, self-motivated, dependable,
-                    responsible,
-                    and hardworking. I am a seasoned
-                    team player
-                    who can adjust to any demanding scenario. I can operate well in a collaborative setting as well as
-                    on my
-                    own initiative.
-                    I can operate well under pressure and meet tight deadlines.
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                    industry’s standard
-                    dummy text ever since 1200.</p>
+                <p class="lh-lg grey-text-color text-break">{{caregiver?.bio}}</p>
             </div>
             <div class="col-xl-3 shadow ms-auto p-3">
                 <div class="d-flex justify-content-between align-items-center">
@@ -38,7 +28,7 @@
                     <span class="d-flex gap-2">
                         <i class="fa-solid fa-star fs-5 rating-color">
                         </i>
-                        <p class="text-muted">5.0</p>
+                        <p class="text-muted">{{caregiver?.pricePerHour}}</p>
                     </span>
 
                 </div>
@@ -62,24 +52,24 @@
                         <div class="location mb-4">
                             <h3 class="fw-medium mb-1">Location</h3>
                             <h4 class="fs-5"><i class="fa-solid fa-location-dot text-main d-inline me-2"></i><span
-                                    class="text-muted">Adresssssssssssss</span></h4>
+                                    class="text-muted">{{caregiver?.country}} , {{caregiver?.city}}</span></h4>
                         </div>
                         <div class="gender">
                             <h3 class="fw-medium mb-1">Gender</h3>
                             <h4 class="fs-5"><i class="fa-solid fa-venus-mars d-inline me-2 text-main"></i><span
-                                    class="text-muted">female</span></h4>
+                                    class="text-muted">{{caregiver?.gender}}</span></h4>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="Birthdate mb-4">
                             <h3 class="fw-medium mb-1">Birthdate</h3>
                             <h4 class="fs-5"><i class="fa-regular fa-calendar d-inline me-2 text-main"></i><span
-                                    class="text-muted">25 May 1999</span></h4>
+                                    class="text-muted">{{caregiver?.birthdate}}</span></h4>
                         </div>
                         <div class="Nationality">
                             <h3 class="fw-medium mb-1">Nationality</h3>
                             <h4 class="fs-5"><i class="fa-solid fa-flag d-inline me-2 text-main"></i><span
-                                    class="text-muted">Saudi</span></h4>
+                                    class="text-muted">{{caregiver?.nationality}}</span></h4>
                         </div>
                     </div>
                 </div>
@@ -88,8 +78,8 @@
         <div class="row mb-4 gap-5">
             <div class="col-xl-8 border border-1 border-main rounded-3 p-5">
                 <h2 class="text-main">What can Amany Ali offer</h2>
-                <div class="d-flex gap-5">
-                    <a class="btn-main">Meal Preparation</a>
+                <div class="d-flex gap-3">
+                    <a class="btn-main">{{caregiver?.whatCanYouDo}}</a>
                     <a class="btn-main">Household Tasks</a>
                     <a class="btn-main">Physical Care</a>
                 </div>
@@ -103,7 +93,7 @@
                         <div class="Job-title mb-4">
                             <h3 class="fw-medium mb-1">Job title</h3>
                             <h4 class="fs-5"><i class="fa-solid fa-user-nurse text-main d-inline me-2"></i><span
-                                    class="text-muted">Nurse</span></h4>
+                                    class="text-muted">{{caregiver?.jobTitle}}</span></h4>
                         </div>
                         <div class="Fees">
                             <h3 class="fw-medium mb-1">Fees</h3>
