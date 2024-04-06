@@ -1,51 +1,39 @@
 <section>
     <div class="container py-5">
-        <div class=" row gap-5 align-items-center border border-2 border-main rounded-3 p-3 mb-4">
-            <div class="col-xl-2 col-md-3 col-sm-12  ">
-                <img src="./assets/images/nurse-pic.png">
+        <div
+            class=" row justify-content-start gap-5 g-0 align-items-center border border-2 border-main rounded-3 p-3 mb-4">
+            <div class="col-xl-3 col-md-12 col-sm-12">
+                <img [src]="base64Image+caregiver?.photo" class=" m-auto d-block bg-black rounded-circle" height="200px"
+                    width="200px" [alt]="caregiver?.firstName">
             </div>
-            <div class="col-xl-4 col-md-6 col-sm-12">
+            <div class="col-xl-7 col-sm-12">
                 <div class="d-flex flex-column content">
                     <h2 class="text-main">{{caregiver?.firstName}}</h2>
                     <h3 class="fs-5">{{caregiver?.jobTitle}}</h3>
                     <h3 class="fs-5"><i class="fa-solid fa-location-dot text-main d-inline me-2"></i><span
-                    class="text-muted">{{caregiver?.country}} , {{caregiver?.city}}</span></h3>
-                    <div class="d-flex gap-4  btns">
-                        <a class="btn-main">Reserve</a>
-                        <a class="btn-main-light">Show resume</a>
+                            class="text-muted">{{caregiver?.country}} , {{caregiver?.city}}</span></h3>
+                    <div class="row btns">
+                        <div class="col-4">
+                            <a [routerLink]="['/customerdetailsreservation',caregiver?.id]"
+                                class="btn-main px-2 w-100 d-block ">Reserve</a>
+                        </div>
+                        <div class="col-4">
+                            <a class="btn-main px-2  w-100 d-block " (click)="showcriminalRecords()">
+                                criminalRecords</a>
+                        </div>
+                        <div class="col-4">
+                            <a class="btn-main-light px-2  w-100 d-block " (click)="showresume()">resume</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row mb-4 gap-5">
-            <div class="col-xl-8 border border-1 border-main rounded-3 p-5">
-                <h2 class="text-main">Bio</h2>
-                <p class="lh-lg grey-text-color text-break">{{caregiver?.bio}}</p>
+        <div class="row All-nurse-info  m-auto">
+            <div class="col-xl-11  border border-1 border-main rounded-3 p-5 m-auto mb-4">
+                    <h2 class="text-main">Bio</h2>
+                    <p class="lh-lg grey-text-color text-break">{{caregiver?.bio}}</p>
             </div>
-            <div class="col-xl-3 shadow ms-auto p-3">
-                <div class="d-flex justify-content-between align-items-center">
-                    <h3>price/night</h3>
-                    <span class="d-flex gap-2">
-                        <i class="fa-solid fa-star fs-5 rating-color">
-                        </i>
-                        <p class="text-muted">{{caregiver?.pricePerHour}}</p>
-                    </span>
-
-                </div>
-                <div class="d-flex align-items-center border gap-5 rounded-3">
-                    <div class="p-2 small-fs pe-4">
-                        <p class="fw-bold mb-0 ">Start From</p>
-                        <span class="grey-text-color">23/02/2024</span>
-                    </div>
-                    <div class="border-0 border-start p-2 small-fs">
-                        <p class="fw-bold mb-0">End</p>
-                        <span class="grey-text-color">23/02/2024</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row mb-4 gap-5">
-            <div class="col-xl-8 border border-1 border-main rounded-3 p-5">
+            <div class="col-xl-11 border border-1 border-main rounded-3 p-5 m-auto mb-4">
                 <h2 class="text-main">Personal information</h2>
                 <div class="row">
                     <div class="col-md-6">
@@ -74,19 +62,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row mb-4 gap-5">
-            <div class="col-xl-8 border border-1 border-main rounded-3 p-5">
-                <h2 class="text-main">What can Amany Ali offer</h2>
-                <div class="d-flex gap-3">
-                    <a class="btn-main">{{caregiver?.whatCanYouDo}}</a>
-                    <a class="btn-main">Household Tasks</a>
-                    <a class="btn-main">Physical Care</a>
-                </div>
-            </div>
-        </div>
-        <div class="row mb-4 gap-5">
-            <div class="col-xl-8 border border-1 border-main rounded-3 p-5">
+            <div class="col-xl-11 border border-1 border-main rounded-3 p-5 m-auto mb-4">
                 <h2 class="text-main">Professional information</h2>
                 <div class="row">
                     <div class="col-md-6">
@@ -96,34 +72,40 @@
                                     class="text-muted">{{caregiver?.jobTitle}}</span></h4>
                         </div>
                         <div class="Fees">
-                            <h3 class="fw-medium mb-1">Fees</h3>
+                            <h3 class="fw-medium mb-1">Price</h3>
                             <h4 class="fs-5"><i class="fa-solid fa-money-bills d-inline me-2 text-main"></i><span
-                                    class="text-muted">10$/hr</span></h4>
+                                    class="text-muted">{{caregiver?.pricePerDay}}$/Day</span></h4>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="Career-level mb-4">
                             <h3 class="fw-medium mb-1">Career level</h3>
                             <h4 class="fs-5"><i class="fa fa-chart-line d-inline me-2 text-main"></i><span
-                                    class="text-muted">Experienced</span></h4>
+                                    class="text-muted">{{caregiver?.careerLevel}}</span></h4>
                         </div>
                         <div class="experience">
                             <h3 class="fw-medium mb-1">Years of experience</h3>
                             <h4 class="fs-5"><i class="fa-solid fa-medal text-main me-2 d-inline"></i><span
-                                    class="text-muted">3 years</span></h4>
+                                    class="text-muted">{{caregiver?.yearsOfExperience}} Years</span></h4>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row mb-4 gap-5">
-            <div class="col-xl-8 border border-1 border-main rounded-3 p-5">
-                <h2 class="text-main">Languages</h2>
-                <div class="d-flex gap-5">
-                    <a class="btn-main">Arabic - Fluent</a>
-                    <a class="btn-main">English - Advanced</a>
-                </div>
-            </div>
-        </div>
     </div>
+    <div class="d-flex flex-column justify-content-center align-items-center position-fixed shadow z-3 bg-white w-40 p-5 top-50 start-50 translate-middle h-75"
+        *ngIf="displayresume">
+        <h1 class="text-main">Reseume</h1>
+        <pdf-viewer [src]="base64Pdf + caregiver?.resume" [render-text]="true" [original-size]="false"
+            class="text-center m-auto m-0 p-0 w-100 h-100"></pdf-viewer>
+        <a class="btn-main-light rounded-0 my-3" (click)="closere()">Cancel</a>
+    </div>
+    <div class="d-flex flex-column justify-content-center align-items-center position-fixed shadow z-3 bg-white w-40 p-5 top-50 start-50 translate-middle h-75"
+        *ngIf="displaycriminalRecords">
+        <h1 class="text-main">Criminal Records</h1>
+        <pdf-viewer [src]="base64Pdf + caregiver?.criminalRecords" [render-text]="true" [original-size]="false"
+            class="text-center m-auto m-0 p-0 w-100 h-75"></pdf-viewer>
+        <a class="btn-main-light rounded-0" (click)="closec()">Cancel</a>
+    </div>
+
 </section>

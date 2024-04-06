@@ -7,9 +7,13 @@ export const blankGuard: CanActivateFn = (route, state) => {
   const _AuthService = inject(AuthService);
   const data = _AuthService.decodeUserData();
   if (data?.role == 'CaregiverUser') {
-    _Router.navigate(['/caregiverForm']);
+    _Router.navigate(['/orders']);
     return false;
-  } else {
-    return true;
-  }
+  } 
+   else if (data?.role == 'AdminUser') {
+     _Router.navigate(['/admin-dashboard']);
+     return false;
+   } else {
+     return true;
+   }
 };

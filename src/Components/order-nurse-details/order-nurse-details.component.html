@@ -1,0 +1,122 @@
+<div class="container">
+    <div class="alert-message">
+        <div *ngIf="order?.status=='OnProgress'">
+            <div class="join-nurses bg-main my-5 position-relative rounded-4">
+                <div class="text-center text-white position-relative z-3 py-5">
+                    <h2 class="fs-1 py-4">you still did not accept yet</h2>
+                    <p>Reservation number: #{{order?.orderId}}</p>
+                </div>
+                <div class="images d-flex justify-content-between position-absolute top-0 start-0 end-0 bottom-0 z-0">
+                    <img src="./assets/images/Vector-right.png" alt="vector-right">
+                    <img src="./assets/images/Vector-left.png" alt="vector-left" height="150px">
+                </div>
+            </div>
+        </div>
+        <div *ngIf="order?.status=='Pending'">
+            <div class="join-nurses bg-main my-5 position-relative rounded-4">
+                <div class="text-center text-white position-relative z-3 py-5">
+                    <h2 class="fs-1 py-4">Payment Confirmation Needed</h2>
+                    <p>Reservation number: #{{order?.orderId}}</p>
+                </div>
+                <div class="images d-flex justify-content-between position-absolute top-0 start-0 end-0 bottom-0 z-0">
+                    <img src="./assets/images/Vector-right.png" alt="vector-right">
+                    <img src="./assets/images/Vector-left.png" alt="vector-left" height="150px">
+                </div>
+            </div>
+        </div>
+        <div *ngIf="order?.status=='Cancelled'">
+            <div class="join-nurses bg-main my-5 position-relative rounded-4">
+                <div class="text-center text-white position-relative z-3 py-5">
+                    <h2 class="fs-1 py-4">Customer Cancelled this Reservation </h2>
+                    <p>Reservation number: #{{order?.orderId}}</p>
+                </div>
+                <div class="images d-flex justify-content-between position-absolute top-0 start-0 end-0 bottom-0 z-0">
+                    <img src="./assets/images/Vector-right.png" alt="vector-right">
+                    <img src="./assets/images/Vector-left.png" alt="vector-left" height="150px">
+                </div>
+            </div>
+        </div>
+        <div *ngIf="order?.status=='CannotProceed'">
+            <div class="join-nurses bg-main my-5 position-relative rounded-4">
+                <div class="text-center text-white position-relative z-3 py-5">
+                    <h2 class="fs-1 py-4">CareGiver Rejected this Reservation</h2>
+                    <p>Reservation number: #{{order?.orderId}}</p>
+                </div>
+                <div class="images d-flex justify-content-between position-absolute top-0 start-0 end-0 bottom-0 z-0">
+                    <img src="./assets/images/Vector-right.png" alt="vector-right">
+                    <img src="./assets/images/Vector-left.png" alt="vector-left" height="150px">
+                </div>
+            </div>
+        </div>
+        <div *ngIf="order?.status=='Confirmed'">
+            <div class="join-nurses bg-main my-5 position-relative rounded-4">
+                <div class="text-center text-white position-relative z-3 py-5">
+                    <h2 class="fs-1 py-4">Confirmed Reservation</h2>
+                    <p>Reservation number: #{{order?.orderId}}</p>
+                </div>
+                <div class="images d-flex justify-content-between position-absolute top-0 start-0 end-0 bottom-0 z-0">
+                    <img src="./assets/images/Vector-right.png" alt="vector-right">
+                    <img src="./assets/images/Vector-left.png" alt="vector-left" height="150px">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="my-5 persoal-details">
+        <h2 class="text-main fw-medium fs-3 mb-4">Cusromer details</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <h4 class="text-main fs-6 fw-medium">Full name</h4>
+                <p class="main-text-color">{{order?.patientFirstName}} {{order?.patientLastName}}</p>
+            </div>
+            <div class="col-md-4 mb-4">
+                <h4 class="text-main fs-6 fw-medium">Phone number</h4>
+                <p class="main-text-color">(+02) {{order?.patientPhoneNumber}}</p>
+            </div>
+            <div class="col-md-4 mb-4">
+                <h4 class="text-main fs-6 fw-medium">Status</h4>
+                <p class="main-text-color">{{order?.status}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <h4 class="text-main fs-6 fw-medium">Gender</h4>
+                <p class="main-text-color">{{order?.patientGender}}</p>
+            </div>
+            <div class="col-md-4 mb-4">
+                <h4 class="text-main fs-6 fw-medium">Age</h4>
+                <p class="main-text-color">{{order?.age}} Years Old</p>
+            </div>
+            <div class="col-md-4 mb-4">
+                <h4 class="text-main fs-6 fw-medium">Email address</h4>
+                <p class="main-text-color">{{order?.patientEmailAddress}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <h4 class="text-main fs-6 fw-medium">Address</h4>
+                <p class="main-text-color">{{order?.location}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="my-5 Caregiver-details">
+        <h2 class="text-main fw-medium fs-3 mb-4">Reservation Details</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <h4 class="text-main fs-6 fw-medium">Start date</h4>
+                <p class="main-text-color">{{order?.startDate | date:'yyyy-MM-dd'}} </p>
+            </div>
+            <div class="col-md-4 mb-4">
+                <h4 class="text-main fs-6 fw-medium">End date</h4>
+                <p class="main-text-color">{{order?.endDate | date:'yyyy-MM-dd'}}</p>
+            </div>
+            <div class="col-md-4 mb-4">
+                <h4 class="text-main fs-6 fw-medium">Price with fees</h4>
+                <p class="main-text-color">{{order?.totalPriceWithfees}} </p>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex align-items-center justify-content-center w-50 m-auto">
+        <a class="btn-main m-auto w-50 mb-5" routerLink="/orders">Go to
+            All orders</a>
+    </div>
+</div>

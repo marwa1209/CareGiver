@@ -3,6 +3,12 @@ import { RouterModule, Routes, CanActivateFn } from '@angular/router';
 import { authGuard } from './Core/guard/auth-guard';
 import { nurseGuard } from './Core/guard/nurse.guard';
 import { blankGuard } from './Core/guard/blank.guard';
+import { reservationGuard } from './Core/guard/reservation.guard';
+import { blockedGuard } from './Core/guard/blocked.guard';
+import { formGuard } from './Core/guard/form.guard';
+import { nurseChilderenGuard } from './Core/guard/nurse-childeren.guard';
+import { pendingGuard } from './Core/guard/pending.guard';
+import { adminGuard } from './Core/guard/admin.guard';
 
 const routes: Routes = [
   // auth-layout
@@ -102,6 +108,22 @@ const routes: Routes = [
         title: 'Contact Us',
       },
       {
+        path: 'customerprofile',
+        loadComponent: () =>
+          import(
+            '../Components/customerprofile/customerprofile.component'
+          ).then((m) => m.CustomerprofileComponent),
+        title: 'Profile',
+      },
+      {
+        path: 'terms',
+        loadComponent: () =>
+          import(
+            '../Components/termsandconditions/termsandconditions.component'
+          ).then((m) => m.TermsandconditionsComponent),
+        title: 'Terms and conditions',
+      },
+      {
         path: 'services',
         loadComponent: () =>
           import('../Components/services/services.component').then(
@@ -141,6 +163,37 @@ const routes: Routes = [
           ).then((m) => m.BabysittersComponent),
         title: 'Baby Sitters',
       },
+      // Reservations
+      {
+        canActivate: [reservationGuard],
+        path: '',
+        children: [
+          {
+            path: 'customerdetailsreservation/:nurseid',
+            loadComponent: () =>
+              import(
+                '../Components/Reservations/customer-details-reservation/customer-details-reservation.component'
+              ).then((m) => m.CustomerDetailsReservationComponent),
+            title: 'Customer Details Reservation',
+          },
+          {
+            path: 'Orderconfirmeddetails/:orderid',
+            loadComponent: () =>
+              import(
+                '../Components/Reservations/orderconfirmeddetails/orderconfirmeddetails.component'
+              ).then((m) => m.OrderconfirmeddetailsComponent),
+            title: 'Order details',
+          },
+          {
+            path: 'allorders',
+            loadComponent: () =>
+              import(
+                '../Components/Reservations/all-orders/all-orders.component'
+              ).then((m) => m.AllOrdersComponent),
+            title: 'My Orders',
+          },
+        ],
+      },
     ],
   },
 
@@ -156,11 +209,12 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: '/schedule',
+        redirectTo: '/orders',
         pathMatch: 'full',
       },
       {
         path: 'schedule',
+        canActivate: [nurseChilderenGuard],
         loadComponent: () =>
           import('../Components/schedule/schedule.component').then(
             (m) => m.ScheduleComponent
@@ -168,15 +222,8 @@ const routes: Routes = [
         title: 'schedule',
       },
       {
-        path: 'caregiverForm',
-        loadComponent: () =>
-          import(
-            '../Components/caregivers-form/caregivers-form.component'
-          ).then((m) => m.CaregiversFormComponent),
-        title: 'Form',
-      },
-      {
         path: 'orders',
+        canActivate: [nurseChilderenGuard],
         loadComponent: () =>
           import('../Components/orders/orders.component').then(
             (m) => m.OrdersComponent
@@ -184,7 +231,17 @@ const routes: Routes = [
         title: 'Orders',
       },
       {
+        path: 'orderdetails/:orderid',
+        canActivate: [nurseChilderenGuard],
+        loadComponent: () =>
+          import(
+            '../Components/order-nurse-details/order-nurse-details.component'
+          ).then((m) => m.OrderNurseDetailsComponent),
+        title: 'Details',
+      },
+      {
         path: 'Nurseprofile',
+        canActivate: [nurseChilderenGuard],
         loadComponent: () =>
           import('../Components/nurse-profile/nurse-profile.component').then(
             (m) => m.NurseProfileComponent
@@ -207,12 +264,43 @@ const routes: Routes = [
           ),
         title: 'Contact Us',
       },
+      //form
+      {
+        path: 'caregiverForm',
+        canActivate: [formGuard],
+        loadComponent: () =>
+          import(
+            '../Components/caregivers-form/caregivers-form.component'
+          ).then((m) => m.CaregiversFormComponent),
+        title: 'Form',
+      },
+      // pending page
+      {
+        path: 'pending',
+        canActivate: [pendingGuard],
+        loadComponent: () =>
+          import('../Components/pending-page/pending-page.component').then(
+            (m) => m.PendingPageComponent
+          ),
+        title: 'request pending',
+      },
+      //blocked
+      {
+        path: 'blocked',
+        canActivate: [blockedGuard],
+        loadComponent: () =>
+          import('../Components/blocked/blocked.component').then(
+            (m) => m.BlockedComponent
+          ),
+        title: 'Request Rejected',
+      },
     ],
   },
 
   //admin-layout
   {
     path: '',
+    canActivate: [adminGuard],
     loadComponent: () =>
       import('./Layouts/Admin-layout/admin-layout/admin-layout.component').then(
         (m) => m.AdminLayoutComponent
@@ -264,26 +352,50 @@ const routes: Routes = [
         title: 'manageBabysitters',
       },
       {
+        path: 'allReservation',
+        loadComponent: () =>
+          import(
+            '../Components/Admin/all-reservation/all-reservation.component'
+          ).then((m) => m.AllReservationComponent),
+        title: 'All Reservation',
+      },
+      {
+        path: 'AllSystemCaregivers',
+        loadComponent: () =>
+          import(
+            '../Components/Admin/all-system-caregivers/all-system-caregivers.component'
+          ).then((m) => m.AllSystemCaregiversComponent),
+        title: 'All System Caregivers',
+      },
+      {
+        path: 'orderdetailsad/:orderid',
+        loadComponent: () =>
+          import(
+            '../Components/Admin/orderdetails/orderdetails.component'
+          ).then((m) => m.OrderdetailsComponent),
+        title: 'orderdetails',
+      },
+      {
+        path: 'adminprofile',
+        loadComponent: () =>
+          import(
+            '../Components/Admin/admin-profile/admin-profile.component'
+          ).then((m) => m.AdminProfileComponent),
+        title: 'Profile',
+      },
+      {
+        path: 'customerprofile/:id',
+        loadComponent: () =>
+          import(
+            '../Components/Admin/customeradmiprofile/customeradmiprofile.component'
+          ).then((m) => m.CustomeradmiprofileComponent),
+        title: 'Profile',
+      },
+      {
         path: 'requests',
         loadComponent: () =>
           import('../Components/Admin/requests/requests.component').then(
             (m) => m.RequestsComponent
-          ),
-        title: 'Requests',
-      },
-      {
-        path: 'notifications',
-        loadComponent: () =>
-          import(
-            '../Components/Admin/notifications/notifications.component'
-          ).then((m) => m.NotificationsComponent),
-        title: 'Notifications',
-      },
-      {
-        path: 'reports',
-        loadComponent: () =>
-          import('../Components/Admin/reports/reports.component').then(
-            (m) => m.ReportsComponent
           ),
         title: 'Requests',
       },
@@ -296,16 +408,15 @@ const routes: Routes = [
         title: 'Transactions',
       },
       {
-        path: 'settings',
+        path: 'caregiverprofile/:nurseId',
         loadComponent: () =>
           import(
-            '../Components/Admin/settings/settings.component'
-          ).then((m) => m.SettingsComponent),
-        title: 'settings',
+            '../Components/Admin/admin-nurse-profile/admin-nurse-profile.component'
+          ).then((m) => m.AdminNurseProfileComponent),
+        title: 'caregiver profile',
       },
     ],
   },
-
   // not-found
   {
     path: '**',

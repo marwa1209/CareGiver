@@ -1,1 +1,5 @@
-<p>schedule works!</p>
+<section class="AllOrders px-2 container py-5">
+    <h1 class="fs-2 mb-4">My schedule </h1>
+<div *ngFor="let date of schedule" class="fs-5 lh-lg border border-success my-3 text-center w-50 m-auto">{{date.reservationDate |date}}</div>
+
+</section>

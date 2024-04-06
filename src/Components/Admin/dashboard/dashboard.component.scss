@@ -1,0 +1,22 @@
+@media (max-width: 1250px) {
+  .res {
+    width: 45% !important;
+  }
+  .text {
+    font-size: 15px !important;
+  }
+  .allcustomers{
+      width: 100% !important;
+  }
+  .allCaregivers {
+    width: 100% !important;
+    .sm {
+      width: 75% !important;
+      margin: auto;
+    }
+     .state{
+      width:20% !important ;
+     }
+    margin-block: 45px !important;
+  }
+}

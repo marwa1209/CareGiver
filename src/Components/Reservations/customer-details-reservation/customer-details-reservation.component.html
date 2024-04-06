@@ -1,0 +1,199 @@
+<div class="container py-5 row  m-auto">
+    <div class="col-xl-8 me-auto ">
+        <h2 class="">Your personal details</h2>
+        <p class="mb-4">This personal details will be shared with your caregiver</p>
+        <form #myForm="ngForm" class="fw-medium main-text-color row py-4 " (ngSubmit)="handleSubmit()"
+            [formGroup]="persoaldetailsForm">
+            <!-- first Name -->
+            <div class="mb-4 col-md-6">
+                <label for="fname" class="form-label">First Name</label>
+                <input #inputfName formControlName="firstName" type="text" class="form-control" id="fname" >
+                <ng-container *ngIf="persoaldetailsForm.get('firstName')?.touched ||inputfName.value.length>0">
+                    <p *ngIf="persoaldetailsForm.get('firstName')?.getError('required')"
+                        class="alert alert-danger p-2 my-2">
+                        First
+                        Name
+                        is
+                        required!</p>
+                    <p *ngIf="persoaldetailsForm.get('firstName')?.getError('minlength')"
+                        class="alert alert-danger p-2 my-2">
+                        First
+                        Name
+                        must
+                        be at least
+                        3 characters long!</p>
+                    <p *ngIf="persoaldetailsForm.get('firstName')?.getError('maxlength')"
+                        class="alert alert-danger p-2 my-2">
+                        First
+                        Name
+                        cannot exceed 40
+                        characters!</p>
+                </ng-container>
+            </div>
+            <!-- last name -->
+            <div class="mb-4 col-md-6">
+                <label for="lname" class="form-label">Last Name</label>
+                <input #inputlname formControlName="lastName" type="text" class="form-control" id="lname">
+                <ng-container *ngIf="persoaldetailsForm.get('lastName')?.touched ||inputlname.value.length>0">
+                    <p *ngIf="persoaldetailsForm.get('lastName')?.getError('required')"
+                        class="alert alert-danger p-2 my-2">
+                        Last Name
+                        is
+                        required!</p>
+                    <p *ngIf="persoaldetailsForm.get('lastName')?.getError('minlength')"
+                        class="alert alert-danger p-2 my-2">
+                        Last Name
+                        must
+                        be at least
+                        3 characters long!</p>
+                    <p *ngIf="persoaldetailsForm.get('lastName')?.getError('maxlength')"
+                        class="alert alert-danger p-2 my-2">
+                        Last Name
+                        cannot exceed 40
+                        characters!</p>
+                </ng-container>
+            </div>
+            <!-- gender -->
+            <div class="mb-4 col-md-6">
+                <p class="form-label">Gender</p>
+                <input type="radio" class="btn-check" formControlName="gender" id="male" [value]="1">
+                <label class="btn border px-4 py-2 text-muted me-4" for="male">Male</label>
+                <input type="radio" class="btn-check" formControlName="gender" id="female" [value]="2">
+                <label class="btn border px-4 py-2 text-muted " for="female">Female</label>
+            </div>
+            <!-- age -->
+            <div class="mb-4 col-md-6">
+                <label for="age" class="form-label">Age</label>
+                <input #inputBirthdate formControlName="age" type="number" class="form-control text-muted" id="age"
+                    name="age">
+                <ng-container *ngIf="persoaldetailsForm.get('age')?.touched ||inputBirthdate.value.length>0">
+                    <p *ngIf="persoaldetailsForm.get('age')?.getError('required')" class="alert alert-danger p-2 my-2">
+                        age is required</p>
+                    <p *ngIf="persoaldetailsForm.get('age')?.getError('min')" class="alert alert-danger p-2 my-2">
+                        age is invalid(age must be between 10
+                        and 100 years) !</p>
+                    <p *ngIf="persoaldetailsForm.get('age')?.getError('max')" class="alert alert-danger p-2 my-2">
+                        age is invalid(age must be between 10
+                        and 100 years) !</p>
+                </ng-container>
+            </div>
+            <!-- phone -->
+            <div class="mb-4 col-md-6">
+                <label for="phone" class="form-label">phone:</label>
+                <input #InputPhone formControlName="phoneNumber" type="tel" class="form-control" id="phone">
+                <ng-container *ngIf="persoaldetailsForm.get('phoneNumber')?.touched ||InputPhone.value.length>0">
+                    <p *ngIf="persoaldetailsForm.get('phoneNumber')?.getError('required')"
+                        class="alert alert-danger p-2 my-2">
+                        phone is
+                        required!</p>
+                    <p *ngIf="persoaldetailsForm.get('phoneNumber')?.getError('pattern')"
+                        class="alert alert-danger p-2 my-2">
+                        Invalid phone number format!</p>
+                </ng-container>
+            </div>
+            <!-- email -->
+            <div class="mb-4 col-md-6">
+                <label for="email" class="form-label">Email address</label>
+                <input #inputEmail formControlName="emailAddress" type="email" class="form-control" id="email">
+                <ng-container *ngIf="persoaldetailsForm.get('emailAddress')?.touched ||inputEmail.value.length>0">
+                    <p *ngIf="persoaldetailsForm.get('emailAddress')?.getError('required')"
+                        class="alert alert-danger p-2 my-2">Email
+                        is
+                        required!</p>
+                    <p *ngIf="persoaldetailsForm.get('emailAddress')?.getError('email')"
+                        class="alert alert-danger p-2 my-2">
+                        Invalid
+                        email format!</p>
+                </ng-container>
+            </div>
+            <!-- Address -->
+            <div class="mb-4 col-md-6">
+                <label for="address" class="form-label">address</label>
+                <textarea #inputaddress formControlName="location" type="text" class="form-control"
+                    id="address"></textarea>
+                <ng-container *ngIf="persoaldetailsForm.get('location')?.touched ||inputaddress.value.length>0">
+                    <p *ngIf="persoaldetailsForm.get('location')?.getError('required')"
+                        class="alert alert-danger p-2 my-2">Location is required!</p>
+                    <p *ngIf="persoaldetailsForm.get('location')?.getError('minlength')"
+                        class="alert alert-danger p-2 my-2">location minLength is 10 characters</p>
+                    <p *ngIf="persoaldetailsForm.get('location')?.getError('maxlength')"
+                        class="alert alert-danger p-2 my-2">location
+                        maxlength is 200 characters</p>
+                </ng-container>
+            </div>
+            <!-- reservationNotes -->
+            <div class="mb-4 col-md-6">
+                <label for="reservationNotes" class="form-label">Reservation notes</label>
+                <textarea #inputreservationNotes formControlName="reservationNotes" type="text" class="form-control"
+                    id="reservationNotes"></textarea>
+                <ng-container
+                    *ngIf="persoaldetailsForm.get('reservationNotes')?.touched ||inputreservationNotes.value.length>0">
+                    <p *ngIf="persoaldetailsForm.get('reservationNotes')?.getError('minlength')"
+                        class="alert alert-danger p-2 my-2">
+                        reservationNotes minLength is 10 characters</p>
+                    <p *ngIf="persoaldetailsForm.get('reservationNotes')?.getError('maxlength')"
+                        class="alert alert-danger p-2 my-2">
+                        Invalid
+                        maxlength is 200 characters</p>
+                </ng-container>
+            </div>
+            <!-- reservationType -->
+            <div class="form-check  mt-5">
+                <p class="">Please specify if this reservation is for yourself or another individual.</p>
+                <input class="form-check-input ms-0" type="radio" name="flexRadioDefault" id="flexRadioDefault1"
+                    formControlName="reservationType" [value]="1">
+                <label class="form-check-label mx-1" for="flexRadioDefault1">
+                    The reservation is for me
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input ms-0" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked
+                    formControlName="reservationType" [value]="2">
+                <label class="form-check-label mx-1" for="flexRadioDefault2">
+                    The reservation is for someone else
+                </label>
+            </div>
+        </form>
+    </div>
+    <div class="col-xl-3 shadow ms-auto px-2 py-3 align-self-lg-start">
+        <div class="d-flex justify-content-between align-items-center">
+            <h3 class="text-main fw-medium">{{caregiver?.pricePerDay|currency}}/day</h3>
+            <span class="d-flex gap-2">
+                <i class="fa-solid fa-star fs-5 rating-color">
+                </i>
+                <p class="text-muted">5</p>
+            </span>
+        </div>
+        <div class="d-flex align-items-center p-1 border rounded-3 gap-1">
+            <div class="w-50 small-fs pe-2">
+                <label for="startdate" class="form-label fw-bold mb-0">Start From</label>
+                <input type="date" class="form-control grey-text-color" id="startdate" name="startdate"
+                    [min]="todaydate" [max]="maxDate" [(ngModel)]="startDate" [value]="startDate">
+            </div>
+            <div class="border-0 border-start small-fs w-50 p-2">
+                <label for="startdate" class="form-label fw-bold mb-0">End </label>
+                <input type="date" class="form-control grey-text-color" id="startdate" name="startdate"
+                    [min]="todaydate" [max]="maxDateEnd" [(ngModel)]="endDate" [value]="endDate">
+            </div>
+        </div>
+        <div class="d-flex justify-content-between fw-semibold fs-6 mt-3 mb-2">
+            <p class="px-1">{{caregiver?.pricePerDay | currency}} x {{calculateDays()}} {{ calculateDays()
+                === 1 ? 'day' : 'days' }}</p>
+            <p class=" px-1"> {{ ((caregiver?.pricePerDay ?? 0)*calculateDays()) | currency }}</p>
+        </div>
+        <div class="d-flex justify-content-between fw-semibold fs-6 mb-3">
+            <p class="px-1">Services</p>
+            <p class="px-1">{{10}}% </p>
+        </div>
+        <hr>
+        <div class="d-flex justify-content-between fw-semibold fs-6 mb-3">
+            <p class="px-1">Total</p>
+            <p class="px-1">{{ ((caregiver?.pricePerDay ?? 0)*calculateDays()) +(((caregiver?.pricePerDay ?? 0)*calculateDays())*0.1) | currency }} </p>
+        </div>
+        <button [disabled]="persoaldetailsForm.invalid" type="submit" class="btn-main d-block m-auto w-75"
+            (click)="handleSubmit()"
+            [routerLink]="['/customerdetailsreservation',caregiver?.id]">
+            <i *ngIf="isLoading" class="fas fa-spinner fa-spin"></i>
+            Reserve</button>
+    </div>
+</div>

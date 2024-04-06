@@ -1,1 +1,118 @@
-<p>contact-us works!</p>
+<section class="m-0 p-0">
+    <picture class="position-relative vh-85 z-0 d-block" >
+        <img src="./assets/images/cotactus.jpg" alt="contatctUs" class="w-100 vh-85"/>
+        <div class="overlayy"></div>
+        <h1 class="position-absolute top-50 start-50 translate-middle text-white fs-1 fw-bolder">CONTACT US</h1>
+    </picture>
+
+    <div class="container-fluid">
+        <div class="px-3">
+            <h3 class="text-main fs-2 pt-5">Want to get in touch</h3>
+            <p class="fs-6 lh-base fw-lighter text-muted">Let's connect! Whether it's a query or a friendly hello, we're
+                here for
+                you.<br />
+                Complete the form below, and we will respond to you as soon as possible.</p>
+        </div>
+        <div class="row align-items-center">
+            <div class="col-md-6 px-5">
+                <form class="fw-medium main-text-color pt-3" (ngSubmit)="handleRegister()" action=""
+                    [formGroup]="RegisterForm">
+                    <div class="row">
+                        <!-- firstName -->
+                        <div class="mb-4 col-lg-4 col-md-12">
+                            <label for="fname" class="form-label text-main fw-bold">First Name</label>
+                            <input #inputfName formControlName="firstName" type="text" class="form-control" id="fname"
+                                placeholder="Fady">
+                            <ng-container *ngIf="RegisterForm.get('firstName')?.touched ||inputfName.value.length>0">
+                                <p *ngIf="RegisterForm.get('firstName')?.getError('required')"
+                                    class="alert alert-danger p-2 my-2">First
+                                    Name
+                                    is
+                                    required!</p>
+                                <p *ngIf="RegisterForm.get('firstName')?.getError('minlength')"
+                                    class="alert alert-danger p-2 my-2">First
+                                    Name
+                                    must
+                                    be at least
+                                    3 characters long!</p>
+                                <p *ngIf="RegisterForm.get('firstName')?.getError('maxlength')"
+                                    class="alert alert-danger p-2 my-2">First
+                                    Name
+                                    cannot exceed 40
+                                    characters!</p>
+                            </ng-container>
+                        </div>
+                        <!-- lastName -->
+                        <div class="mb-4 col-lg-4 col-md-12">
+                            <label for="lname" class="form-label text-main fw-bold">Last Name</label>
+                            <input #inputlname formControlName="lastName" type="text" class="form-control" id="lname"
+                                placeholder="mohammed">
+                            <ng-container *ngIf="RegisterForm.get('lastName')?.touched ||inputlname.value.length>0">
+                                <p *ngIf="RegisterForm.get('lastName')?.getError('required')"
+                                    class="alert alert-danger p-2 my-2">Last Name
+                                    is
+                                    required!</p>
+                                <p *ngIf="RegisterForm.get('lastName')?.getError('minlength')"
+                                    class="alert alert-danger p-2 my-2">Last Name
+                                    must
+                                    be at least
+                                    3 characters long!</p>
+                                <p *ngIf="RegisterForm.get('lastName')?.getError('maxlength')"
+                                    class="alert alert-danger p-2 my-2">Last Name
+                                    cannot exceed 40
+                                    characters!</p>
+                            </ng-container>
+                        </div>
+                        <!-- orderNo -->
+                        <div class="mb-4 col-lg-4 col-md-12">
+                            <label for="order" class="form-label fw-bold">Order id (if any)</label>
+                            <input #Inputorder formControlName="orderId" type="number" class="form-control" id="order"
+                                placeholder="1235">
+                        </div>
+                        <!-- email -->
+                        <div class="mb-4 col-md-12">
+                            <label for="email" class="form-label fw-bold">Email address</label>
+                            <input #inputEmail formControlName="email" type="email" class="form-control" id="email"
+                                placeholder="FadyMohammed11@gmail.com">
+                            <ng-container *ngIf="RegisterForm.get('email')?.touched ||inputEmail.value.length>0">
+                                <p *ngIf="RegisterForm.get('email')?.getError('required')"
+                                    class="alert alert-danger p-2 my-2">Email
+                                    is
+                                    required!</p>
+                                <p *ngIf="RegisterForm.get('email')?.getError('email')"
+                                    class="alert alert-danger p-2 my-2">
+                                    Invalid
+                                    email format!</p>
+                            </ng-container>
+                        </div>
+                        <!-- Message -->
+                        <div class="mb-4 col-md-12">
+                            <label for="message" class="form-label fw-bold">Message</label>
+                            <textarea formControlName="message" type="text" class="form-control" id="message"
+                                placeholder="I wanted to take a moment to express my appreciation for the clear and accessible contact information provided on your website. It was refreshing to easily find the necessary details to reach out and connect with your team."></textarea>
+                        </div>
+                    </div>
+                    <button [disabled]="RegisterForm.invalid" type="submit" class="btn-main my-4 d-block me-auto w-30">
+                        <i *ngIf="isLoading" class="fas fa-spinner fa-spin"></i>
+                        Submit</button>
+                    <h4>{{message}}</h4>
+                </form>
+            </div>
+            <div class="col-md-5 m-auto">
+                <div class="d-flex  align-items-center gap-2 mb-5">
+                    <i class="fa-solid fa-location-dot text-main fs-5"></i>
+                    <p class="m-0 fs-5">16 Salah Salem St., EL MANSHEYA</p>
+                </div>
+                <div class="d-flex  align-items-center gap-2 mb-5">
+                    <i class="fa-solid fa-phone fs-5 text-main"></i>
+                    <p class="m-0 fs-5">(+02) 01223875489</p>
+                </div>
+                <div class="d-flex  align-items-center gap-2 mb-4">
+                    <i class="fa-regular fa-envelope fs-5 text-main"></i>
+                    <p class="m-0 fs-5">Caregiver@gmail.com</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>

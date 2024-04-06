@@ -1,1 +1,22 @@
-<p>transactions works!</p>
+<section class="manage-nurses px-2">
+    <h1 class="fs-2 mb-4">All Transactions </h1>
+    <h3 class="position-relative fs-4 ps-4">All ({{Alltransactions.length}})</h3>
+    <div class="container-fluid">
+        <table class="table table-responsive">
+            <thead>
+                <tr class="text-center align-middle">
+                    <th class="py-4 ">Patinet Name</th>
+                    <th class="py-4 ">Date</th>
+                    <th class="py-4 ">totalPrice</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let Transaction of Alltransactions" class="text-center">
+                    <td class="p-4">{{Transaction.firstName}}</td>
+                    <td class="p-4">{{Transaction.lastStatusUpdate|date}}</td>
+                    <td class="p-4">{{Transaction.totalPriceWithfees}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>

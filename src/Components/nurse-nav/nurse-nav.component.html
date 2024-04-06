@@ -1,16 +1,17 @@
 <nav class="navbar grey-text-color py-4 fw-medium font-sm navbar-expand-lg">
     <div class="container-fluid px-5">
         <a class="navbar-brand me-5 text-main" routerLink="/home">Logo</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler  " type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-4">
-                <li class="nav-item">
+            <ul class="navbar-nav me-auto  align-items-center mb-lg-0">
+                <li class="nav-item" *ngIf="state=='active'==true">
                     <a class="nav-link" routerLink="/schedule" routerLinkActive="text-main fw-bold">schedule</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" *ngIf="state=='active'==true">
                     <a class="nav-link" routerLink="/orders" routerLinkActive="text-main fw-bold">Orders</a>
                 </li>
                 <li class="nav-item">
@@ -19,9 +20,17 @@
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/contactnurse" routerLinkActive="text-main fw-bold">Contact us</a>
                 </li>
+                <li class="nav-item cursor-pointer d-none profile"><a class="nav-link" routerLink="/Nurseprofile"
+                        routerLinkActive="text-main fw-bold">Profile Account</a></li>
+                <li class="nav-item cursor-pointer d-none profile">
+                    <a class="nav-link" (click)="SignOut()">Sign Out</a>
+                </li>
             </ul>
-            <div class=" ms-auto d-flex align-items-center gap-3 justify-content-between gap-3 ">
-                <img src="../../assets/images/nurse-pic.png" height="50px">
+            <a class="nav-item cursor-pointer fs-7 btn" *ngIf="state!=='active'" (click)="SignOut()">Sign Out</a>
+            <div class="profile ms-auto d-flex align-items-center gap-3 justify-content-between gap-3 "
+                *ngIf="state=='active'==true">
+                <img [src]="base64Image+caregiver?.photo" class=" m-auto d-block rounded-circle" height="50px"
+                    width="50px" [alt]="caregiver?.firstName">
                 <div class="d-flex  flex-column justify-content-center g-0 gap-0 text-main">
                     <h2 class="fs-6 fw-medium py-0 my-0 lh-sm">{{caregiver?.firstName}}</h2>
                     <h3 class="fs-6 py-0 my-0 lh-sm">{{role}}</h3>

@@ -1,21 +1,19 @@
-<div class=" ms-auto  px-2 d-flex align-items-center gap-3 justify-content-between gap-3 w-15 py-4">
-    <img src="../../assets/images/nurse-pic.png" height="50px">
+<div class=" ms-auto d-flex align-items-center px-5 justify-content-center gap-2 w-15 py-4">
     <div class="d-flex  flex-column justify-content-center g-0 gap-0 text-main">
-        <h2 class="fs-6 fw-medium py-0 my-0 lh-sm">name</h2>
+        <h2 class="fs-6 fw-medium py-0 my-0 lh-sm">{{Admin?.firstName}}</h2>
         <h3 class="fs-6 py-0 my-0 lh-sm">Admin</h3>
-
     </div>
     <div class="w-40 dropdown navbar-nav">
         <a class="fs-4 p-1 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
         </a>
         <ul class="dropdown-menu p-2">
             <h5 class="fw-bold mb-1">Account Settings</h5>
-            <li class="nav-item cursor-pointer fs-7" routerLink="/Nurseprofile">
+            <li class="nav-item cursor-pointer fs-7" [routerLink]="['/adminprofile']">
                 <a class="px-1">Profile Account</a>
             </li>
             <hr>
             <h5 class="fw-bold mb-1">Logout</h5>
-            <li class="nav-item cursor-pointer fs-7">
+            <li class="nav-item cursor-pointer fs-7" (click)="logout()">
                 <a class="px-1">Sign Out</a>
             </li>
         </ul>

@@ -1,0 +1,22 @@
+@media (min-width: 1200px) and (max-width: 1496px) {
+  .btns button {
+    width: 15% !important;
+  }
+}
+@media (min-width: 993px) and (max-width: 1999px) {
+  .btns button {
+    width: 20% !important;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 992px) {
+  .btns button {
+    width: 35% !important;
+  }
+}
+
+@media (min-width: 0px) and (max-width: 768px) {
+  .btns button {
+    width: 45% !important;
+  }
+}

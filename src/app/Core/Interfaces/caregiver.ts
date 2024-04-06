@@ -10,8 +10,6 @@ export interface ICaregiver {
   careerLevel: any;
   yearsOfExperience: number;
   jobLocationLookingFor: number;
-  whatCanYouDo: string[];
-  pricePerHour: number;
   reservations: any;
   gender: any;
   birthdate: string;
@@ -36,5 +34,12 @@ export interface ICaregiver {
   accessFailedCount: number;
   joinedDate: string;
   totalCustomers: number;
-  totalRevenu:number;
+  totalRevenu: number;
+  photo: string;
+  status: string;
+  canceledOrders: string;
+  resume: string;
+  criminalRecords: string;
+  location:string;
 }
+

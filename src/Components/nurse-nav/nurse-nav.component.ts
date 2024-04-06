@@ -13,26 +13,29 @@ import { ICaregiver } from 'src/app/Core/Interfaces/caregiver';
   styleUrls: ['./nurse-nav.component.scss'],
 })
 export class NurseNavComponent implements OnInit {
-  caregiver:ICaregiver|null=null;
-  role:any;
+  base64Image: string = '';
+  caregiver: ICaregiver | null = null;
+  role: any;
+  state: string = '';
   constructor(
     private _Router: Router,
     private _CareGiversService: CareGiversService,
-    private _AuthService: AuthService,
-
+    private _AuthService: AuthService
   ) {}
   ngOnInit() {
     const id = this._AuthService.decodeUserData().nameid;
+    this.base64Image = 'data:image/jpeg;base64,';
+    this.state = this._AuthService.decodeUserData().Status;
     this._CareGiversService.getCareGiverById(id).subscribe({
       next: (data) => {
-        this.caregiver=data.result
+        this.caregiver = data.result;
         this.role = data.result.jobTitle;
+        console.log(data.resulturs);
       },
       error: (err) => {
         console.log(err);
       },
     });
-    
   }
 
   SignOut() {

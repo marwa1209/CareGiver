@@ -73,7 +73,7 @@ export class RegisterComponent {
       confirmPassword: new FormControl(''),
       phoneNumber: new FormControl('', [
         Validators.required,
-        Validators.pattern(/^1[0125][0-9]{8}$/),
+        Validators.pattern(/^01[0125][0-9]{8}$/),
       ]),
       terms: new FormControl('', [Validators.required]),
     },

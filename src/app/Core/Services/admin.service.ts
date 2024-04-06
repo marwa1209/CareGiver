@@ -24,12 +24,45 @@ export class AdminService {
   }
   deleteNurseById(id: string): Observable<any> {
     return this._HttpClient.delete(
-      `http://localhost:5248/api/Admin/DeleteCaregiver${id}`
+      `http://localhost:5248/api/Admin/AdminDeleteCaregiver/${id}`
     );
+  }
+  deleteCustomerById(id: any): Observable<any> {
+    return this._HttpClient.delete(`http://localhost:5248/api/Customer/${id}`);
   }
   getAllCustomers(): Observable<any> {
     return this._HttpClient.get(
       `http://localhost:5248/api/Customer/AllCurrentCustomer`
     );
+  }
+  getAllRequests(): Observable<any> {
+    return this._HttpClient.get(
+      `http://localhost:5248/api/Admin/RequestedCaregivers`
+    );
+  }
+  acceptRequest(id: any): Observable<any> {
+    return this._HttpClient.put(
+      `http://localhost:5248/api/Admin/AcceptRequest/${id}`,
+      id
+    );
+  }
+  deleteRequest(id: any): Observable<any> {
+    return this._HttpClient.delete(
+      `http://localhost:5248/api/Admin/DeclineRequest/${id}`,
+      id
+    );
+  }
+  GetAlltransactions(): Observable<any> {
+    return this._HttpClient.get(
+      `http://localhost:5248/api/Reservations/transactions`
+    );
+  }
+  getAllcaregiverssystem(): Observable<any> {
+    return this._HttpClient.get(
+      `http://localhost:5248/api/Admin/AllCaregivers`
+    );
+  }
+  getAllReservations(): Observable<any> {
+    return this._HttpClient.get(`http://localhost:5248/api/Reservations/admin`);
   }
 }

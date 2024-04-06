@@ -1,0 +1,226 @@
+<section class="py-5 container">
+    <h2 class="text-main mb-4">Account Details</h2>
+    <div class="container">
+        <form [formGroup]="editForm" class="row">
+            <div class="col-lg-6 col-md-12 mb-4">
+                <label for="fname" class="form-label">First Name</label>
+                <input #inputfName formControlName="firstName" type="text" class="form-control" id="fname"
+                    value="PatientData?.firstName">
+                <ng-container *ngIf="editForm.get('firstName')?.touched ||inputfName.value.length>0">
+                    <p *ngIf="editForm.get('firstName')?.getError('required')" class="alert alert-danger p-2 my-2">
+                        First Name
+                        is
+                        required!</p>
+                    <p *ngIf="editForm.get('firstName')?.getError('minlength')" class="alert alert-danger p-2 my-2">
+                        First Name
+                        must
+                        be at least
+                        3 characters long!</p>
+                    <p *ngIf="editForm.get('firstName')?.getError('maxlength')" class="alert alert-danger p-2 my-2">
+                        First Name
+                        cannot exceed 40
+                        characters!</p>
+                </ng-container>
+            </div>
+            <div class="col-lg-6 col-md-12 mb-4">
+                <label for="lname" class="form-label">Last Name</label>
+                <input #inputlName formControlName="lastName" type="text" class="form-control" id="lname">
+                <ng-container *ngIf="editForm.get('lastName')?.touched ||inputlName.value.length>0">
+                    <p *ngIf="editForm.get('lastName')?.getError('required')" class="alert alert-danger p-2 my-2">
+                        Last Name
+                        is
+                        required!</p>
+                    <p *ngIf="editForm.get('lastName')?.getError('minlength')" class="alert alert-danger p-2 my-2">
+                        Last Name
+                        must
+                        be at least
+                        3 characters long!</p>
+                    <p *ngIf="editForm.get('lastName')?.getError('maxlength')" class="alert alert-danger p-2 my-2">
+                        Last Name
+                        cannot exceed 40
+                        characters!</p>
+                </ng-container>
+            </div>
+            <div class="col-lg-6 col-md-12 mb-4">
+                <label for="email" class="form-label">Email address</label>
+                <input #inputEmail formControlName="email" type="email" class="form-control" id="email">
+                <ng-container *ngIf="editForm.get('email')?.touched ||inputEmail.value.length>0">
+                    <p *ngIf="editForm.get('email')?.getError('required')" class="alert alert-danger p-2 my-2">Email
+                        is
+                        required!</p>
+                    <p *ngIf="editForm.get('email')?.getError('email')" class="alert alert-danger p-2 my-2">Invalid
+                        email format!</p>
+                </ng-container>
+            </div>
+            <div class="mb-4 col-lg-6 col-md-12">
+                <label for="phone" class="form-label">phone</label>
+                <input #InputPhone formControlName="phoneNumber" type="tel" class="form-control" id="phone">
+                <ng-container *ngIf="editForm.get('phoneNumber')?.touched ||InputPhone.value.length>0">
+                    <p *ngIf="editForm.get('phoneNumber')?.getError('required')" class="alert alert-danger p-2 my-2">
+                        phone is
+                        required!</p>
+                    <p *ngIf="editForm.get('phoneNumber')?.getError('pattern')" class="alert alert-danger p-2 my-2">
+                        Invalid phone number format!</p>
+                </ng-container>
+            </div>
+            <div class="mb-4 col-lg-6 col-md-12">
+                <label for="Nationality" class="form-label">Nationality</label>
+                <div class="input-group">
+                    <a class="btn btn-outline-success dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">Select Nationality</a>
+                    <ul class="dropdown-menu dropdown-menu-bottom">
+                        <li *ngFor="let Nationality of countries">
+                            <a class="dropdown-item cursor-pointer" (click)="selectNationality(Nationality)">{{
+                                Nationality }}</a>
+                        </li>
+                    </ul>
+                    <input #NationalityInput type="text" class="form-control"
+                        aria-label="Text input with dropdown button" [value]="Nationality" id="Nationality"
+                        name="Nationality" formControlName="nationality" />
+                </div>
+                <ng-container *ngIf="editForm.get('nationality')?.touched ||NationalityInput .value.length>0">
+                    <p *ngIf="editForm.get('nationality')?.getError('minlength')" class="alert alert-danger p-2 my-2">
+                        Nationality must
+                        be at least 2 characters long!
+                    </p>
+                    <p *ngIf="editForm.get('nationality')?.getError('maxlength')" class="alert alert-danger p-2 my-2">
+                        Nationality
+                        cannot exceed 20
+                        characters!</p>
+                </ng-container>
+            </div>
+            <div class="mb-4 col-lg-6 col-md-12">
+                <p class="form-label">Gender</p>
+                <input type="radio" class="btn-check" formControlName="gender" id="male" value="Male">
+                <label class="btn border px-4 py-2 text-muted me-4" for="male">Male</label>
+                <input type="radio" class="btn-check" formControlName="gender" id="female" value="Female">
+                <label class="btn border px-4 py-2 text-muted " for="female">Female</label>
+            </div>
+            <div class="mb-4 col-lg-6 col-md-12">
+                <label for="Birthdate" class="form-label">Birthdate</label>
+                <input #inputBirthdate formControlName="birthdate" type="date" class="form-control text-muted"
+                    id="Birthdate" name="Birthdate" min="1924-01-01" max="2004-12-31">
+                <ng-container
+                    *ngIf="editForm.get('birthdate')?.touched && editForm.get('birthdate')?.hasError('ageRange')">
+                    <p class="alert alert-danger p-2 my-2">this date is invalid(Birthdate must be between 10
+                        and 100 years) !
+                    </p>
+                </ng-container>
+            </div>
+            <div class="col-lg-6 col-md-12 mb-4">
+                <label for="location" class="form-label">location</label>
+                <textarea #inputfName formControlName="location" type="text" class="form-control" rows="1"
+                    id="location"></textarea>
+                <ng-container *ngIf="editForm.get('location')?.touched ||inputfName.value.length>0">
+                    <p *ngIf="editForm.get('location')?.getError('minlength')" class="alert alert-danger p-2 my-2">
+                        location
+                        must
+                        be at least
+                        7 characters long!</p>
+                    <p *ngIf="editForm.get('location')?.getError('maxlength')" class="alert alert-danger p-2 my-2">
+                        location
+                        cannot exceed 90
+                        characters!</p>
+                </ng-container>
+            </div>
+            <div class=" position-relative">
+                <div class="my-4 btns">
+                    <button [disabled]="editForm.invalid" type="submit" class="btn-main d-block w-15"(click)="handleUpdate()">
+                        Update Your Info</button>
+                    <p class="py-4 fs-5 text-success">{{update}}</p>
+                    <div class="my-3 alert alert-success my-5">
+                        <a class="btn rounded-5 btn-success d-block w-15 m-auto" (click)="showupdate()">Update
+                            Password</a>
+                    </div>
+                    <div class="my-3 alert alert-danger ">
+                        <button class="btn rounded-5 btn-danger d-block w-15 m-auto" (click)="confirmDelete()">Delete
+                            YourAccount</button>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="showConfirmationDialog"
+                class="confirmation-dialog border border-success position-absolute top-50 start-50 translate-middle bg-black bg-opacity-75 py-4 w-40 m-auto ">
+                <div class="message text-white p-4 text-center">Are you sure you want to delete your account?</div>
+                <div class="btns d-flex gap-3 m-auto align-items-center justify-content-center">
+                    <button class="btn btn-secondary px-4" (click)="cancelDelete()">Cancel</button>
+                    <button class="btn btn-danger px-4" (click)="delete()">Delete</button>
+                </div>
+            </div>
+            <div *ngIf="showupdatedialog"
+                class="confirmation-dialog border border-success position-absolute top-50 start-50 translate-middle bg-black bg-opacity-75 py-4 w-40 m-auto ">
+                <h2 class="message text-white p-4 text-center">Update Password</h2>
+                <form class="fw-medium main-text-color"  [formGroup]="updatepassForm">
+                    <div class="mb-4">
+                        <label for="password" class="form-label text-white">Old Password</label>
+                        <div class="input-group">
+                            <input #InputoldPassword formControlName="oldPassword" type="password" class="form-control"
+                                id="password">
+                            <button class="btn btn-outline-success" type="button"
+                                (click)="togglePasswordVisibility(InputoldPassword)">
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+                        </div>
+                        <ng-container
+                            *ngIf="updatepassForm.get('oldPassword')?.touched ||InputoldPassword.value.length>0">
+                            <p *ngIf="updatepassForm.get('oldPassword')?.getError('required')"
+                                class="alert alert-danger p-2 my-2">
+                                Old password is
+                                required!</p>
+
+                        </ng-container>
+                    </div>
+                    <div class="mb-4">
+                        <label for="password" class="form-label text-white text-capitalize">new Password</label>
+                        <div class="input-group">
+                            <input #InputPassword formControlName="newPassword" type="password" class="form-control"
+                                id="password">
+                            <button class="btn btn-outline-success" type="button"
+                                (click)="togglePasswordVisibility(InputPassword)">
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+                        </div>
+                        <ng-container *ngIf="updatepassForm.get('newPassword')?.touched ||InputPassword.value.length>0">
+                            <p *ngIf="updatepassForm.get('newPassword')?.getError('required')"
+                                class="alert alert-danger p-2 my-2">
+                                password is
+                                required!</p>
+                            <p *ngIf="updatepassForm.get('newPassword')?.getError('pattern')"
+                                class="alert alert-danger p-2 my-2">
+                                Password must start with an uppercase letter, followed by 6 to 20 lowercase letters
+                                or digits!</p>
+                        </ng-container>
+                    </div>
+                    <!--Confirm password-->
+                    <div class="mb-4">
+                        <label for="confirmPassword" class="form-label text-white">Confirm Password:</label>
+                        <div class="input-group">
+                            <input #confirmPasswordInput formControlName="confirmPassword" type="password"
+                                class="form-control" id="confirmPassword">
+                            <button class="btn btn-outline-success" type="button"
+                                (click)="togglePasswordVisibility(confirmPasswordInput)">
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+                        </div>
+                        <ng-container
+                            *ngIf="updatepassForm.get('confirmPassword')?.touched || confirmPasswordInput.value.length > 0">
+                            <p *ngIf="updatepassForm.get('confirmPassword')?.getError('required')"
+                                class="alert alert-danger p-2 my-2">
+                                Confirm Password is required!
+                            </p>
+                            <p *ngIf="updatepassForm.get('confirmPassword')?.getError('mismatch')"
+                                class="alert alert-danger p-2 my-2">
+                                Confirm Password does not match Password
+                            </p>
+                        </ng-container>
+                    </div>
+                    <div class="btns d-flex gap-3 m-auto align-items-center justify-content-center">
+                        <button class="btn btn-secondary px-4" (click)="cancel()">Cancel</button>
+                        <button class="btn btn-danger px-4" type="submit"
+                            [disabled]="updatepassForm.invalid" (click)="Update()">Update</button>
+                    </div>
+                </form>
+                <p class="my-4 text-danger text-center fs-5 ">{{message}}</p>
+            </div>
+        </form>
+    </div>
+</section>

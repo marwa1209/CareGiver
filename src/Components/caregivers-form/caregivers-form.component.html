@@ -4,26 +4,26 @@
             <div class="col-md-8 m-auto py-5 col-sm-12">
                 <div class="w-100 h-100 d-flex justify-content-center container px-5 flex-column">
                     <a class="mb-5 text-main text-center fs-3 fw-semibold" routerLink="/home">Logo</a>
-                    <form class="fw-medium main-text-color" (ngSubmit)="handleRegister()" [formGroup]="RegisterForm">
+                    <form class="fw-medium main-text-color" [formGroup]="RegisterForm" (ngSubmit)="onSubmit()">
                         <h1 class="fs-3 mb-5 text-main position-relative">Fill The Form</h1>
                         <!-- country -->
                         <div class="mb-4 ">
                             <label for="country" class="form-label">Country</label>
-                            <input #inputcountry formControlName="Country" type="text" class="form-control"
+                            <input #inputcountry formControlName="country" type="text" class="form-control"
                                 id="country">
-                            <ng-container *ngIf="RegisterForm.get('Country')?.touched ||inputcountry.value.length>0">
-                                <p *ngIf="RegisterForm.get('Country')?.getError('required')"
-                                    class="alert alert-danger p-2 my-2">Country is required!</p>
-                                <p *ngIf="RegisterForm.get('Country')?.getError('minlength')"
-                                    class="alert alert-danger p-2 my-2">Country must be at least 2 characters long!</p>
-                                <p *ngIf="RegisterForm.get('Country')?.getError('maxlength')"
-                                    class="alert alert-danger p-2 my-2">Country cannot exceed 20 characters!</p>
+                            <ng-container *ngIf="RegisterForm.get('country')?.touched ||inputcountry.value.length>0">
+                                <p *ngIf="RegisterForm.get('country')?.getError('required')"
+                                    class="alert alert-danger p-2 my-2">country is required!</p>
+                                <p *ngIf="RegisterForm.get('country')?.getError('minlength')"
+                                    class="alert alert-danger p-2 my-2">country must be at least 2 characters long!</p>
+                                <p *ngIf="RegisterForm.get('country')?.getError('maxlength')"
+                                    class="alert alert-danger p-2 my-2">country cannot exceed 20 characters!</p>
                             </ng-container>
                         </div>
                         <!-- City -->
                         <div class="mb-4">
                             <label for="city" class="form-label">City</label>
-                            <select class="form-select" aria-label="Default select example" formControlName="City">
+                            <select class="form-select" aria-label="Default select example" formControlName="city">
                                 <option selected [value]="3">Alexandria</option>
                                 <option [value]="1">Cairo</option>
                                 <option [value]="2">AboTesht</option>
@@ -33,7 +33,7 @@
                         <div class="mb-4">
                             <label for="CareerLevel" class="form-label">CareerLevel</label>
                             <select class="form-select" aria-label="Default select example"
-                                formControlName="CareerLevel">
+                                formControlName="careerLeve">
                                 <option selected [value]="1">Student</option>
                                 <option [value]="3">Experienced</option>
                                 <option [value]="2">FreshGraduate</option>
@@ -42,37 +42,24 @@
                         <!-- YearsOfExperience  -->
                         <div class="mb-4 ">
                             <label for="YearsOfExperience" class="form-label">Years Of Experience</label>
-                            <input #inputYearsOfExperience formControlName="YearsOfExperience" type="number"
+                            <input #inputYearsOfExperience formControlName="yearsOfExperience" type="number"
                                 class="form-control" id="YearsOfExperience ">
                             <ng-container
-                                *ngIf="RegisterForm.get('YearsOfExperience')?.touched ||inputYearsOfExperience.value.length>0">
-                                <p *ngIf="RegisterForm.get('YearsOfExperience')?.getError('required')"
+                                *ngIf="RegisterForm.get('yearsOfExperience')?.touched ||inputYearsOfExperience.value.length>0">
+                                <p *ngIf="RegisterForm.get('yearsOfExperience')?.getError('required')"
                                     class="alert alert-danger p-2 my-2">YearsOfExperience is
                                     required!</p>
-                                <p *ngIf="RegisterForm.get('YearsOfExperience')?.getError('min')"
+                                <p *ngIf="RegisterForm.get('yearsOfExperience')?.getError('min')"
                                     class="alert alert-danger p-2 my-2">YearsOfExperience must
                                     be at least 1 year</p>
-                                <p *ngIf="RegisterForm.get('YearsOfExperience')?.getError('max')"
+                                <p *ngIf="RegisterForm.get('yearsOfExperience')?.getError('max')"
                                     class="alert alert-danger p-2 my-2">Invalid Number !</p>
                             </ng-container>
                         </div>
-                        <!-- WhatCanCaregiverDo  -->
-                        <div class="mb-4 ">
-                            <label for="WhatCanCaregiverDo" class="form-label">WhatCanCaregiverDo</label>
-                            <input #inputWhatCanCaregiverDo type="text" id="WhatCanCaregiverDo" class="form-control"
-                                formControlName="WhatCanCaregiverDo">
-                            <button class="btn-main rounded-0 my-2"
-                                (click)="addInputData(inputWhatCanCaregiverDo.value)">Add</button>
-                            <div *ngFor="let data of RegisterForm.get('WhatCanCaregiverDo')?.value; let i = index">
-                                <div class="input-box">{{ data }} <button (click)="removeInputData(i)">Remove</button>
-                                </div>
-                            </div>
-                        </div>
-
                         <!-- JopTitle  -->
                         <div class="mb-4">
                             <label for="CareerLevel" class="form-label">Job Title</label>
-                            <select class="form-select" aria-label="Default select example" formControlName="JobTitle">
+                            <select class="form-select" aria-label="Default select example" formControlName="jobTitle">
                                 <option selected [value]="1">Nurse</option>
                                 <option [value]="2">Caregiver</option>
                                 <option [value]="3">Babysitter</option>
@@ -82,70 +69,52 @@
                         <div class="mb-4">
                             <label for="CareerLevel" class="form-label">Job Location Looking For</label>
                             <select class="form-select" aria-label="Default select example"
-                                formControlName="JobLocationLookingFor">
+                                formControlName="jobLocationLookingFor">
                                 <option selected [value]="3">Alexandria</option>
                                 <option [value]="1">Cairo</option>
                                 <option [value]="2">AboTesht</option>
                             </select>
                         </div>
-                        <!-- PricePerHour  -->
-                        <div class="mb-4 ">
-                            <label for="PricePerHour" class="form-label">Price Per Hour</label>
-                            <input #inputPricePerHour formControlName="PricePerHour" type="number" class="form-control"
-                                id="PricePerHour">
-                            <ng-container
-                                *ngIf="RegisterForm.get('PricePerHour')?.touched ||inputPricePerHour.value.length>0">
-                                <p *ngIf="RegisterForm.get('PricePerHour')?.getError('required')"
-                                    class="alert alert-danger p-2 my-2">
-                                    price per hour is
-                                    required!</p>
-                                <p *ngIf="RegisterForm.get('PricePerHour')?.getError('min')"
-                                    class="alert alert-danger p-2 my-2">
-                                    price per hour must
-                                    be at least 50 egp </p>
-                                <p *ngIf="RegisterForm.get('PricePerHour')?.getError('max')"
-                                    class="alert alert-danger p-2 my-2">price per hour can not exceed
-                                    500 egp</p>
-                            </ng-container>
-                        </div>
                         <!-- PricePerDay  -->
                         <div class="mb-4 ">
                             <label for="PricePerDay" class="form-label">Price Per Day</label>
-                            <input #inputPricePerDay formControlName="PricePerDay" type="number" class="form-control"
+                            <input #inputPricePerDay formControlName="pricePerDay" type="number" class="form-control"
                                 id="PricePerDay">
                             <ng-container
-                                *ngIf="RegisterForm.get('PricePerDay')?.touched ||inputPricePerDay.value.length>0">
-                                <p *ngIf="RegisterForm.get('PricePerDay')?.getError('required')"
+                                *ngIf="RegisterForm.get('pricePerDay')?.touched ||inputPricePerDay.value.length>0">
+                                <p *ngIf="RegisterForm.get('pricePerDay')?.getError('required')"
                                     class="alert alert-danger p-2 my-2">
-                                    price per hour is
+                                    price per day is
                                     required!</p>
-                                <p *ngIf="RegisterForm.get('PricePerDay')?.getError('min')"
+                                <p *ngIf="RegisterForm.get('pricePerDay')?.getError('min')"
                                     class="alert alert-danger p-2 my-2">
-                                    price per hour must
+                                    price per day must
                                     be at least 100 egp </p>
-                                <p *ngIf="RegisterForm.get('PricePerDay')?.getError('max')"
-                                    class="alert alert-danger p-2 my-2">price per hour
+                                <p *ngIf="RegisterForm.get('pricePerDay')?.getError('max')"
+                                    class="alert alert-danger p-2 my-2">price per day
                                     can not exceed
                                     1000 egp</p>
                             </ng-container>
                         </div>
-                        <!-- Resume  -->
+                    </form>
+                    <form [formGroup]="caregiverForm"(ngSubmit)="onSubmit()">
                         <div class="mb-4">
                             <label for="resume" class="form-label">Resume</label>
-                            <input type="file" formControlName="Resume" class="form-control" id="resume" />
+                            <input type="file" formControlName="resume" id="resume" class="form-control" />
                         </div>
                         <!-- CriminalRecords  -->
                         <div class="mb-4">
                             <label for="CriminalRecords" class="form-label">Criminal Records</label>
-                            <input type="file" formControlName="CriminalRecords" class="form-control"
-                                id="CriminalRecords" />
+                            <input type="file" formControlName="criminalRecords" id="criminalRecords"
+                                class="form-control" />
                         </div>
                         <!-- UploadPhoto  -->
                         <div class="mb-4">
                             <label for="UploadPhoto" class="form-label">Upload Photo</label>
-                            <input type="file" formControlName="UploadPhoto" class="form-control" id="UploadPhoto" />
+                            <input type="file" formControlName="uploadPhoto" id="uploadPhoto" class="form-control" />
                         </div>
-                        <button [disabled]="RegisterForm.invalid" type="submit"
+
+                        <button [disabled]="RegisterForm.invalid &&caregiverForm.invalid" type="submit"
                             class="btn-main mb-3 d-block m-auto w-30">
                             <i *ngIf="isLoading" class="fas fa-spinner fa-spin"></i>
                             Register</button>

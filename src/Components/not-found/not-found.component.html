@@ -1,4 +1,7 @@
-<app-main-nav/>
+<app-main-nav *ngIf="isPatientUser"></app-main-nav>
+<app-admin-sidenav *ngIf="isAdmin==true"></app-admin-sidenav>
+<app-nurse-nav *ngIf="iscaregiver"></app-nurse-nav>
+
 <div class=" container py-5">
     <img class="w-50 m-auto d-block" src="./assets/images/error.svg" alt="notFpund" />
 </div>

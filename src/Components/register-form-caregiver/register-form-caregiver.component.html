@@ -1,7 +1,7 @@
 <section class="register">
     <div class="container-fluied">
         <div class="row g-0">
-            <div class="col-md-6 col-sm-12 position-relative">
+            <div class="col-md-6 col-sm-12 position-fixed vh-100  d-block pic">
                 <picture class="h-100">
                     <img class="w-100 h-100 d-block" src="./assets/images/register-customer-image.jpg" />
                 </picture>
@@ -24,18 +24,12 @@
                     <a class="cursor-pointer text-light fs-3 font-i" routerLink="/signin">Sign in</a>
                 </div>
             </div>
-            <div class="col-md-6 py-5 col-sm-12">
+            <div class="col-lg-6 data py-5 col-md-12 ms-auto ">
                 <div class="w-100 h-100 d-flex justify-content-center container px-5 flex-column">
                     <a class="mb-5 text-main text-center fs-3 fw-semibold" routerLink="/home">Logo</a>
                     <form class="fw-medium main-text-color" [formGroup]="RegisterForm" (submit)="handleRegister()">
-                        <div class="d-flex justify-content-between">
+                        <div class="d-flex justify-content-between mb-3">
                             <h1 class="fs-3 fw-medium text-main">Sign Up</h1>
-                            <h2 class="fs-4 fw-medium text-main">1/5</h2>
-                        </div>
-
-                        <div class="progress mb-4">
-                            <div class="progress-bar w-20 rounded-3 bg-main " role="progressbar" aria-valuenow="0"
-                                aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                         <!-- firstname -->
                         <div class="mb-4 ">
@@ -208,10 +202,14 @@
                                 I agree to Terms And Conditions & Privacy Policy
                             </label>
                         </div>
+                        <div class="mb-4 acc  d-none">
+                            <p class="fs-6 fw-light mb-2">Already have an account ?</p>
+                            <a class="cursor-pointer fs-6 font-i text-main" routerLink="/signin">Sign in</a>
+                        </div>
                         <button [disabled]="RegisterForm.invalid" type="submit"
                             class="btn-main mb-3 d-block m-auto w-30">
                             <i *ngIf="isLoading" class="fas fa-spinner fa-spin"></i>
-                            Sign up & Continue</button>
+                            Sign up</button>
                     </form>
                     <p *ngIf="message" class="alert alert-danger p-2 my-2 ">{{message}}</p>
                 </div>

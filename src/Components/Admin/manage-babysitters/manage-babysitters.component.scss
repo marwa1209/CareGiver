@@ -1,0 +1,17 @@
+@media (max-width: 992px) {
+  .table-responsive.xl {
+    display: none;
+  }
+  div.sm.d-none {
+    display: block !important;
+  }
+}
+@media ((min-width: 991px) AND (max-width: 2000px)) {
+  .table-responsive.xl {
+    .state {
+      div {
+        padding-inline: 20px !important ;
+      }
+    }
+  }
+}

@@ -13,10 +13,11 @@ export class MyHttpInterceptor implements HttpInterceptor {
 
   intercept(
     request: HttpRequest<unknown>,
-    next: HttpHandler
-  ): Observable<HttpEvent<unknown>> {
-    let myheaders: any = { token: localStorage.getItem('etoken') };
-    if (localStorage.getItem('etoken') != null) {
+    next: HttpHandler): Observable<HttpEvent<unknown>> {
+    let myheaders: any = {};
+    const token = localStorage.getItem('etoken');
+    if (token !== null) {
+      myheaders = { Authorization: `Bearer ${token}` };
       request = request.clone({
         setHeaders: myheaders,
       });

@@ -1,0 +1,29 @@
+export interface Orderdetails {
+  orderId: number;
+  caregiverFirstName: string;
+  caregiverLastName: string;
+  patientFirstName: string;
+  patientLastName: string;
+  caregiverGender: string;
+  patientGender: string;
+  caregiverEmailAddress: string;
+  patientEmailAddress: string;
+  caregiverPhoneNumber: string;
+  patientPhoneNumber: string;
+  startDate: string;
+  endDate: string;
+  patientId: string;
+  status: string;
+  totalPrice: number;
+  photo: string;
+  pricePerDay: number;
+  country: string;
+  city: any;
+  birthdate: string;
+  totalPriceWithfees: number;
+  fees: number;
+  jobTitle: string;
+  loggedInUserId: any;
+  age: number;
+  location: any;
+}

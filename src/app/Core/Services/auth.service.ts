@@ -17,6 +17,8 @@ export class AuthService {
       const decodeToken = jwtDecode(encodeToken);
       this.userdata = decodeToken;
       return this.userdata;
+    } else {
+      return false;
     }
   }
 
@@ -42,12 +44,20 @@ export class AuthService {
       useremail
     );
   }
-  updatePass(email:string ,token:string ,password:string): Observable<any> {
+  updatePass(email: string, token: string, password: string): Observable<any> {
     return this._HttpClient.put(
-      `http://localhost:5248/api/Auth/UpdatePassword?email=${email}&token=${token}`,
-      {token:token , password:password , email:email}
-
-      
+      `http://localhost:5248/api/Auth/UpdatePassword`,
+      {
+        email: email,
+        token: token,
+        newPassword: password,
+      }
+    );
+  }
+  changePass(passwords: any): Observable<any> {
+    return this._HttpClient.put(
+      `http://localhost:5248/api/Auth/ChangePassword`,
+      passwords
     );
   }
   handlenotFound(): boolean {
@@ -71,6 +81,19 @@ export class AuthService {
   setformNurse(userData: object): Observable<any> {
     return this._HttpClient.post(
       `http://localhost:5248/api/Auth/CaregiverForm`,
+      userData
+    );
+  }
+
+  uploadFiles(formData: FormData): Observable<any> {
+    return this._HttpClient.post<any>(
+      'http://localhost:5248/api/Auth/CaregiverFile',
+      formData
+    );
+  }
+  constactus(userData: object): Observable<any> {
+    return this._HttpClient.post(
+      `http://localhost:5248/api/Auth/ContactUs`,
       userData
     );
   }

@@ -1,1 +1,71 @@
-<p class="bg-black">lorem1000</p>
+<section class="AllOrders px-2 container py-5">
+    <h1 class="fs-2 mb-4">My Orders </h1>
+    <h3 class="position-relative fs-4 ps-4">All ({{allorders.length}})</h3>
+    <input #searchinput class="form-control w-25 d-block ms-auto mb-4" type="search" placeholder="Search"
+        aria-label="Search" [(ngModel)]="term">
+    <table class="table table-responsive xl">
+        <thead>
+            <tr class="text-center align-middle">
+                <th class="pb-4 pt-4">Order #</th>
+                <th class="pb-4 pt-4">patient name</th>
+                <th class="pb-4 pt-4">Price</th>
+                <th class="pb-4 pt-4">Start date</th>
+                <th class="pb-4 pt-4"> End date</th>
+                <th class="pb-4 pt-4">Phone number</th>
+                <th class="pb-4 pt-4">Details</th>
+                <th class="pb-4 pt-4">Status</th>
+                <th class="pb-4 pt-4">Accept</th>
+                <th class="pb-4 pt-4">Decline</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let order of allorders|searchreervationPipe:term" class="text-center">
+                <td class="p-4">{{order.orderId}}</td>
+                <td>{{order.patientFirstName}}</td>
+                <td>{{order.totalPriceWithfees}}</td>
+                <td>{{order.startDate|date:'yyyy-MM-dd'}}</td>
+                <td>{{order.endDate |date:'yyyy-MM-dd'}}</td>
+                <td>{{order.patientPhoneNumber}}</td>
+                <td><a class="btn btn-outline-success" [routerLink]="['/orderdetails',order.orderId]">More
+                    Details</a></td>
+                <td>
+                    <div class="py-2 w-75 m-auto rounded-4 text-white"
+                        [ngClass]="{'ternary-color': order.status =='OnProgress','bg-danger':order.status=='Cancelled','bg-warning':order.status=='CannotProceed','bg-success':order.status=='Confirmed','secondary-color':order.status=='Pending'}">
+                        {{order.status}}</div>
+                </td>
+                <td *ngIf="order.status=='OnProgress'"><i class="fa-solid fa-check text-main fs-4 cursor-pointer"
+                        (click)="accept(order.orderId)"></i></td>
+                <td *ngIf="order.status=='OnProgress'"><i class="fa-solid fa-xmark text-main fs-4 cursor-pointer"
+                        (click)="decline(order.orderId)"></i></td>
+                <td colspan="2" *ngIf="order.status!=='OnProgress'&&order.status!=='CannotProceed'">You accepted it</td>
+                <td colspan="2" *ngIf="order.status=='CannotProceed'">You Refused it</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="container-fluid sm d-none">
+        <table class="table table-responsive">
+            <thead>
+                <tr class="text-center align-middle">
+                    <th class="py-4 fs-small">Order #</th>
+                    <th class="py-4 fs-small">Price</th>
+                    <th class="py-4 fs-small">Status</th>
+                    <th class="py-4 fs-small">Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let order of allorders|searchreervationPipe:term" class="text-center align-middle">
+                    <td class="p-4">{{order.orderId}}</td>
+                    <td>{{order.totalPriceWithfees|currency}}</td>
+                    <td>
+                        <div class="py-2 w-75 m-auto rounded-4">
+                            {{order.status}}</div>
+                    </td>
+                    <td>
+                        <a class="btn btn-outline-success" [routerLink]="['/orderdetails',order.orderId]">More
+                            Details</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>

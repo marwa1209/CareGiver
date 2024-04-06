@@ -26,6 +26,9 @@
       display: none !important;
     }
   }
+  #bio.position-fixed.w-40,
+  #persola.position-fixed.w-40,
+  #prof.position-fixed.w-40 {
+    width: 80% !important;
+  }
 }
-
-

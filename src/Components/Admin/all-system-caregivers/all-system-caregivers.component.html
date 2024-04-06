@@ -1,0 +1,54 @@
+<section class="manage-caregivers px-2">
+    <h1 class="fs-2 mb-4">Manage All System CareGivers </h1>
+    <h3 class="position-relative fs-4 ps-4">All ({{allcaregivers.length}})</h3>
+    <input #searchinput class="form-control w-25 d-block ms-auto mb-4" type="search" placeholder="Search"
+        aria-label="Search" [(ngModel)]="term">
+    <table class="table table-responsive xl">
+        <thead>
+            <tr class="text-center">
+                <th>Name</th>
+                <th>Start Date</th>
+                <th>Total Customers</th>
+                <th>Revenu</th>
+                <th>Price</th>
+                <th>Profile</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let caregiver of allcaregivers |search:term" class="text-center">
+                <td class="d-flex justify-content-center align-items-center">
+                    <picture><img class="rounded-circle" [src]="base64Image+caregiver.photo" height="50px" width="50px" />
+                    </picture>
+                    <p class="w-50">{{caregiver.firstName}} {{caregiver.lastName}}</p>
+
+                </td>
+                <td>{{caregiver.joinedDate}}</td>
+                <td>{{caregiver.totalCustomers}}</td>
+                <td>{{caregiver.totalRevenu}}</td>
+                <td>{{caregiver.pricePerDay}}</td>
+                <td scope="row"><a class="btn-main my-auto px-2" [routerLink]="['/caregiverprofile',caregiver.id]">View
+                        Profile</a></td>
+               
+            </tr>
+        </tbody>
+    </table>
+    <div class="container-fluid sm d-none">
+        <table class="table table-responsive">
+            <thead>
+                <tr class="text-center align-middle">
+                    <th class="py-4 fs-small">caregiver Name</th>
+                    <th class="py-4 fs-small">Total Customers</th>
+                    <th class="py-4 fs-small">Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let caregiver of allcaregivers |search:term" class="text-center">
+                    <td class="p-4">{{caregiver.firstName}}</td>
+                    <td>{{caregiver.totalCustomers}}</td>
+                    <td scope="row"><a class="btn-main my-auto px-2" [routerLink]="['/caregiverprofile',caregiver.id]">View
+                            Profile</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>

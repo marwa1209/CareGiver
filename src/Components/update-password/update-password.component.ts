@@ -21,6 +21,7 @@ import {
 export class UpdatePasswordComponent {
   message: string = '';
   email: string = '';
+  token:string='';
   isLoading: boolean = false;
   constructor(
     private _AuthService: AuthService,
@@ -31,6 +32,12 @@ export class UpdatePasswordComponent {
     this._ActivatedRoute.queryParams.subscribe((params) => {
       this.email = params['email1'];
       console.log(this.email);
+    });
+    this._ActivatedRoute.queryParams.subscribe((params) => {
+      this.email = params['email'];
+      this.token = params['token'];
+      console.log(this.email);
+      console.log(this.token);
     });
   }
 
@@ -57,33 +64,25 @@ export class UpdatePasswordComponent {
     }
   }
   handleupdate(email: string): void {
-    const passwords: any = {
-      email: this.email,
-      newPassword: this.UpdatePasswordForm.get('rePassword')?.value,
-    };
-    console.log(passwords);
     this.isLoading = true;
-    // if (this.UpdatePasswordForm.valid) {
-    //   this._AuthService
-    //     .updatePass(
-    //       this.email,
-          
-    //       this.UpdatePasswordForm.get('rePassword')?.value
-    //     )
-    //     .subscribe({
-    //       next: (response) => {
-    //         this.isLoading = false;
-    //         this._Router.navigate(['/signin']);
-    //       },
-    //       error: (error) => {
-    //         this.message = error.error.message;
-    //         console.log(error.error);
-    //         this.isLoading = false;
-    //       },
-    //     });
-    // } else {
-    //   this.UpdatePasswordForm.markAllAsTouched(); // Method call corrected
-    // }
+    if (this.UpdatePasswordForm.valid) {
+      this._AuthService
+        .updatePass(this.email,this.token,this.UpdatePasswordForm.get('rePassword')?.value)
+        .subscribe({
+          next: (response) => {
+            this.isLoading = false;
+            console.log(response)
+            this._Router.navigate(['/signin']);
+          },
+          error: (error) => {
+            this.message = error.error.message;
+            console.log(error.error);
+            this.isLoading = false;
+          },
+        });
+    } else {
+      this.UpdatePasswordForm.markAllAsTouched(); // Method call corrected
+    }
   }
   togglePasswordVisibility(inputField: HTMLInputElement): void {
     inputField.type = inputField.type === 'password' ? 'text' : 'password';

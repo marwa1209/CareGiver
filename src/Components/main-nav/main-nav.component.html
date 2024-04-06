@@ -1,14 +1,17 @@
-<nav class="navbar grey-text-color py-4 fw-medium font-sm navbar-expand-lg">
-  <div class="container-fluid px-5">
+<nav class="navbar grey-text-color py-4 fw-medium font-sm navbar-expand-lg z-2">
+  <div class="container-fluid px-5 d-flex align-items-center">
     <a class="navbar-brand me-5 text-main" routerLink="/home">Logo</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-4">
+      <ul class="navbar-nav me-auto  align-items-center mb-lg-0">
         <li class="nav-item">
           <a class="nav-link" routerLink="/home" routerLinkActive="text-main fw-bold">Home</a>
+        </li>
+        <li class="nav-item" *ngIf="userToken">
+          <a class="nav-link" routerLink="/allorders" routerLinkActive="text-main fw-bold">My Reservations</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/services" routerLinkActive="text-main fw-bold">Services</a>
@@ -19,24 +22,54 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="/contact" routerLinkActive="text-main fw-bold">Contact us</a>
         </li>
+        <li class="nav-item d-none profile">
+          <a class="nav-link" routerLink="/customerprofile" routerLinkActive="text-main fw-bold">Profile</a>
+        </li>
       </ul>
       <!--* user as registrations -->
-      <ul *ngIf="!userToken" class="blank-user navbar-nav ms-auto mb-2 mb-lg-0 gap-4">
+      <ul *ngIf="!userToken" class="blank-user navbar-nav  align-items-center ms-auto mb-2 mb-lg-0 gap-4">
         <li class="nav-item">
-          <a class="btn-main-light" routerLink="/signin">Log in</a>
+          <a class="btn-main-light px-4" routerLink="/signin">Log in</a>
+          <a class="nav-link d-none" routerLink="/signin" routerLinkActive="text-main fw-bold">Log in</a>
         </li>
         <li class="nav-item">
-          <a class="btn-main" routerLink="/register">Sign Up</a>
+          <a class="btn-main px-4" routerLink="/register">Sign Up</a>
+          <a class="nav-link d-none" routerLink="/register" routerLinkActive="text-main fw-bold">Sign Up</a>
         </li>
-        <li class="nav-item">
-          <i class="fa-solid fa-heart-pulse text-main me-2"></i>
-          <a class="" routerLink="/registerFormCaregiver">Caregiver?</a>
+        <li class="nav-item d-flex justify-content-center align-items-center gap-1">
+          <i class="fa-solid fa-heart-pulse text-main"></i>
+          <a class="nav-link" routerLink="/registerFormCaregiver">Caregiver?</a>
         </li>
       </ul>
       <!--* user as blank -->
-      <ul *ngIf="userToken" class="registration-user navbar-nav ms-auto mb-2 mb-lg-0 gap-4">
-        <li class="nav-item" (click)="SignOut()">
-          <a class="btn-main" routerLink="/home">Sign Out</a>
+      <div *ngIf="userToken" class="profile ms-auto d-flex align-items-center gap-3 justify-content-between gap-3">
+        <div class="d-flex  flex-column justify-content-center g-0 gap-0 text-main">
+          <h2 class="fs-6 fw-medium py-0 my-0 lh-sm">{{Patientdata?.firstName}} {{Patientdata?.lastName}}</h2>
+          <p class="fs-6 fw-medium py-0 my-0 lh-sm">{{Patientdata?.email}}</p>
+        </div>
+        <div class="w-40 dropdown navbar-nav">
+          <a class="fs-4 p-1 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+          </a>
+          <ul class="dropdown-menu">
+            <h5 class="fw-bold mb-1">Account Settings</h5>
+            <li class="nav-item cursor-pointer fs-7" routerLink="/customerprofile">
+              <a class="px-1">Profile Account</a>
+            </li>
+            <hr>
+            <h5 class="fw-bold mb-1">Logout</h5>
+            <li class="nav-item cursor-pointer fs-7" (click)="SignOut()">
+              <a class="px-1">Sign Out</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <ul *ngIf="userToken"
+        class="registration-user navbar-nav cursoe-pointer align-items-center ms-auto mb-2 mb-lg-0 gap-4 d-none">
+        <li class="nav-item cursor-pointer" (click)="SignOut()">
+          <a class="btn-main d-block">Sign Out</a>
+        </li>
+        <li class="nav-item cursor-pointer" (click)="SignOut()">
+          <a class="nav-link d-none">Sign Out</a>
         </li>
       </ul>
     </div>

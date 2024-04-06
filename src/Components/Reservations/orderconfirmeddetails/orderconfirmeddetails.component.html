@@ -1,0 +1,254 @@
+<div class="container">
+    <div class="alert-message">
+        <div *ngIf="staues=='OnProgress'">
+            <div class="join-nurses bg-main my-5 position-relative rounded-4">
+                <div class="text-center text-white position-relative z-3 py-5">
+                    <h2 class="fs-1 py-4">Your request has been sent to caregiver</h2>
+                    <p class="fs-6">We appreciate your patience. Our response will be sent to you via email or SMS.</p>
+                    <p>Reservation number: #{{orderid}}</p>
+                </div>
+                <div class="images d-flex justify-content-between position-absolute top-0 start-0 end-0 bottom-0 z-0">
+                    <img src="./assets/images/Vector-right.png" alt="vector-right">
+                    <img src="./assets/images/Vector-left.png" alt="vector-left" height="150px">
+                </div>
+            </div>
+            <div>
+                <h4 *ngIf="orderdetails?.patientGender=='Male'" class="fw-medium text-main mb-3">Dear Mr.
+                    {{orderdetails?.patientFirstName}},</h4>
+                <h4 *ngIf="orderdetails?.patientGender=='Female'" class="fw-medium text-main mb-3">Dear Mrs.
+                    {{orderdetails?.patientFirstName}},</h4>
+                <p class="grey-text-color lh-base fs-6 fw-lighter">
+                    Your request has been successfully delivered to the caregiver and will notify you as soon as we
+                    receive
+                    a response. If
+                    you have any further questions or
+                    need assistance, please don't hesitate to reach out to us. We appreciate your trust in our services
+                    and
+                    will make every
+                    effort to provide you with a prompt
+                    response.
+                </p>
+            </div>
+        </div>
+        <div *ngIf="staues=='Pending'">
+            <div class="join-nurses bg-main my-5 position-relative rounded-4">
+                <div class="text-center text-white position-relative z-3 py-5">
+                    <h2 class="fs-1 py-4">Payment Confirmation Needed</h2>
+                    <p class="fs-6">Payment Needed to Finalize Your Reservation</p>
+                    <p>Reservation number: #{{orderid}}</p>
+                </div>
+                <div class="images d-flex justify-content-between position-absolute top-0 start-0 end-0 bottom-0 z-0">
+                    <img src="./assets/images/Vector-right.png" alt="vector-right">
+                    <img src="./assets/images/Vector-left.png" alt="vector-left" height="150px">
+                </div>
+            </div>
+            <div>
+                <h4 *ngIf="orderdetails?.patientGender=='Male'" class="fw-medium text-main mb-3">Dear Mr.
+                    {{orderdetails?.patientFirstName}},</h4>
+                <h4 *ngIf="orderdetails?.patientGender=='Female'" class="fw-medium text-main mb-3">Dear Mrs.
+                    {{orderdetails?.patientFirstName}},</h4>
+                <p class="grey-text-color fs-6 fw-lighter lh-base">
+                    We would like to inform you that your reservation is currently pending and requires payment to be
+                    confirmed. To
+                    secure your reservation, we kindly request that you make the payment as soon as possible.
+                </p>
+                <p class="grey-text-color pb-1 fs-6 fw-lighter lh-base"> To make the payment, please scroll down to the
+                    end
+                    of this page and click
+                    the button
+                    labeled <b>"Make Payment"</b> to proceed with the payment.</p>
+            </div>
+        </div>
+        <div *ngIf="staues=='Cancelled'">
+            <div class="join-nurses bg-main my-5 position-relative rounded-4">
+                <div class="text-center text-white position-relative z-3 py-5">
+                    <h2 class="fs-1 py-4">Reservation Cancelled</h2>
+                    <p class="fs-6">Your reservation has been cancelled as requested.</p>
+                    <p>Reservation number: #{{orderid}}</p>
+                </div>
+                <div class="images d-flex justify-content-between position-absolute top-0 start-0 end-0 bottom-0 z-0">
+                    <img src="./assets/images/Vector-right.png" alt="vector-right">
+                    <img src="./assets/images/Vector-left.png" alt="vector-left" height="150px">
+                </div>
+            </div>
+            <div>
+                <h4 *ngIf="orderdetails?.patientGender=='Male'" class="fw-medium text-main mb-3">Dear Mr.
+                    {{orderdetails?.patientFirstName}},</h4>
+                <h4 *ngIf="orderdetails?.patientGender=='Female'" class="fw-medium text-main mb-3">Dear Mrs.
+                    {{orderdetails?.patientFirstName}},</h4>
+                <p class="grey-text-color fs-6 fw-lighter lh-base">
+                    We want to inform you that your reservation has been cancelled as requested. We understand that
+                    circumstances can
+                    change, and we apologize for any inconvenience this may cause. If you need assistance in rebooking
+                    or
+                    have any concerns,
+                    please don't hesitate to get in touch with our helpful customer service team. Thank you for your
+                    cooperation and
+                    understanding."
+                </p>
+            </div>
+        </div>
+        <div *ngIf="staues=='CannotProceed'">
+            <div class="join-nurses bg-main my-5 position-relative rounded-4">
+                <div class="text-center text-white position-relative z-3 py-5">
+                    <h2 class="fs-1 py-4">Apologies!</h2>
+                    <p class="fs-6">Oopsie Daisies! Your Reservation Adventure Takes a Twist - Let's Explore Plan B!</p>
+                    <p>Reservation number: #{{orderid}}</p>
+                </div>
+                <div class="images d-flex justify-content-between position-absolute top-0 start-0 end-0 bottom-0 z-0">
+                    <img src="./assets/images/Vector-right.png" alt="vector-right">
+                    <img src="./assets/images/Vector-left.png" alt="vector-left" height="150px">
+                </div>
+            </div>
+            <div>
+                <h4 *ngIf="orderdetails?.patientGender=='Male'" class="fw-medium text-main mb-3">Dear Mr.
+                    {{orderdetails?.patientFirstName}},</h4>
+                <h4 *ngIf="orderdetails?.patientGender=='Female'" class="fw-medium text-main mb-3">Dear Mrs.
+                    {{orderdetails?.patientFirstName}},</h4>
+                <p class="grey-text-color fs-6 fw-lighter lh-base">
+                    Thank you for choosing our services and reserving a nurse. We regret to inform you that the nurse
+                    you
+                    requested is
+                    currently
+                    unavailable to fulfill your request. We understand the importance of your healthcare needs and
+                    apologize
+                    for any
+                    inconvenience caused. We are committed to providing you with the best care possible and would be
+                    happy
+                    to assist you in
+                    finding an alternative solution or recommending another qualified healthcare professional.
+                </p>
+            </div>
+        </div>
+        <div *ngIf="staues=='Confirmed'">
+            <div class="join-nurses bg-main my-5 position-relative rounded-4">
+                <div class="text-center text-white position-relative z-3 py-5">
+                    <h2 class="fs-1 py-4">Congratulations!</h2>
+                    <p class="fs-6">We are happy to confirm that your reservation</p>
+                    <p>Reservation number: #{{orderid}}</p>
+                </div>
+                <div class="images d-flex justify-content-between position-absolute top-0 start-0 end-0 bottom-0 z-0">
+                    <img src="./assets/images/Vector-right.png" alt="vector-right">
+                    <img src="./assets/images/Vector-left.png" alt="vector-left" height="150px">
+                </div>
+            </div>
+            <div>
+                <h4 *ngIf="orderdetails?.patientGender=='Male'" class="fw-medium text-main mb-3">Dear Mr.
+                    {{orderdetails?.patientFirstName}},</h4>
+                <h4 *ngIf="orderdetails?.patientGender=='Female'" class="fw-medium text-main mb-3">Dear Mrs.
+                    {{orderdetails?.patientFirstName}},</h4>
+                <p class="grey-text-color fs-6 fw-lighter lh-base">
+                    We are delighted to inform you that your reservation has been
+                    successfully confirmed, and we are processing it now please see the
+                    details below
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="my-5 persoal-details">
+        <h2 class="text-main fw-medium fs-3 mb-4">Your personal details</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <h4 class="text-main fs-6 fw-medium">Full name</h4>
+                <p class="main-text-color">{{orderdetails?.patientFirstName}} {{orderdetails?.patientLastName}}</p>
+            </div>
+            <div class="col-md-4 mb-4">
+                <h4 class="text-main fs-6 fw-medium">Phone number</h4>
+                <p class="main-text-color">(+02) {{orderdetails?.patientPhoneNumber}}</p>
+            </div>
+            <div class="col-md-4 mb-4">
+                <h4 class="text-main fs-6 fw-medium">Status</h4>
+                <p class="main-text-color">{{staues}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <h4 class="text-main fs-6 fw-medium">Gender</h4>
+                <p class="main-text-color">{{orderdetails?.patientGender}}</p>
+            </div>
+            <div class="col-md-4 mb-4">
+                <h4 class="text-main fs-6 fw-medium">Age</h4>
+                <p class="main-text-color">{{orderdetails?.age}} Years Old</p>
+            </div>
+            <div class="col-md-4 mb-4">
+                <h4 class="text-main fs-6 fw-medium">Email address</h4>
+                <p class="main-text-color">{{orderdetails?.patientEmailAddress}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <h4 class="text-main fs-6 fw-medium">Address</h4>
+                <p class="main-text-color">{{orderdetails?.location}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="my-5 Caregiver-details">
+        <h2 class="text-main fw-medium fs-3 mb-4">Your Reservation details</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <h4 class="text-main fs-6 fw-medium">Caregiver name</h4>
+                <p class="main-text-color">{{orderdetails?.caregiverFirstName}} {{orderdetails?.caregiverLastName}}</p>
+            </div>
+            <div class="col-md-4 mb-4">
+                <h4 class="text-main fs-6 fw-medium">Caregiver Role</h4>
+                <p class="main-text-color">(+02) {{orderdetails?.jobTitle}}</p>
+            </div>
+            <div class="col-md-4 mb-4">
+                <h4 class="text-main fs-6 fw-medium">Caregiver phone number</h4>
+                <p class="main-text-color">(+02) {{orderdetails?.caregiverPhoneNumber}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <h4 class="text-main fs-6 fw-medium">Caregiver Gender</h4>
+                <p class="main-text-color">{{orderdetails?.caregiverGender}}</p>
+            </div>
+            <div class="col-md-4 mb-4">
+                <h4 class="text-main fs-6 fw-medium">Start date</h4>
+                <p class="main-text-color">{{orderdetails?.startDate | date:'yyyy-MM-dd'}} </p>
+            </div>
+            <div class="col-md-4 mb-4">
+                <h4 class="text-main fs-6 fw-medium">End date</h4>
+                <p class="main-text-color">{{orderdetails?.endDate | date:'yyyy-MM-dd'}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <h4 class="text-main fs-6 fw-medium">Email address</h4>
+                <p class="main-text-color">{{orderdetails?.caregiverEmailAddress}}</p>
+            </div>
+            <div class="col-md-4">
+                <h4 class="text-main fs-6 fw-medium">Address</h4>
+                <p class="main-text-color text-capitalize">{{orderdetails?.country}}, {{orderdetails?.city}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="my-5 Payment-details">
+        <h2 class="text-main fw-medium fs-3 mb-4">Your payment details</h2>
+        <div class="row">
+            <div class="col-xl-3  me-auto px-2 py-3">
+                <div class="d-flex justify-content-between fs-6 mb-4">
+                    <p class="px-1">{{orderdetails?.pricePerDay | currency}} x {{adjustedDifferenceInDays}} {{
+                        adjustedDifferenceInDays
+                        === 1 ? 'day' : 'days' }}</p>
+                    <p class=" px-1"> {{ ((orderdetails?.pricePerDay ?? 0)*adjustedDifferenceInDays) | currency }}</p>
+                </div>
+                <div class="d-flex justify-content-between fs-6 mb-4">
+                    <p class="px-1">Services</p>
+                    <p class="px-1">{{10}}% </p>
+                </div>
+                <hr>
+                <div class="d-flex justify-content-between fs-6 mb-3">
+                    <p class="px-1">Total</p>
+                    <p class="px-1">{{ ((orderdetails?.pricePerDay ?? 0)*adjustedDifferenceInDays) +
+                        (((orderdetails?.pricePerDay ?? 0)*adjustedDifferenceInDays)*0.1) | currency }}
+                    </p>
+                </div>
+                <button class="btn-main pay d-block m-auto w-75" *ngIf="staues!=='Confirmed'"
+                    [disabled]="staues !== 'Pending'" (click)="pay()">Pay</button>
+            </div>
+        </div>
+    </div>
+    <button class="btn-main allorders d-block m-auto w-20 py-2 my-5" routerLink="/allorders">Go to My orders
+        page</button>
+</div>

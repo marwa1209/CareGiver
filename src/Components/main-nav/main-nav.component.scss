@@ -1,0 +1,43 @@
+@media (max-width: 992px) {
+  .blank-user,
+  .registration-user {
+    display: block !important;
+    margin: auto !important;
+    text-align: center;
+    gap: 0px !important;
+    li a.btn-main,
+    li a.btn-main-light
+    {
+      display: none !important;
+    }
+    li a.d-none {
+      display: block !important;
+    }
+  }
+  .profile{
+    display: none !important;
+  }
+  .navbar-nav{
+    .nav-item.profile{
+      display: block !important;
+    }
+  }
+}
+.dropdown-toggle {
+  border-radius: 100%;
+  border: 1px solid #004225;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.dropdown-menu[data-bs-popper] {
+  top: 100%;
+  left: -500%;
+  padding: 20px;
+  margin-top: 20px !important;
+}
+.fs-7 {
+  font-size: 13px;
+}

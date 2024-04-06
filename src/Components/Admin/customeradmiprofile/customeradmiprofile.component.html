@@ -1,0 +1,38 @@
+<section class="py-5 container">
+    <h2 class="text-main mb-4">Account Details</h2>
+    <div class="container ">
+        <div class="row py-5">
+            <div class="col-md-4 mb-4">
+                <h2 class="text-capitalize text-main">Full name</h2>
+                <h4>{{customer?.firstName}} {{customer?.lastName}}</h4>
+            </div>
+            <div class="col-md-4 ms-auto mb-4">
+                <h2 class="text-capitalize text-main">Email</h2>
+                <h4>{{customer?.email}}</h4>
+            </div>
+            <div class="col-md-4  mb-4">
+                <h2 class="text-capitalize text-main">Phone number</h2>
+                <h4>{{customer?.phoneNumber}}</h4>
+            </div>
+            <div class="col-md-4 mb-4">
+                <h2 class="text-capitalize text-main">Address</h2>
+                <h4>{{customer?.location}}</h4>
+            </div>
+            <div class="col-md-4 mb-4">
+                <h2 class="text-capitalize text-main">Age</h2>
+                <h4>{{customer?.age}} years </h4>
+            </div>
+            <div class="col-md-4 mb-4">
+                <h2 class="text-capitalize text-main">Gender</h2>
+                <h4>{{customer?.gender}}</h4>
+            </div>
+            <div class="col-md-4 mb-4">
+                <h2 class="text-capitalize text-main">joined Date</h2>
+                <h4>{{customer?.joinedDate|date}}  </h4>
+            </div>
+            <div class="col-md-4 mb-4">
+                <h2 class="text-capitalize text-main">birthdate</h2>
+                <h4>{{customer?.birthdate}}</h4>
+            </div>
+        </div>
+    </div>

@@ -4,6 +4,7 @@ import { ICaregiver } from 'src/app/Core/Interfaces/caregiver';
 import { CareGiversService } from 'src/app/Core/Services/care-givers.service';
 import { AuthService } from 'src/app/Core/Services/auth.service';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 import {
   AbstractControl,
   FormControl,
@@ -24,11 +25,16 @@ import {
     RouterLinkActive,
     ReactiveFormsModule,
     FormsModule,
+    PdfViewerModule,
   ],
   templateUrl: './nurse-profile.component.html',
   styleUrls: ['./nurse-profile.component.scss'],
 })
 export class NurseProfileComponent implements OnInit {
+  base64Image: string = '';
+  base64Pdf: any = '';
+  displayresume: boolean = false;
+  displaycriminalRecords: boolean = false;
   countries: string[] = [
     'Egypt',
     'Canada',
@@ -41,6 +47,7 @@ export class NurseProfileComponent implements OnInit {
   selectNationality(nationality: string) {
     this.EditCareGiverForm.get('nationality')?.setValue(nationality);
   }
+  image:string |undefined='';
   fname: string | undefined = '';
   lname: string | undefined = '';
   gender: string | undefined = '';
@@ -69,7 +76,7 @@ export class NurseProfileComponent implements OnInit {
       Validators.maxLength(20),
     ]),
     email: new FormControl('', [Validators.email]),
-    phoneNumber: new FormControl('', [Validators.pattern(/^1[0125][0-9]{8}$/)]),
+    phoneNumber: new FormControl('', [Validators.pattern(/^(01|1)[0125][0-9]{8}$/)]),
     careerLevel: new FormControl(1),
     yearsOfExperience: new FormControl(null, [
       Validators.max(50),
@@ -87,7 +94,9 @@ export class NurseProfileComponent implements OnInit {
   });
 
   ngOnInit() {
+    this.base64Pdf = `data:application/pdf;base64,`;
     const id = this._AuthService.decodeUserData().nameid;
+    this.base64Image = 'data:image/jpeg;base64,';
     this._CareGiversService.getCareGiverById(id).subscribe({
       next: (data) => {
         this.caregiver = data.result;
@@ -97,6 +106,7 @@ export class NurseProfileComponent implements OnInit {
         this.city = this.caregiver?.city;
         this.joptitle = this.caregiver?.jobTitle;
         this.careerlevel = this.caregiver?.careerLevel;
+        this.image=this.caregiver?.photo;
         // Set the initial value of the FormControl
         this.EditCareGiverForm.get('bio')?.setValue(this.caregiver?.bio);
         this.EditCareGiverForm.get('country')?.setValue(
@@ -124,9 +134,6 @@ export class NurseProfileComponent implements OnInit {
         this.EditCareGiverForm.get('jobTitle')?.setValue(
           this.caregiver?.jobTitle
         );
-        this.EditCareGiverForm.get('pricePerHour')?.setValue(
-          this.caregiver?.pricePerHour
-        );
         this.EditCareGiverForm.get('pricePerDay')?.setValue(
           this.caregiver?.pricePerDay
         );
@@ -135,11 +142,12 @@ export class NurseProfileComponent implements OnInit {
         console.log(err);
       },
     });
+    this.image =this.caregiver?.photo;
   }
   submit(e: Event) {
     e.preventDefault();
-
     const id = this._AuthService.decodeUserData().nameid;
+    console.log(id)
     const userData = this.EditCareGiverForm.value;
     this.caregiver = userData;
     this.isHidden = false;
@@ -213,8 +221,8 @@ export class NurseProfileComponent implements OnInit {
   cancelprof() {
     this.isHiddenprofessionalData = false;
   }
-  prevenrdefault(e:Event){
-e.preventDefault();
+  prevenrdefault(e: Event) {
+    e.preventDefault();
   }
   birthdateRangeValidator(minAge: number, maxAge: number): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
@@ -235,5 +243,17 @@ e.preventDefault();
 
       return null;
     };
+  }
+  showresume() {
+    this.displayresume = true;
+  }
+  closere() {
+    this.displayresume = false;
+  }
+  showcriminalRecords() {
+    this.displaycriminalRecords = true;
+  }
+  closec() {
+    this.displaycriminalRecords = false;
   }
 }

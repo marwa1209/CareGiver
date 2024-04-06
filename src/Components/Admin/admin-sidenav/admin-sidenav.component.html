@@ -1,108 +1,88 @@
-<nav class=" position-fixed top-0 start-0 w-15 bottom-0 bg-main text-white py-4 ps-4 sidenav d-block">
+<nav class=" position-fixed top-0 start-0 w-17 bottom-0 bg-main text-white py-5 ps-4 sidenav d-block">
     <div class="d-flex flex-column">
         <a class="text-center fs-4 text-white mb-5 cursor-pointer" routerlink="/admin-dashboard">Logo</a>
-        <div class="d-flex justify-content-between align-items-center pe-4">
-            <h2 routerLink="/admin-dashboard" class="cursor-pointer">Dashboard</h2>
-            <a><i class="fa-solid fa-bars cursor-pointer"></i></a>
-        </div>
+        <h2 routerLink="/admin-dashboard" class="cursor-pointer">Dashboard</h2>
         <hr>
-        <ul class="navbar-nav py-2">
-            <li class="nav-item d-flex justify-content-start gap-3 align-items-center mb-3"
+        <ul class="navbar-nav py-2 ">
+            <li class="nav-item d-flex justify-content-start gap-3 align-items-center mb-4"
                 routerLinkActive="bg-white text-main ps-2 rounded-start-5">
                 <i class="fa-regular fa-user"></i>
-                <a class="nav-link active cursor-pointer" routerLink="/manageCustomers">Manage Customers</a>
+                <a class="nav-link active fs-6 " routerLink="/manageCustomers">Manage Customers</a>
             </li>
-            <li class="nav-item d-flex justify-content-start gap-3 align-items-center mb-3"
+            <li class="nav-item d-flex justify-content-start gap-3 align-items-center mb-4"
                 routerLinkActive="bg-white text-main ps-2 rounded-start-5">
-                <i class="fa-regular fa-user"></i>
-                <a class="nav-link active" routerLink="/manageNurses">Manage Nurses</a>
+                <i class="fa-solid fa-user-nurse"></i>
+                <a class="nav-link active fs-6" routerLink="/manageNurses">Manage Nurses</a>
             </li>
-            <li class="nav-item d-flex justify-content-start gap-3 align-items-center mb-3"
+            <li class="nav-item d-flex justify-content-start gap-3 align-items-center mb-4"
                 routerLinkActive="bg-white text-main ps-2 rounded-start-5">
-                <i class="fa-regular fa-user"></i>
-                <a class="nav-link active" routerLink="/manageCaregivers">Manage Caregivers</a>
+                <i class="fa-solid fa-person-breastfeeding "></i>
+                <a class="nav-link active fs-6" routerLink="/manageCaregivers">Manage Caregivers</a>
             </li>
-            <li class="nav-item d-flex justify-content-start gap-3 align-items-center mb-3"
+            <li class="nav-item d-flex justify-content-start gap-3 align-items-center mb-4"
                 routerLinkActive="bg-white text-main ps-2 rounded-start-5">
-                <i class="fa-regular fa-user"></i>
-                <a class="nav-link active" routerLink="/manageBabysitters">Manage Babysitters</a>
+                <i class="fa-solid fa-baby-carriage "></i>
+                <a class="nav-link active fs-6" routerLink="/manageBabysitters">Manage Babysitters</a>
             </li>
-            <li class="nav-item d-flex justify-content-start gap-3 align-items-center mb-3"
+            <li class="nav-item d-flex justify-content-start gap-3 align-items-center mb-4"
                 routerLinkActive="bg-white text-main ps-2 rounded-start-5">
-                <i class="fa-regular fa-user"></i>
-                <a class="nav-link active" routerLink="/requests">Requests</a>
+                <i class="fa-solid fa-arrows-down-to-people "></i>
+                <a class="nav-link active fs-6" routerLink="/allReservation">All Reservations</a>
             </li>
-            <li class="nav-item d-flex justify-content-start gap-3 align-items-center mb-3"
+            <li class="nav-item d-flex justify-content-start gap-3 align-items-center mb-4"
                 routerLinkActive="bg-white text-main ps-2 rounded-start-5">
-                <i class="fa-regular fa-user"></i>
-                <a class="nav-link active" routerLink="/notifications">Notifications</a>
+                <i class="fa-solid fa-code-pull-request"></i>
+                <a class="nav-link active fs-6" routerLink="/requests">Requests</a>
             </li>
-            <li class="nav-item d-flex justify-content-start gap-3 align-items-center mb-3"
+            <li class="nav-item d-flex justify-content-start gap-3 align-items-center mb-4"
                 routerLinkActive="bg-white text-main ps-2 rounded-start-5">
-                <i class="fa-regular fa-user"></i>
-                <a class="nav-link active" routerLink="/reports">Reports</a>
-            </li>
-            <li class="nav-item d-flex justify-content-start gap-3 align-items-center mb-3"
-                routerLinkActive="bg-white text-main ps-2 rounded-start-5">
-                <i class="fa-regular fa-user"></i>
-                <a class="nav-link active" routerLink="/transactions">Transactions</a>
-            </li>
-            <li class="nav-item d-flex justify-content-start gap-3 align-items-center mb-3"
-                routerLinkActive="bg-white text-main ps-2 rounded-start-5">
-                <i class="fa-regular fa-user"></i>
-                <a class="nav-link active" routerLink="/settings">Settings</a>
+                <i class="fa-regular fa-credit-card"></i>
+                <a class="nav-link active fs-6" routerLink="/transactions">Transactions</a>
             </li>
         </ul>
         <hr>
-        <li class="nav-item d-flex justify-content-start gap-3 align-items-center my-3">
+        <li class="nav-item d-flex justify-content-start gap-3 align-items-center my-3 cursor-pointer"
+            (click)="logout()">
             <i class="fa-solid fa-arrow-right-from-bracket fs-5"></i>
             <a class="nav-link active fs-5">Logout</a>
         </li>
     </div>
 </nav>
-<nav class=" position-fixed top-0 start-0 w-5 bottom-0 bg-main text-white py-4 ps-4 side-responsive d-none">
+<nav class=" position-fixed top-0 start-0  bottom-0 bg-main text-white py-5 ps-4 side-responsive d-none">
     <div class="d-flex flex-column">
         <div class="d-flex justify-content-between align-items-center pe-4">
             <i class="fa-solid fa-table-columns cursor-pointer" routerLink="/admin-dashboard"></i>
         </div>
         <hr>
         <ul class="navbar-nav py-2">
-            <li class="nav-item cursor-pointer d-flex justify-content-start gap-3 align-items-center mb-3"
+            <li class="nav-item cursor-pointer d-flex justify-content-start gap-3 align-items-center mb-5"
                 data-bs-toggle="popover" data-bs-content="" routerLinkActive="bg-white text-main ps-2 rounded-start-5"
                 routerLink="/manageCustomers" tabindex="0">
                 <i class="fa-regular fa-user cursor-pointer py-2"></i>
             </li>
-            <li class="nav-item cursor-pointer d-flex justify-content-start gap-3 align-items-center mb-3"
+            <li class="nav-item cursor-pointer d-flex justify-content-start gap-3 align-items-center mb-5"
                 routerLinkActive="bg-white text-main ps-2 rounded-start-5" routerLink="/manageNurses">
                 <i class="fa-solid fa-user-nurse nav-link cursor-pointer"></i>
             </li>
-            <li class="nav-item cursor-pointer d-flex justify-content-start gap-3 align-items-center mb-3"
+            <li class="nav-item cursor-pointer d-flex justify-content-start gap-3 align-items-center mb-5"
                 routerLinkActive="bg-white text-main ps-2 rounded-start-5" routerLink="/manageCaregivers">
                 <i class="fa-solid fa-person-breastfeeding nav-link"></i>
             </li>
-            <li class="nav-item cursor-pointer d-flex justify-content-start gap-3 align-items-center mb-3"
+            <li class="nav-item cursor-pointer d-flex justify-content-start gap-3 align-items-center mb-5"
                 routerLinkActive="bg-white text-main ps-2 rounded-start-5" routerLink="/manageBabysitters">
                 <i class="fa-solid fa-baby-carriage nav-link active"></i>
             </li>
-            <li class="nav-item cursor-pointer d-flex justify-content-start gap-3 align-items-center mb-3"
+            <li class="nav-item cursor-pointer d-flex justify-content-start gap-3 align-items-center mb-5"
+                routerLinkActive="bg-white text-main ps-2 rounded-start-5" routerLink="/allReservation">
+                <i class="fa-solid fa-arrows-down-to-people nav-link"></i>
+            </li>
+            <li class="nav-item cursor-pointer d-flex justify-content-start gap-3 align-items-center mb-5"
                 routerLinkActive="bg-white text-main ps-2 rounded-start-5" routerLink="/requests">
                 <i class="fa-solid fa-code-pull-request nav-link"></i>
             </li>
-            <li class="nav-item cursor-pointer d-flex justify-content-start gap-3 align-items-center mb-3"
-                routerLinkActive="bg-white text-main ps-2 rounded-start-5" routerLink="/notifications">
-                <i class="fa-regular fa-bell nav-link"></i>
-            </li>
-            <li class="nav-item cursor-pointer d-flex justify-content-start gap-3 align-items-center mb-3"
-                routerLinkActive="bg-white text-main ps-2 rounded-start-5" routerLink="/reports">
-                <i class="fa-regular fa-flag nav-link"></i>
-            </li>
-            <li class="nav-item cursor-pointer d-flex justify-content-start gap-3 align-items-center mb-3"
+            <li class="nav-item cursor-pointer d-flex justify-content-start gap-3 align-items-center mb-5"
                 routerLinkActive="bg-white text-main ps-2 rounded-start-5" routerLink="/transactions">
                 <i class="fa-regular fa-credit-card nav-link "></i>
-            </li>
-            <li class="nav-item cursor-pointer d-flex justify-content-start gap-3 align-items-center mb-3"
-                routerLinkActive="bg-white text-main ps-2 rounded-start-5" routerLink="/settings">
-                <i class="fa-solid fa-sliders nav-link"></i>
             </li>
         </ul>
         <hr>

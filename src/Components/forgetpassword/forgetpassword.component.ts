@@ -31,8 +31,7 @@ export class ForgetpasswordComponent {
     this._AuthService.forgetPassword(email).subscribe({
       next: (response) => {
         this.isLoading = false;
-        this.message = response.message;
-        this._Router.navigate(['/updatePassword']);
+        this.message = response.message;     
         console.log(response);
       },
       error: (error) => {

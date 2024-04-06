@@ -1,0 +1,28 @@
+@media (max-width: 1200px) {
+  .join-nurses {
+    .images {
+      display: none !important;
+    }
+  }
+  .allorders,.pay {
+    width: 20% !important;
+  }
+}
+
+@media (min-width: 993px) and (max-width: 1200px) {
+  .allorders,.pay {
+    width: 25% !important;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 992px) {
+  .allorders,.pay {
+    width: 30% !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .allorders,.pay {
+    width: 40% !important;
+  }
+}

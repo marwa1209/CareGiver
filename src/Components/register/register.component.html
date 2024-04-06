@@ -1,7 +1,7 @@
 <section class="register">
     <div class="container-fluied">
         <div class="row g-0">
-            <div class="col-md-6 col-sm-12 position-relative">
+            <div class="col-lg-6 pic col-md-12 position-fixed vh-100 d-block">
                 <picture class="h-100">
                     <img class="w-100 h-100 d-block" src="./assets/images/register-customer-image.jpg" />
                 </picture>
@@ -24,12 +24,12 @@
                     <a class="cursor-pointer text-light fs-3 font-i" routerLink="/signin">Sign in</a>
                 </div>
             </div>
-            <div class="col-md-6 py-5 col-sm-12">
+            <div class="col-lg-6 data py-5 col-md-12 ms-auto ">
                 <div class="w-100 h-100 d-flex justify-content-center container px-5 flex-column">
                     <a class="mb-5 text-main text-center fs-3 fw-semibold" routerLink="/home">Logo</a>
                     <form class="fw-medium main-text-color" (ngSubmit)="handleRegister()" action=""
                         [formGroup]="RegisterForm">
-                        <h1 class="fs-3 mb-5 text-main position-relative">Sign Up</h1>
+                        <h1 class="fs-3 fw-medium mb-5 text-main position-relative">Sign Up</h1>
                         <div class="mb-4 ">
                             <label for="fname" class="form-label">First Name</label>
                             <input #inputfName formControlName="firstName" type="text" class="form-control" id="fname">
@@ -75,7 +75,6 @@
                             <input type="radio" class="btn-check" formControlName="gender" id="female" [value]="2">
                             <label class="btn border px-4 py-2 text-muted " for="female">Female</label>
                         </div>
-
                         <!-- Birthdate -->
                         <div class="mb-4">
                             <label for="Birthdate" class="form-label">Birthdate</label>
@@ -177,7 +176,6 @@
                                 </p>
                             </ng-container>
                         </div>
-
                         <div class="mb-4">
                             <label for="phone" class="form-label">phone:</label>
                             <input #InputPhone formControlName="phoneNumber" type="tel" class="form-control" id="phone">
@@ -197,6 +195,10 @@
                             <label class="form-check-label" for="flexCheckDefault">
                                 I agree to Terms And Conditions & Privacy Policy
                             </label>
+                        </div>
+                        <div class="mb-4 acc  d-none">
+                            <p class="fs-6 fw-light mb-2">Already have an account ?</p>
+                            <a class="cursor-pointer fs-6 font-i text-main" routerLink="/signin">Sign in</a>
                         </div>
                         <button [disabled]="RegisterForm.invalid" type="submit"
                             class="btn-main mb-3 d-block m-auto w-30">

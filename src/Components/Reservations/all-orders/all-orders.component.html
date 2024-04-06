@@ -1,0 +1,79 @@
+<section *ngIf="allorders.length>=1 ; else noOrders" class="AllOrders px-2 container py-5">
+    <h1 class="fs-2 mb-4">My reservations </h1>
+    <h3 class="position-relative fs-4 ps-4">All ({{allorders.length}})</h3>
+    <input #searchinput class="form-control w-25 d-block ms-auto mb-4" type="search" placeholder="Search"
+        aria-label="Search" [(ngModel)]="term">
+
+    <table class="table table-responsive xl">
+        <thead class="">
+            <tr class="text-center align-middle ">
+                <th class="py-4">Order #</th>
+                <th class="py-4">caregiver name</th>
+                <th class="py-4">Price</th>
+                <th class="py-4">Start date</th>
+                <th class="py-4"> End date</th>
+                <th class="py-4">Phone number</th>
+                <th class="py-4">Status</th>
+                <th class="py-4">Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let order of allorders|searchreervationPipe:term" class="text-center">
+                <td class="p-4">{{order.orderId}}</td>
+                <td>
+                    <div class="d-flex gap-3 align-items-center justify-content-center">
+                        <img [src]="base64Image+order.photo" height="50px" width="50px" class="rounded-circle">
+                        <p class="w-25 my-auto">{{order.caregiverFirstName}}</p>
+                    </div>
+                </td>
+                <td>{{order.totalPriceWithfees|currency}}</td>
+                <td>{{order.startDate|date:'yyyy-MM-dd'}}</td>
+                <td>{{order.endDate |date:'yyyy-MM-dd'}}</td>
+                <td>{{order.caregiverPhoneNumber}}</td>
+                <td class="state">
+                    <div class="py-2 w-75 m-auto rounded-4 text-white"
+                        [ngClass]="{'ternary-color': order.status =='OnProgress','bg-danger':order.status=='Cancelled','bg-warning':order.status=='CannotProceed','bg-success':order.status=='Confirmed','secondary-color':order.status=='Pending'}">
+                        {{order.status}}</div>
+                </td>
+                <td>
+                    <a class="btn btn-outline-success"
+                        [routerLink]="['/Orderconfirmeddetails',order.orderId]">Details</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="container-fluid sm d-none">
+        <table class="table table-responsive">
+            <thead>
+                <tr class="text-center align-middle">
+                    <th class="py-4 fs-small">Order #</th>
+                    <th class="py-4 fs-small">Price</th>
+                    <th class="py-4 fs-small">Status</th>
+                    <th class="py-4 fs-small">Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let order of allorders|searchreervationPipe:term" class="text-center align-middle">
+                    <td class="p-4">{{order.orderId}}</td>
+                    <td>{{order.totalPriceWithfees|currency}}</td>
+                    <td>
+                        <div class="py-2 w-75 m-auto rounded-4">
+                            {{order.status}}</div>
+                    </td>
+                    <td>
+                        <a class="btn btn-outline-success" [routerLink]="['/Orderconfirmeddetails',order.orderId]">More
+                            Details</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<ng-template #noOrders>
+    <div class="container py-5">
+        <h1 class="border border-1 border-main rounded-3 py-5 text-capitalize text-center">no Reservation Yet</h1>
+        <button class="btn-main d-block m-auto rounded-2 mt-2 text-capitalize" routerLink="/services">Our
+            Servic</button>
+    </div>
+</ng-template>
