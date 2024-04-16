@@ -1,22 +1,31 @@
 @media (min-width: 1200px) and (max-width: 1496px) {
-  .btns button {
+  .btns .btn {
     width: 15% !important;
   }
 }
 @media (min-width: 993px) and (max-width: 1999px) {
-  .btns button {
+  .btns .btn {
     width: 20% !important;
+  }
+    .confirmation-dialog {
+    width: 50% !important;
   }
 }
 
 @media (min-width: 769px) and (max-width: 992px) {
-  .btns button {
+  .btns .btn {
     width: 35% !important;
+  }
+  .confirmation-dialog {
+    width: 70% !important;
   }
 }
 
 @media (min-width: 0px) and (max-width: 768px) {
-  .btns button {
+  .btns .btn {
     width: 45% !important;
+  }
+  .confirmation-dialog {
+    width: 70% !important;
   }
 }

@@ -1,6 +1,6 @@
 <nav class="navbar grey-text-color py-4 fw-medium font-sm navbar-expand-lg">
     <div class="container-fluid px-5">
-        <a class="navbar-brand me-5 text-main" routerLink="/home">Logo</a>
+        <a class=" navbar-brand fs-2" routerLink="/"><img src="./assets/images/Logo.svg"></a>
         <button class="navbar-toggler  " type="button" data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
             aria-label="Toggle navigation">
@@ -29,8 +29,8 @@
             <a class="nav-item cursor-pointer fs-7 btn" *ngIf="state!=='active'" (click)="SignOut()">Sign Out</a>
             <div class="profile ms-auto d-flex align-items-center gap-3 justify-content-between gap-3 "
                 *ngIf="state=='active'==true">
-                <img [src]="base64Image+caregiver?.photo" class=" m-auto d-block rounded-circle" height="50px"
-                    width="50px" [alt]="caregiver?.firstName">
+                <img [src]="base64Image+caregiver?.photo" class=" m-auto d-block rounded-circle" height="55px"
+                    width="70px" [alt]="caregiver?.firstName">
                 <div class="d-flex  flex-column justify-content-center g-0 gap-0 text-main">
                     <h2 class="fs-6 fw-medium py-0 my-0 lh-sm">{{caregiver?.firstName}}</h2>
                     <h3 class="fs-6 py-0 my-0 lh-sm">{{role}}</h3>

@@ -1,11 +1,14 @@
 <div class="experts py-5 container">
-    <h2 class="fs-1 text-center py-4">Meet our Nurses</h2>
+    <h2 class="fs-1 text-center py-4">Meet our Nurse</h2>
+    <input #searchinput class="form-control w-25 d-block m-auto" type="search" placeholder="Search" aria-label="Search"
+        [(ngModel)]="term">
     <div class="row my-3">
-        <div class="col-lg-4 col-md-12 mb-4 position-relative cursor-pointer  " *ngFor="let item of caregivers">
+        <div class="col-lg-4 col-md-12 mb-4 position-relative cursor-pointer"
+            *ngFor="let item of caregivers |search :term | slice:0:9">
             <div class="card rounded-4">
                 <picture class="w-80 m-auto my-4" [routerLink]="['/customerNurseDetails',item.id]">
-                    <img src="./assets/images/nurse--.png" class="card-img-top w-100 rounded-4 m-auto d-block"
-                        alt="...">
+                    <img [src]="base64Image+item.photo" class="card-img-top w-100 rounded-4 m-auto d-block"
+                        [alt]="item.firstName" height="350px">
                 </picture>
                 <div class="card-body w-80 m-auto">
                     <div [routerLink]="['/customerNurseDetails',item.id]">
@@ -23,11 +26,10 @@
                     <div class="d-flex justify-content-between">
                         <h6 class="text-main fs-5" [routerLink]="['/customerNurseDetails',item.id]">
                             {{item.pricePerDay}} <span class="text-muted">/hr</span></h6>
-                        <a class="btn-main px-4">Reserve now</a>
+                        <a [routerLink]="['/customerdetailsreservation',item?.id]" class="btn-main px-4">Reserve</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <button class="btn-main d-block m-auto rounded-2 mt-2">Show more</button>
 </div>

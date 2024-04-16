@@ -6,20 +6,6 @@
                     <a class="mb-5 text-main text-center fs-3 fw-semibold" routerLink="/home">Logo</a>
                     <form class="fw-medium main-text-color" [formGroup]="RegisterForm" (ngSubmit)="onSubmit()">
                         <h1 class="fs-3 mb-5 text-main position-relative">Fill The Form</h1>
-                        <!-- country -->
-                        <div class="mb-4 ">
-                            <label for="country" class="form-label">Country</label>
-                            <input #inputcountry formControlName="country" type="text" class="form-control"
-                                id="country">
-                            <ng-container *ngIf="RegisterForm.get('country')?.touched ||inputcountry.value.length>0">
-                                <p *ngIf="RegisterForm.get('country')?.getError('required')"
-                                    class="alert alert-danger p-2 my-2">country is required!</p>
-                                <p *ngIf="RegisterForm.get('country')?.getError('minlength')"
-                                    class="alert alert-danger p-2 my-2">country must be at least 2 characters long!</p>
-                                <p *ngIf="RegisterForm.get('country')?.getError('maxlength')"
-                                    class="alert alert-danger p-2 my-2">country cannot exceed 20 characters!</p>
-                            </ng-container>
-                        </div>
                         <!-- City -->
                         <div class="mb-4">
                             <label for="city" class="form-label">City</label>
@@ -56,25 +42,26 @@
                                     class="alert alert-danger p-2 my-2">Invalid Number !</p>
                             </ng-container>
                         </div>
-                        <!-- JopTitle  -->
-                        <div class="mb-4">
-                            <label for="CareerLevel" class="form-label">Job Title</label>
-                            <select class="form-select" aria-label="Default select example" formControlName="jobTitle">
-                                <option selected [value]="1">Nurse</option>
-                                <option [value]="2">Caregiver</option>
-                                <option [value]="3">Babysitter</option>
-                            </select>
-                        </div>
                         <!-- JobLocationLookingFor  -->
                         <div class="mb-4">
-                            <label for="CareerLevel" class="form-label">Job Location Looking For</label>
+                            <label for="JobLocationLookingFor" class="form-label">Job Location Looking For</label>
                             <select class="form-select" aria-label="Default select example"
                                 formControlName="jobLocationLookingFor">
-                                <option selected [value]="3">Alexandria</option>
-                                <option [value]="1">Cairo</option>
-                                <option [value]="2">AboTesht</option>
+                                <option selected [value]=3>Alexandria</option>
+                                <option [value]=1>Cairo</option>
+                                <option [value]=2>AboTesht</option>
                             </select>
                         </div>
+                        <!-- JobTitle  -->
+                        <div class="mb-4">
+                            <label for="jobTitle" class="form-label">Job Title</label>
+                            <select class="form-select" aria-label="Default select example" formControlName="jobTitle">
+                                <option selected value="Babysitter">Babysitter</option>
+                                <option value="Nurse">Nurse</option>
+                                <option value="Caregiver">Caregiver</option>
+                            </select>
+                        </div>
+
                         <!-- PricePerDay  -->
                         <div class="mb-4 ">
                             <label for="PricePerDay" class="form-label">Price Per Day</label>
@@ -97,7 +84,7 @@
                             </ng-container>
                         </div>
                     </form>
-                    <form [formGroup]="caregiverForm"(ngSubmit)="onSubmit()">
+                    <form [formGroup]="caregiverForm" (ngSubmit)="onSubmit()">
                         <div class="mb-4">
                             <label for="resume" class="form-label">Resume</label>
                             <input type="file" formControlName="resume" id="resume" class="form-control" />
@@ -114,7 +101,7 @@
                             <input type="file" formControlName="uploadPhoto" id="uploadPhoto" class="form-control" />
                         </div>
 
-                        <button [disabled]="RegisterForm.invalid &&caregiverForm.invalid" type="submit"
+                        <button [disabled]="caregiverForm.invalid" type="submit"
                             class="btn-main mb-3 d-block m-auto w-30">
                             <i *ngIf="isLoading" class="fas fa-spinner fa-spin"></i>
                             Register</button>

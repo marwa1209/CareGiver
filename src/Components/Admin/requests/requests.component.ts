@@ -35,7 +35,7 @@ export class RequestsComponent {
           console.log('Error updating status:', err);
         },
       });
-    }, 10);
+    }, 100);
   }
   decline(id: any) {
     setTimeout(() => {

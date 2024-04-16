@@ -20,12 +20,11 @@
                     <picture><img class="rounded-circle" [src]="base64Image+caregiver.photo" height="50px" width="50px" />
                     </picture>
                     <p class="w-50">{{caregiver.firstName}} {{caregiver.lastName}}</p>
-
                 </td>
                 <td>{{caregiver.joinedDate}}</td>
                 <td>{{caregiver.totalCustomers}}</td>
-                <td>{{caregiver.totalRevenu}}</td>
-                <td>{{caregiver.pricePerDay}}</td>
+                <td>{{caregiver.totalRevenu |currency}}</td>
+                <td>{{caregiver.pricePerDay |currency}}</td>
                 <td scope="row"><a class="btn-main my-auto px-2" [routerLink]="['/caregiverprofile',caregiver.id]">View
                         Profile</a></td>
                

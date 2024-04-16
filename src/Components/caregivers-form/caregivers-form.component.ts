@@ -6,6 +6,7 @@ import {
   FormBuilder,
   FormControl,
   FormGroup,
+  FormsModule,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
@@ -15,7 +16,7 @@ import { MyHttpInterceptor } from 'src/app/Core/my-http.interceptor';
 @Component({
   selector: 'app-caregivers-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule],
   templateUrl: './caregivers-form.component.html',
   styleUrls: ['./caregivers-form.component.scss'],
   providers: [
@@ -41,11 +42,7 @@ export class CaregiversFormComponent implements OnInit {
     console.log(x.role);
   }
   RegisterForm: FormGroup = new FormGroup({
-    country: new FormControl('', [
-      Validators.required,
-      Validators.minLength(2),
-      Validators.maxLength(20),
-    ]),
+    country: new FormControl('Egypt'),
     city: new FormControl(1, [Validators.required]),
     careerLevel: new FormControl(1, [Validators.required]),
     yearsOfExperience: new FormControl(null, [
@@ -53,8 +50,8 @@ export class CaregiversFormComponent implements OnInit {
       Validators.max(50),
       Validators.min(1),
     ]),
-    jobTitle: new FormControl(1, [Validators.required]),
     jobLocationLookingFor: new FormControl(3, [Validators.required]),
+    jobTitle: new FormControl(1, [Validators.required]),
     pricePerDay: new FormControl('', [
       Validators.required,
       Validators.min(100),
@@ -79,12 +76,11 @@ export class CaregiversFormComponent implements OnInit {
     }
   }
 
-
   togglePasswordVisibility(inputField: HTMLInputElement) {
     inputField.type = inputField.type === 'password' ? 'text' : 'password';
   }
   onSubmit() {
-    if (this.caregiverForm.valid) {
+    if (this.caregiverForm.valid && this.RegisterForm.valid) {
       const formData = new FormData();
       const resumeFile = (document.getElementById('resume') as HTMLInputElement)
         ?.files?.[0];
@@ -109,32 +105,40 @@ export class CaregiversFormComponent implements OnInit {
       }
       this._AuthService.uploadFiles(formData).subscribe({
         next: (Response) => {
+          if (this.RegisterForm.get('jobTitle')?.value == 'Babysitter') {
+            this.RegisterForm.get('jobTitle')?.setValue(3);
+          } else if (this.RegisterForm.get('jobTitle')?.value == 'Nurse') {
+            this.RegisterForm.get('jobTitle')?.setValue(1);
+          } else if (this.RegisterForm.get('jobTitle')?.value == 'Caregiver') {
+            this.RegisterForm.get('jobTitle')?.setValue(2);
+          }
           console.log(Response);
           localStorage.setItem('etoken', Response.message);
           console.log('FormData:', formData);
-            this.isLoading = true;
-            const userData = this.RegisterForm.value;
+          this.isLoading = true;
+          const userData = this.RegisterForm.value;
+          console.log(userData);
+          if (this.RegisterForm.valid) {
             console.log(userData);
-            if (this.RegisterForm.valid) {
-              this._AuthService.setformNurse(userData).subscribe({
-                next: (response) => {
-                  if (response.isSuccess == true) {
-                    this.isLoading = false;
-                    localStorage.setItem('etoken', response.message);
-                    console.log(response.message);
-                    console.log(response);
-                    this._Router.navigate(['/pending']);
-                  }
-                },
-                error: (error) => {
-                  this.message = error.error.message;
-                  console.log(error.error);
+            this._AuthService.setformNurse(userData).subscribe({
+              next: (response) => {
+                if (response.isSuccess == true) {
                   this.isLoading = false;
-                },
-              });
-            } else {
-              this.RegisterForm.markAllAsTouched;
-            }
+                  localStorage.setItem('etoken', response.message);
+                  console.log(response.message);
+                  console.log(response);
+                  this._Router.navigate(['/pending']);
+                }
+              },
+              error: (error) => {
+                this.message = error.error.message;
+                console.log(error.error);
+                this.isLoading = false;
+              },
+            });
+          } else {
+            this.RegisterForm.markAllAsTouched;
+          }
         },
         error: (err) => {
           console.error(err);

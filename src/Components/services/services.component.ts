@@ -19,7 +19,7 @@ export class ServicesComponent implements OnInit {
   caregivers: ICaregiver[] = [];
   constructor(private _CareGiversService: CareGiversService) {}
   ngOnInit(): void {
-        this.base64Image = 'data:image/jpeg;base64,';
+    this.base64Image = 'data:image/jpeg;base64,';
     this._CareGiversService.getCareGivers().subscribe({
       next: (data) => {
         this.caregivers = data.result;

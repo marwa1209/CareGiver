@@ -1,6 +1,6 @@
 <nav class="navbar grey-text-color py-4 fw-medium font-sm navbar-expand-lg z-2">
   <div class="container-fluid px-5 d-flex align-items-center">
-    <a class="navbar-brand me-5 text-main" routerLink="/home">Logo</a>
+    <a class="navbar-brand me-5 text-main" routerLink="/"><img src="./assets/images/Logo.svg"></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -44,8 +44,7 @@
       <!--* user as blank -->
       <div *ngIf="userToken" class="profile ms-auto d-flex align-items-center gap-3 justify-content-between gap-3">
         <div class="d-flex  flex-column justify-content-center g-0 gap-0 text-main">
-          <h2 class="fs-6 fw-medium py-0 my-0 lh-sm">{{Patientdata?.firstName}} {{Patientdata?.lastName}}</h2>
-          <p class="fs-6 fw-medium py-0 my-0 lh-sm">{{Patientdata?.email}}</p>
+          <h2 class="fs-6 fw-medium py-0 my-0 lh-sm">{{Patientdata?.firstName}}</h2>
         </div>
         <div class="w-40 dropdown navbar-nav">
           <a class="fs-4 p-1 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">

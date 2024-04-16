@@ -43,6 +43,7 @@ export class CustomerprofileComponent implements OnInit {
     this.editForm.get('nationality')?.setValue(Nationality);
   }
   editForm: FormGroup = new FormGroup({
+    id: new FormControl(''),
     firstName: new FormControl('', [
       Validators.required,
       Validators.minLength(3),
@@ -76,7 +77,7 @@ export class CustomerprofileComponent implements OnInit {
   Patientdata: Patient | undefined;
   constructor(
     private _AuthService: AuthService,
-    private _CustomersService: CustomersService,
+    private _CustomersService: CustomersService
   ) {}
   updatepassForm: FormGroup = new FormGroup(
     {
@@ -103,6 +104,8 @@ export class CustomerprofileComponent implements OnInit {
   }
   ngOnInit() {
     this.id = this._AuthService.decodeUserData().nameid;
+    console.log(this.id);
+    this.editForm.get('id')?.setValue(this.id);
     this._CustomersService.getCustomerById(this.id).subscribe({
       next: (data) => {
         this.Patientdata = data.result;
@@ -118,6 +121,7 @@ export class CustomerprofileComponent implements OnInit {
           ?.setValue(this.Patientdata?.nationality);
         this.editForm.get('location')?.setValue(this.Patientdata?.location);
         this.editForm.get('birthdate')?.setValue(this.Patientdata?.birthdate);
+        console.log(data.result);
       },
       error: (err) => {
         console.log(err);

@@ -18,7 +18,7 @@ export class CareGiversService {
   }
   getCareGiverByRole(role: string | null): Observable<any> {
     return this._HttpClient.get(
-      `http://localhost:5248/api/Caregiver/role/${role}`
+      `http://localhost:5248/api/Admin/Caregiver/${role}`
     );
   }
   editCareGiver(id: string | null, caregiverData:any|null): Observable<any> {
